@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 环境与密钥
+.env
+.env.local
+*.pem
+
+# IDE（按需取消注释以提交 .vscode）
+# .vscode/
+.idea/
+
+# 训练产出（可选：若不想提交 checkpoint 与曲线图）
+model/checkpoints/
+*.pth
+training_history.png
+
+# 系统与临时
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# 原始数据与特征 npy（不随仓库上传，需自行准备或运行特征提取生成）
+EEG数据/
+feature_extracting/feature_data/*.npy

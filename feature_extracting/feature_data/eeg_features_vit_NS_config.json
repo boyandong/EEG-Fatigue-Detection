@@ -1,0 +1,51 @@
+{
+  "n_samples": 4957,
+  "n_time_steps": 16,
+  "n_bands": 5,
+  "band_names": [
+    "Delta",
+    "Theta",
+    "Alpha",
+    "Beta",
+    "Gamma"
+  ],
+  "freq_bands": {
+    "Delta": [
+      1,
+      4
+    ],
+    "Theta": [
+      4,
+      8
+    ],
+    "Alpha": [
+      8,
+      14
+    ],
+    "Beta": [
+      14,
+      31
+    ],
+    "Gamma": [
+      31,
+      51
+    ]
+  },
+  "grid_size": 14,
+  "feature_shape": [
+    4957,
+    16,
+    5,
+    14,
+    14
+  ],
+  "window_config": {
+    "window_length_sec": 1.0,
+    "stride_sec": 0.2,
+    "method": "sliding_window"
+  },
+  "normalization": {
+    "mean": -11.64343173356215,
+    "std": 0.5774368127900158
+  }
+}

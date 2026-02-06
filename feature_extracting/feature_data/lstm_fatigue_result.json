@@ -1,0 +1,12 @@
+{
+  "seed": 42,
+  "train_ratio": 0.7,
+  "val_ratio": 0.15,
+  "test_ratio": 0.15,
+  "n_train": 6723,
+  "n_val": 1409,
+  "n_test": 1702,
+  "best_epoch": 33,
+  "test_accuracy": 0.6745005875440658,
+  "test_f1": 0.708113804004215
+}
