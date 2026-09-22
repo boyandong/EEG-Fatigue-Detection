@@ -1,0 +1,43 @@
+[
+  {
+    "name": "braindecode",
+    "version": "1.3.2",
+    "repository": "https://github.com/braindecode/braindecode",
+    "url": "https://files.pythonhosted.org/packages/68/27/b57c68a4b7a2ff241f79efe25b5d3146884c690edec395531b281fe63333/braindecode-1.3.2.tar.gz",
+    "archive": "braindecode-1.3.2.tar.gz",
+    "sha256": "dc5cb6bae187e88bc816cdd40e3af4c2a35a854be4658fde4cacc1d4b3ab95e1",
+    "note": "Official PyPI sdist; no v1.3.2 Git tag exists"
+  },
+  {
+    "name": "arl-eegmodels",
+    "repository": "https://github.com/vlawhern/arl-eegmodels",
+    "requested_ref": "master",
+    "commit": "4a512e503198db2010848813ead9afbf8cd54c97",
+    "url": "https://codeload.github.com/vlawhern/arl-eegmodels/zip/4a512e503198db2010848813ead9afbf8cd54c97",
+    "archive": "arl-eegmodels-4a512e503198db2010848813ead9afbf8cd54c97.zip",
+    "sha256": "79fc9afba9a0b035b78570dd25faa7e88ed9ded344da1f77f3226384df9c4523",
+    "downloaded_utc": "2026-09-08T06:31:21.992421+00:00"
+  },
+  {
+    "name": "scikit-learn",
+    "repository": "https://github.com/scikit-learn/scikit-learn",
+    "requested_ref": "1.7.2",
+    "commit": "25dee604bae18205b01548348388baf7a1cdfe0e",
+    "url": "https://codeload.github.com/scikit-learn/scikit-learn/zip/25dee604bae18205b01548348388baf7a1cdfe0e",
+    "archive": "scikit-learn-25dee604bae18205b01548348388baf7a1cdfe0e.zip",
+    "sha256": "0416669cfbb247d36f47614a47ef4efedf61849169d574376b2690c8a21aa75a",
+    "downloaded_utc": "2026-09-08T06:31:32.033838+00:00"
+  },
+  {
+    "name": "tent",
+    "repository": "https://github.com/DequanWang/tent",
+    "requested_ref": "master",
+    "commit": "e9e926a668d85244c66a6d5c006efbd2b82e83e8",
+    "url": "https://api.github.com/repos/DequanWang/tent/tarball/master",
+    "archive": "tent_official_master.tar.gz",
+    "sha256": "903e9f81ee7972017cc4675fd6ead3f51331a2a8958efb9b0aecb853e5f2dc79",
+    "core_source": "tent-official-e9e926a/tent.py",
+    "core_source_sha256": "d854e1f65f741aa1632dfb55420ca1bcf5405c978bef890e45caad04980514c8",
+    "downloaded_utc": "2026-09-10"
+  }
+]

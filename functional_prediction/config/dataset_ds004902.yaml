@@ -1,0 +1,159 @@
+# Dataset adapter config: ds004902 (A Resting-state EEG Dataset for Sleep Deprivation)
+#
+# Provenance of this file: values below were established by
+# scripts/00_audit_source_data.py against the on-disk EEGLAB headers. Anything not
+# verifiable from the on-disk data is marked provenance: not_established.
+
+dataset_id: ds004902
+dataset_title: "A Resting-state EEG Dataset for Sleep Deprivation"
+dataset_doi: "doi:10.18112/openneuro.ds004902.v1.0.8"
+source_paper:
+  citation: "Xiang, C., Fan, X., Bai, D. et al. A resting-state EEG dataset for sleep deprivation. Sci Data 11, 427 (2024)."
+  doi: "10.1038/s41597-024-03268-2"
+local_version_note: >
+  data/ds004902/原始数据集.txt records that the third-party preprocessing was performed on
+  dataset version v1.0.5, while the BIDS tree present locally has
+  dataset_description.json DOI v1.0.8. The preprocessing was NOT re-run on v1.0.8.
+  This mismatch is recorded as a provenance limitation, not corrected.
+
+paths:
+  # All paths are relative to THIS branch directory
+  # (project/vigilance_generalization_v1/), resolved by src/common.py::resolve.
+  # Only readable EEG in the workspace. See outputs/qc/source_audit_summary.json.
+  eeg_preprocessed_dir: "../../../srtp/data/ds004902/preprocessed"
+  # BIDS tree. NOTE: all 218 .set/.fdt pairs here are BROKEN git-annex symlinks;
+  # no EEG content is retrievable from this tree locally.
+  bids_root: "../../../srtp/data/ds004902/metadata_behavior"
+  participants_tsv: "../../../srtp/data/ds004902/metadata_behavior/participants.tsv"
+  participants_json: "../../../srtp/data/ds004902/metadata_behavior/participants.json"
+  pvt_glob: "../../../srtp/data/ds004902/metadata_behavior/sub-*/ses-*/beh/*task-pvt_beh.tsv"
+
+# ---------------------------------------------------------------- EEG definition
+eeg:
+  # EYES-OPEN IS A HARD REQUIREMENT (SCIENTIFIC_SPEC section 5).
+  eye_state_required: "eyes-open"
+  target_sfreq_hz: 500
+  # Files whose EEGLAB header declares 5000 Hz are excluded; see exclusions_csv.
+  exclude_header_sfreq_not_in: [500]
+
+  reference_field_expected: "average"           # provenance: verified, all 142 files
+  units: "uV"                                   # provenance: EEGLAB convention + BIDS channels.tsv
+  units_provenance: >
+    BIDS *_channels.tsv declares units=uV for all 61 EEG channels. The preprocessed
+    EEGLAB files carry no independent unit calibration record. Treated as uV with this
+    limitation recorded.
+
+  epoch_seconds: 4                              # provenance: pnts/srate = 2000/500 for all 137 @500Hz
+  epoch_overlap_seconds: 0
+  # The source files arrive ALREADY EPOCHED at 4 s. We do not re-window or concatenate.
+  source_is_pre_epoched: true
+
+  analysis_band_hz: [1, 30]                     # integration range used for the band powers
+
+  canonical_channel_order: >
+    Taken from the first 61-channel chanlocs variant (124 of 142 files). Files using the
+    second variant (18 files) are reordered by channel NAME before any feature is computed.
+    Channel order in the .fdt is channel-major, so using the wrong order silently permutes
+    channels; src/data_ds004902.py asserts the mapping explicitly.
+
+  # Channel subtraction performed upstream by the third-party preprocessing. Recorded
+  # because it is NOT uniform across files (5 distinct patterns observed) and could in
+  # principle affect which channels survive.
+  upstream_removed_channels_observed:
+    - "": 78
+    - "'ECG','HEOR'": 38
+    - "'ECG','FT9','FT10'": 21
+    - "'IO','HEOG','VEOG'": 4
+    - "'E1','E2'": 1
+
+  upstream_resampled_to_500hz:
+    # pop_resample(EEG, 500) appears in these 5 histories. Anti-alias filter settings are
+    # NOT recorded upstream. Flagged; not excluded in Phase 1.
+    files: [sub-40_ses-2, sub-47_ses-1, sub-50_ses-1, sub-50_ses-2, sub-53_ses-1]
+
+# ---------------------------------------------------------------- spectral config
+# SECTION 15 of the task: every PSD parameter lives here, and anything the source paper
+# does not report is labelled as chosen a priori.
+spectral:
+  method: "welch"
+  window: "hann"
+  nperseg: 2000            # full 4 s epoch
+  noverlap: 0              # a priori: one PSD estimate per epoch, no within-epoch averaging
+  nfft: 2000               # a priori: keeps bin width at exactly 0.25 Hz so band edges align
+  detrend: "constant"
+  scaling: "density"       # uV^2 / Hz
+  average: "mean"
+  integration: "trapezoid"
+  # Band edges coincide with integer multiples of the 0.25 Hz grid, so the strict
+  # [lo, hi] inclusion rule and the trapezoid rule agree exactly at the edges.
+  band_bin_rule: "(f >= lo) & (f <= hi)"
+  bands_hz:
+    theta: [4, 8]
+    alpha: [8, 13]
+    beta: [13, 30]
+  # P_4-30 is defined as theta + alpha + beta so that the identity used by the
+  # paper-reference features holds exactly, not only within integration error.
+  total_band_definition: "theta + alpha + beta"
+  numerical_epsilon_uv2: 1.0e-12
+  numerical_epsilon_note: >
+    Used only inside log() as log(P + eps). Any band power below eps is logged as such and
+    counted; the count is reported in outputs/qc/feature_qc.csv. If a non-trivial fraction
+    of values hit the floor the PSD pipeline is treated as broken, not silently continued.
+  units_note: "band power in uV^2; log-ratios are dimensionless"
+
+  not_specified_by_source_paper:
+    # The source paper does not report these; they are fixed a priori and must not be
+    # tuned against PVT correlation.
+    - parameter: window
+      fixed_a_priori_to: "hann"
+      rationale: "standard EEG PSD taper; reduces leakage from the 1/f trend"
+    - parameter: nperseg
+      fixed_a_priori_to: 2000
+      rationale: "the analysis epoch is 4 s; one PSD per epoch gives the epoch-wise estimate the paper-level variability feature needs"
+    - parameter: noverlap
+      fixed_a_priori_to: 0
+      rationale: "no within-epoch averaging; one estimate per epoch keeps epochs statistically exchangeable"
+    - parameter: nfft
+      fixed_a_priori_to: 2000
+      rationale: "bin width 0.25 Hz makes [4,8], [8,13], [13,30] edges land exactly on grid points"
+    - parameter: detrend
+      fixed_a_priori_to: "constant"
+      rationale: "remove per-epoch DC offset"
+    - parameter: scaling
+      fixed_a_priori_to: "density"
+      rationale: "uV^2/Hz; integration over Hz yields band power in uV^2"
+
+# ---------------------------------------------------------------- PVT definition
+pvt:
+  # Trial-level response-time window. 100 <= RT <= 2000 ms retained.
+  min_rt_ms: 100.0
+  max_rt_ms: 2000.0
+  rt_bounds_provenance: >
+    Taken from the 2026 same-dataset paper as the paper-compatible convention. It is a
+    target-definition choice, declared before any feature-target correlation is computed.
+  trial_column_names_seen: ["trial", "trail"]              # typo variant retained
+  response_column_names_seen: ["response_time", "resoonse_time", "respones_time", "response"]
+  never_write_raw: true
+  # Sessions are condition-coded, not chronological. NS = baseline, SD = perturbation.
+  condition_labels:
+    ses-1: "NS"
+    ses-2: "SD"
+
+# ---------------------------------------------------------------- ROI definition
+# SECTION 8. paper_reference uses the channel ARITHMETIC MEAN within an ROI;
+# mechanism_v1 uses the channel MEDIAN (section 9).
+roi:
+  F:  [Fp1, Fpz, Fp2, AF7, AF3, AF4, AF8, F7, F5, F3, F1, Fz, F2, F4, F6, F8]
+  CT: [FT7, FC5, FC3, FC1, FC2, FC4, FC6, FT8, T7, C5, C3, C1, Cz, C2, C4, C6, T8, TP7, CP5, CP3, CP1, CPz, CP2, CP4, CP6, TP8, TP9, TP10]
+  PO: [P7, P5, P3, P1, Pz, P2, P4, P6, P8, PO7, PO3, POz, PO4, PO8, O1, Oz, O2]
+  partition_verified: true
+  partition_note: >
+    F=16, CT=28, PO=17, total 61: an exact partition of the montage with no duplicates and
+    no unmapped channel. Verified in scripts/04_verify_phase1.py.
+
+# ---------------------------------------------------------------- pairing rules
+pairing:
+  require_both_sessions: true
+  require_same_eye_state: true
+  baseline_session: "ses-1"     # NS
+  perturbation_session: "ses-2" # SD

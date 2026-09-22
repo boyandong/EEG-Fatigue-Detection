@@ -1,0 +1,233 @@
+{
+  "phase": "EEGTTA-PHASE1",
+  "status": "EXECUTED_AND_VERIFIED",
+  "execution": {
+    "server": "owner-approved GPU server, host redacted (RTX 4090, driver 580.105.08)",
+    "units": 816,
+    "units_per_arm": 204,
+    "subjects": 68,
+    "seeds": [
+      0,
+      1,
+      2
+    ],
+    "primary_stream": "metadata_order",
+    "windows_scored": 112680,
+    "device": "cuda",
+    "note": "8 units reused from the predeclared formal-semantics smoke (bit-identical under the frozen per-unit RNG convention)"
+  },
+  "verification": {
+    "verifier": "105/105",
+    "controls": "75/75 bite",
+    "remote_source_closure": "max |dp| 9.537e-07, 0 label flips, BAcc exact"
+  },
+  "absolute_levels": {
+    "source": {
+      "accuracy": 0.5963370366036311,
+      "balanced_accuracy": 0.5924169784325324,
+      "f1": 0.5550204299453863,
+      "roc_auc": 0.6109230390089246
+    },
+    "bn_only": {
+      "accuracy": 0.5045907769678348,
+      "balanced_accuracy": 0.5038538392761709,
+      "f1": 0.49620316041089557,
+      "roc_auc": 0.5047083241880406
+    },
+    "tent_literal": {
+      "accuracy": 0.5048259736466855,
+      "balanced_accuracy": 0.5043331537450044,
+      "f1": 0.4974657819598016,
+      "roc_auc": 0.5058761015579146
+    },
+    "tent_det": {
+      "accuracy": 0.5042946766957604,
+      "balanced_accuracy": 0.503516221486456,
+      "f1": 0.4952929501195706,
+      "roc_auc": 0.5045232937413028
+    }
+  },
+  "deltas_vs_source": {
+    "bn_only": {
+      "bacc": {
+        "n": 68,
+        "mean": -0.08856313915636138,
+        "median": -0.08071627965994166,
+        "sd": 0.15497678197320827,
+        "q1": -0.21244767884322674,
+        "q3": 0.007778879188512361,
+        "iqr": 0.2202265580317391,
+        "ci_low": -0.12527592658327982,
+        "ci_high": -0.051995744977900146,
+        "n_improved": 21,
+        "n_harmed": 47,
+        "n_tied": 0
+      },
+      "dominant": {
+        "n": 67,
+        "mean": -0.16893487162913262,
+        "median": -0.14438175670673248,
+        "sd": 0.12630911869933786,
+        "q1": -0.22548134641413226,
+        "q3": -0.07293457628360828,
+        "iqr": 0.15254677013052398,
+        "ci_low": -0.19900092875304623,
+        "ci_high": -0.14030770280354346,
+        "n_improved": 4,
+        "n_harmed": 63,
+        "n_tied": 0
+      },
+      "h_marg": {
+        "n": 67,
+        "mean": 0.1504007368300624,
+        "median": 0.078695058837152,
+        "sd": 0.16555865787601198,
+        "q1": 0.030283413290924877,
+        "q3": 0.2131391528378872,
+        "iqr": 0.18285573954696233,
+        "ci_low": 0.11324476869210168,
+        "ci_high": 0.19064945062096406,
+        "n_improved": 64,
+        "n_harmed": 3,
+        "n_tied": 0
+      }
+    },
+    "tent_literal": {
+      "bacc": {
+        "n": 68,
+        "mean": -0.08808382468752783,
+        "median": -0.07776229406664195,
+        "sd": 0.1557636709510344,
+        "q1": -0.2033032543306516,
+        "q3": 0.015544904533297044,
+        "iqr": 0.21884815886394865,
+        "ci_low": -0.12476969389149033,
+        "ci_high": -0.05103695849833663,
+        "n_improved": 19,
+        "n_harmed": 48,
+        "n_tied": 1
+      },
+      "dominant": {
+        "n": 67,
+        "mean": -0.16573285419478642,
+        "median": -0.138938393763965,
+        "sd": 0.1276230501380582,
+        "q1": -0.22515056528635502,
+        "q3": -0.06973876034220067,
+        "iqr": 0.15541180494415435,
+        "ci_low": -0.1958544481363956,
+        "ci_high": -0.13684627781491585,
+        "n_improved": 3,
+        "n_harmed": 64,
+        "n_tied": 0
+      },
+      "h_marg": {
+        "n": 67,
+        "mean": 0.1503820792043292,
+        "median": 0.07723577375713886,
+        "sd": 0.1661577497160443,
+        "q1": 0.02585127239505952,
+        "q3": 0.2134345980498143,
+        "iqr": 0.18758332565475477,
+        "ci_low": 0.11287434235293237,
+        "ci_high": 0.19082061716025073,
+        "n_improved": 63,
+        "n_harmed": 4,
+        "n_tied": 0
+      }
+    },
+    "tent_det": {
+      "bacc": {
+        "n": 68,
+        "mean": -0.0889007569460763,
+        "median": -0.08209793697807394,
+        "sd": 0.155361795295554,
+        "q1": -0.21244767884322674,
+        "q3": 0.006738593432141782,
+        "iqr": 0.21918627227536852,
+        "ci_low": -0.12576026465320164,
+        "ci_high": -0.05219758827810834,
+        "n_improved": 20,
+        "n_harmed": 48,
+        "n_tied": 0
+      },
+      "dominant": {
+        "n": 67,
+        "mean": -0.16790028390299164,
+        "median": -0.14489581763175208,
+        "sd": 0.12638490201848662,
+        "q1": -0.22501633131493315,
+        "q3": -0.06933060720829032,
+        "iqr": 0.15568572410664283,
+        "ci_low": -0.1979974339662601,
+        "ci_high": -0.13926881449157413,
+        "n_improved": 4,
+        "n_harmed": 63,
+        "n_tied": 0
+      },
+      "h_marg": {
+        "n": 67,
+        "mean": 0.15014895452682187,
+        "median": 0.07865316622684082,
+        "sd": 0.16554565581004252,
+        "q1": 0.0300228822340326,
+        "q3": 0.21245797844666459,
+        "iqr": 0.182435096212632,
+        "ci_low": 0.1129965248935173,
+        "ci_high": 0.19047473664302841,
+        "n_improved": 64,
+        "n_harmed": 3,
+        "n_tied": 0
+      }
+    }
+  },
+  "arm_to_arm_prediction_disagreement": {
+    "source_vs_bn_only": 0.29957401490947816,
+    "bn_only_vs_tent_literal": 0.13585374511892084,
+    "tent_literal_vs_tent_det": 0.13585374511892084,
+    "bn_only_vs_tent_det": 0.003478878239261626
+  },
+  "literal_minus_det_bacc": {
+    "mean": 0.0008169322585484887,
+    "sd": 0.01729735205683936,
+    "t": 0.38945822226448734,
+    "n": 68,
+    "effect_size_vs_degradation": 1.7043763784902364
+  },
+  "literal_minus_bn_only_bacc": {
+    "mean": 0.000479314468833545,
+    "sd": 0.017879209967751088,
+    "t": 0.22106840139493167
+  },
+  "last_quartile": {
+    "last_dominant_share_source": 0.710378852687217,
+    "last_dominant_share_bn_only": 0.5414439810580842,
+    "last_dominant_share_tent_literal": 0.5446459984924306,
+    "last_dominant_share_tent_det": 0.5424785687842253,
+    "last_H_marg_source": 0.535840075679868,
+    "last_H_marg_tent_literal": 0.6862221548841974
+  },
+  "verdict": {
+    "case": "CASE 4 - BN/NORMALIZATION INSTABILITY",
+    "attribution": "Degradation is present but the collapse signature is absent in every arm, INCLUDING the gradient-free BN_ONLY control. Normalization-statistics adaptation is therefore implicated as sufficient for the degradation, and the entropy gradient is not required for it.",
+    "tent_literal_collapse": false,
+    "tent_det_collapse": false,
+    "bn_only_collapse": false,
+    "tent_literal_degraded": true,
+    "tent_literal_concentrated": false,
+    "tent_det_degraded": true,
+    "tent_det_concentrated": false,
+    "bn_degraded": true,
+    "bn_concentrated": false,
+    "literal_vs_det_differ": false,
+    "h_cond_trajectories_differ": false,
+    "n_strongly_harmed_subjects": 0,
+    "frac_strongly_harmed_subjects": 0.0,
+    "strongly_harmed_subjects": [],
+    "thresholds": {
+      "DEGRADE_EPS": 0.01,
+      "CONCENTRATION_EPS": 0.02,
+      "SUBJECT_COLLAPSE_DROP": 0.1
+    }
+  }
+}

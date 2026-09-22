@@ -1,0 +1,22 @@
+{
+  "data_root": "../outputs/source_only_500hz_v1",
+  "results_root": "../results",
+  "models": ["eegnet", "deepconvnet", "rbf_svm"],
+  "device": "cuda",
+  "torch_threads": 4,
+  "batch_size": 32,
+  "num_workers": 0,
+  "selection_metric": "validation_subject_macro_balanced_accuracy",
+  "normalization": "per_channel_train_mean_std",
+  "optimizer": {"name": "Adam", "lr": 0.001, "weight_decay": 0.0},
+  "early_stopping": {"patience": 10, "min_delta": 0.0001},
+  "eegnet": {"F1": 8, "D": 2, "F2": 16, "kernel_length": 250, "depthwise_kernel_length": 64, "drop_prob": 0.5, "final_layer_with_constraint": true, "norm_rate": 0.25},
+  "deepconvnet": {"n_filters_time": 25, "n_filters_spat": 25, "filter_time_length": 10, "pool_time_length": 3, "pool_time_stride": 3, "n_filters_2": 50, "filter_length_2": 10, "n_filters_3": 100, "filter_length_3": 10, "n_filters_4": 200, "filter_length_4": 10, "drop_prob": 0.5},
+  "svm": {"definition": "new_defined_rbf_svm_baseline", "bands_hz": [[1,4],[4,8],[8,13],[13,30],[30,45]], "welch_nperseg": 1000, "welch_noverlap": 500, "log_floor_uv2": 1e-12, "C": [0.1,1,10], "gamma": ["scale",0.001,0.01], "class_weight": "balanced", "cache_size_mb": 1024, "tol": 0.001, "max_iter": -1, "feature_selection": "none"},
+  "stages": {
+    "smoke": {"test_subjects": ["sub-01"], "seeds": [0], "max_epochs": 2, "max_segments_per_subject_session": 2},
+    "pilot": {"test_subjects": ["sub-01","sub-02","sub-03"], "seeds": [0], "max_epochs": 50, "max_segments_per_subject_session": null},
+    "formal": {"test_subjects": "all", "seeds": [0,1,2], "max_epochs": 50, "max_segments_per_subject_session": null}
+  },
+  "runtime": {"clock": "perf_counter", "cuda_synchronize": true, "budget_cny": 100, "formal_requires_locked_config": true}
+}

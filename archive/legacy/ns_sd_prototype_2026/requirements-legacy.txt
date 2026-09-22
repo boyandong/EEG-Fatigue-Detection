@@ -1,0 +1,16 @@
+# 核心
+numpy
+pandas
+scipy
+scikit-learn
+tqdm
+
+# 深度学习
+torch
+
+# EEG 与特征
+mne
+braindecode
+
+# 可视化（model/train.py 训练曲线）
+matplotlib

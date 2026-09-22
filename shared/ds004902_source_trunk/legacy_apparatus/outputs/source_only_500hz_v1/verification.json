@@ -1,0 +1,23 @@
+{
+  "status": "passed",
+  "subjects": 68,
+  "segments": 9390,
+  "folds": 68,
+  "independent_mne_checked_recordings": [
+    "sub-01_ses-1",
+    "sub-04_ses-1",
+    "sub-52_ses-2",
+    "sub-71_ses-2"
+  ],
+  "checks": [
+    "output SHA256",
+    "unique segments",
+    "paired labels",
+    "500 Hz only",
+    "disjoint subject splits",
+    "deterministic splits",
+    "all waveform shapes and finiteness",
+    "MNE sample equality",
+    "QC corruption cases"
+  ]
+}

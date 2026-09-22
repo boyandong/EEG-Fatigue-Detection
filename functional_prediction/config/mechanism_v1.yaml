@@ -1,0 +1,115 @@
+# mechanism_v1 config: the FROZEN primary representation for vigilance_generalization_v1.
+#
+# Everything in this file is a priori. No value here may be changed on the basis of
+# correlation with the PVT target or of model performance (SCIENTIFIC_SPEC section 17).
+
+representation:
+  name: "mechanism_v1"
+  n_features: 6
+  feature_families: 2          # mean slowing, temporal instability
+  spatial_regions: 3           # F, CT, PO
+  # 2 families x 3 regions = 6 coordinates. These are NOT six independent mechanisms.
+
+slowing_index:
+  # S_{e,c} = sqrt(2/3) * [ ln(P_theta + eps) - 0.5*( ln(P_alpha + eps) + ln(P_beta + eps) ) ]
+  #         = sqrt(2/3) * ln( P_theta / sqrt(P_alpha * P_beta) )
+  #
+  # sqrt(2/3) is the orthonormal contrast weight for a 3-part composition whose third
+  # contrast direction is the theta-vs-(alpha,beta) balance. It makes S a proper
+  # isometric log-ratio coordinate, so S is invariant to any multiplicative scaling of
+  # all three band powers taken together.
+  normalization: 0.816496580927726      # sqrt(2/3)
+  log_base: "natural"
+  numerical_epsilon_uv2: 1.0e-12
+  epsilon_usage_policy: >
+    eps is used ONLY as log(P + eps) to keep the transform finite. The count of band
+    powers below eps is recorded per session in outputs/qc/feature_qc.csv. A non-trivial
+    count is treated as a PSD-pipeline defect and escalated rather than absorbed.
+
+roi_aggregation:
+  order: ["epoch_channel_index", "roi_channel_reduce", "epoch_reduce"]
+  channel_reduction: "median"           # S_{e,r} = median_{c in R_r} S_{e,c}
+  # The order is frozen: log/log-ratio FIRST, channel aggregation SECOND, time aggregation
+  # THIRD. The following are explicitly forbidden and enforced by tests:
+  forbidden:
+    - "log(mean(P))"
+    - "log(mean(P_theta) / mean(P_alpha))"
+    - "session-averaging raw power before forming the ratio"
+
+time_features:
+  mean_slowing:
+    formula: "M_r = (1/N) * sum_e S_{e,r}"
+    estimator: "arithmetic mean over epochs"
+  temporal_instability:
+    formula: "J_r = sqrt( (1/(N-1)) * sum_e (S_{e,r} - M_r)^2 )"
+    estimator: "sample standard deviation over epochs (ddof=1)"
+    min_epochs: 2
+    note: >
+      J is a dispersion of the slowing index within one recording, in the same natural-log
+      units as S. It is NOT a power measure and carries no absolute amplitude information.
+
+personal_relative:
+  # Delta M: plain difference of the two session means.
+  delta_M:
+    formula: "delta_M_ir = M^SD_ir - M^NS_ir"
+    units: "natural-log isometric log-ratio"
+  # Delta log J: log ratio of robust dispersions, so it is scale-free in the same way.
+  delta_logJ:
+    formula: "delta_logJ_ir = ln( (J^SD_ir + eps_J) / (J^NS_ir + eps_J) )"
+    numerical_epsilon: 1.0e-12
+    epsilon_policy: >
+      eps_J exists only for numerical safety. Whether it is ever needed is reported: if all
+      N valid NS recordings have J > 0, the log is computed without the floor and this is
+      recorded in the run manifest.
+
+feature_names:
+  - delta_M_F
+  - delta_M_CT
+  - delta_M_PO
+  - delta_logJ_F
+  - delta_logJ_CT
+  - delta_logJ_PO
+
+frozen_feature_set: true
+prohibited_additions:
+  - delta
+  - gamma
+  - entropy
+  - multiscale_entropy
+  - connectivity
+  - coherence
+  - plv
+  - graph_metrics
+  - microstate
+  - criticality
+  - channel_wise_feature_selection
+  - questionnaire
+  - demographics
+  - legacy_network_embeddings
+
+# ------------------------------------------------------------- reserved, NOT implemented
+reserved_for_later:
+  aperiodic_control:
+    implemented: false
+    purpose: >
+      Later mechanism-control analysis: decompose each PSD into aperiodic (1/f) and
+      periodic components and test whether the theta-dominance signal is merely a
+      broadband spectral-shape shift rather than a theta-specific change.
+    planned_features: [delta_chi_F, delta_chi_CT, delta_chi_PO]
+    interface_hook: "src/mechanism_features.py::reserved_aperiodic_hook"
+    library: "specparam (FOOOF successor) - NOT installed, NOT imported in Phase 1"
+
+# ------------------------------------------------------------- explicitly out of scope
+out_of_scope_phase1:
+  - model_training_of_any_kind
+  - ridge
+  - elasticnet
+  - svr
+  - gradient_boosting
+  - neural_networks
+  - hyperparameter_search
+  - feature_selection
+  - cross_dataset_training
+  - abstention_or_uncertainty_modelling
+  - channel_subset_optimisation
+  - baseline_duration_optimisation

@@ -1,0 +1,81 @@
+{
+  "sha": "e9e926a668d85244c66a6d5c006efbd2b82e83e8",
+  "node_id": "MDY6Q29tbWl0MzQ4NDE5MTI2OmU5ZTkyNmE2NjhkODUyNDRjNjZhNmQ1YzAwNmVmYmQyYjgyZTgzZTg=",
+  "commit": {
+    "author": {
+      "name": "Dequan Wang",
+      "email": "dequanwang@berkeley.edu",
+      "date": "2021-05-20T05:29:12Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2021-05-20T05:29:12Z"
+    },
+    "message": "Update README.md\n\nadd robust models",
+    "tree": {
+      "sha": "f482757a924f4a61651a37b15e75d0eab2fd3c9e",
+      "url": "https://api.github.com/repos/DequanWang/tent/git/trees/f482757a924f4a61651a37b15e75d0eab2fd3c9e"
+    },
+    "url": "https://api.github.com/repos/DequanWang/tent/git/commits/e9e926a668d85244c66a6d5c006efbd2b82e83e8",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsBcBAABCAAQBQJgpfOoCRBK7hj4Ov3rIwAAh3oIAI7Cwm4SlRL2pWD7FxdouYHX\n2hOyxaBEl81sr62ZDQaVHjdIJuA+2RG+FmEwrxK0QbkCTStBJANbTcsZuUkhKv4K\nUpEODIOv+KO1FZDibIy0aed8i61BwfFV/zDAu0Q+ElBicjW8emua8AbUNPR8I57J\nACDRpnx8++8xPBnzGZ1peKCxT2jTvMFGdJ9scxJCnbr+AFPFADv8Oz/h1BJSyjR+\nrt5nX03MLM8Ici3Pgt80o36j3p4lw8XYMaXITalyiA64Wkn/0+xXQL6Fu6GDCH+e\nWMn1wbIy328OVOxNctP5yFz7WR/joCfid9bpY2Gz7LMP3eCalN8C56vSEM+M9RI=\n=BXd9\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree f482757a924f4a61651a37b15e75d0eab2fd3c9e\nparent 03ac55c4fef0fda3eacb2f6414b099031e96d003\nauthor Dequan Wang <dequanwang@berkeley.edu> 1621488552 -0700\ncommitter GitHub <noreply@github.com> 1621488552 -0700\n\nUpdate README.md\n\nadd robust models",
+      "verified_at": "2024-11-10T13:59:49Z"
+    }
+  },
+  "url": "https://api.github.com/repos/DequanWang/tent/commits/e9e926a668d85244c66a6d5c006efbd2b82e83e8",
+  "html_url": "https://github.com/DequanWang/tent/commit/e9e926a668d85244c66a6d5c006efbd2b82e83e8",
+  "comments_url": "https://api.github.com/repos/DequanWang/tent/commits/e9e926a668d85244c66a6d5c006efbd2b82e83e8/comments",
+  "author": null,
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "03ac55c4fef0fda3eacb2f6414b099031e96d003",
+      "url": "https://api.github.com/repos/DequanWang/tent/commits/03ac55c4fef0fda3eacb2f6414b099031e96d003",
+      "html_url": "https://github.com/DequanWang/tent/commit/03ac55c4fef0fda3eacb2f6414b099031e96d003"
+    }
+  ],
+  "stats": {
+    "total": 28,
+    "additions": 27,
+    "deletions": 1
+  },
+  "files": [
+    {
+      "sha": "66de74e9150fc973502c518f3f08944cee343e00",
+      "filename": "README.md",
+      "status": "modified",
+      "additions": 27,
+      "deletions": 1,
+      "changes": 28,
+      "blob_url": "https://github.com/DequanWang/tent/blob/e9e926a668d85244c66a6d5c006efbd2b82e83e8/README.md",
+      "raw_url": "https://github.com/DequanWang/tent/raw/e9e926a668d85244c66a6d5c006efbd2b82e83e8/README.md",
+      "contents_url": "https://api.github.com/repos/DequanWang/tent/contents/README.md?ref=e9e926a668d85244c66a6d5c006efbd2b82e83e8",
+      "patch": "@@ -52,7 +52,10 @@ That said, the results should be representative, so do give it a try and experim\n \n This example compares a baseline without adaptation (source), test-time normalization for updating feature statistics during testing (norm), and our method for entropy minimization during testing (tent).\n The dataset is [CIFAR-10-C](https://github.com/hendrycks/robustness/), with 15 types and 5 levels of corruption.\n-The model is [WRN-28-10](https://github.com/RobustBench/robustbench), which is the default model for RobustBench.\n+\n+### WRN-28-10\n+\n+the default model for [RobustBench](https://github.com/RobustBench/robustbench).\n \n **Usage**:\n \n@@ -72,6 +75,29 @@ python cifar10c.py --cfg cfgs/tent.yaml\n \n See the full results for this example in the [wandb report](https://wandb.ai/tent/cifar10c/reports/Tent-Example-Image-Corruptions--Vmlldzo1NTA0NzM).\n \n+### WRN-40-2\n+\n+WideResNet for [AugMix: A Simple Data Processing Method to Improve Robustness and Uncertainty](https://arxiv.org/abs/1912.02781).\n+\n+**Usage**:\n+\n+```python\n+python cifar10c.py --cfg cfgs/source.yaml MODEL.ARCH Hendrycks2020AugMix_WRN\n+python cifar10c.py --cfg cfgs/norm.yaml MODEL.ARCH Hendrycks2020AugMix_WRN\n+python cifar10c.py --cfg cfgs/tent.yaml MODEL.ARCH Hendrycks2020AugMix_WRN\n+```\n+\n+**Result**: tent reduces the error (%) across corruption types at the most severe level of corruption (level 5).\n+\n+|                                                            | mean | gauss_noise | shot_noise | impulse_noise | defocus_blur | glass_blur | motion_blur | zoom_blur | snow | frost |  fog | brightness | contrast | elastic_trans | pixelate | jpeg |\n+|------------|-----:|------------:|-----------:|--------------:|-------------:|-----------:|------------:|----------:|-----:|------:|-----:|-----------:|---------:|--------------:|---------:|-----:|\n+| source     | 18.3 |        28.8 |       23.0 |          26.2 |          9.5 |       20.6 |        10.6 |       9.3 | 14.2 |  15.3 | 17.5 |        7.6 |     20.9 |          14.7 |     41.3 | 14.7 |\n+| norm       | 14.5 |        18.5 |       16.2 |          22.3 |          9.0 |       21.9 |        10.5 |       9.7 | 12.8 |  13.3 | 15.0 |        7.6 |     11.9 |          16.3 |     15.0 | 17.5 |\n+| tent       | 12.1 |        15.7 |       13.2 |          18.8 |          7.9 |       18.1 |         9.0 |       8.0 | 10.4 |  10.8 | 12.4 |        6.7 |     10.0 |          14.0 |     11.4 | 14.8 |\n+\n+## Example: Adapting to Adversarial Perturbations on CIFAR-10\n+See [Fighting Gradients with Gradients: Dynamic Defenses against Adversarial Attacks](https://arxiv.org/abs/2105.08714) for more details on [dent](https://github.com/DequanWang/dent).\n+\n ## Correspondence\n \n Please contact Dequan Wang and Evan Shelhamer at dqwang AT cs.berkeley.edu and shelhamer AT google.com."
+    }
+  ]
+}

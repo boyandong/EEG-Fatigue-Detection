@@ -1,0 +1,23 @@
+{
+  "case": "CASE 4 - BN/NORMALIZATION INSTABILITY",
+  "attribution": "Degradation is present but the collapse signature is absent in every arm, INCLUDING the gradient-free BN_ONLY control. Normalization-statistics adaptation is therefore implicated as sufficient for the degradation, and the entropy gradient is not required for it.",
+  "tent_literal_collapse": false,
+  "tent_det_collapse": false,
+  "bn_only_collapse": false,
+  "tent_literal_degraded": true,
+  "tent_literal_concentrated": false,
+  "tent_det_degraded": true,
+  "tent_det_concentrated": false,
+  "bn_degraded": true,
+  "bn_concentrated": false,
+  "literal_vs_det_differ": false,
+  "h_cond_trajectories_differ": false,
+  "n_strongly_harmed_subjects": 0,
+  "frac_strongly_harmed_subjects": 0.0,
+  "strongly_harmed_subjects": [],
+  "thresholds": {
+    "DEGRADE_EPS": 0.01,
+    "CONCENTRATION_EPS": 0.02,
+    "SUBJECT_COLLAPSE_DROP": 0.1
+  }
+}

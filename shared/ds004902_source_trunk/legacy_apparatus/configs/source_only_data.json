@@ -1,0 +1,29 @@
+{
+  "data_root": "../../../../data/ds004902/preprocessed",
+  "metadata_root": "../../../../data/ds004902/metadata_behavior",
+  "output_root": "../outputs/source_only_500hz_v1",
+  "labels": {"ses-1": 0, "ses-2": 1},
+  "positive_class": "sleep_deprivation_condition",
+  "segment_seconds": 4,
+  "target_sfreq": 500,
+  "allowed_source_sfreq": [500],
+  "input_unit": "uV",
+  "output_unit": "uV",
+  "qc": {
+    "max_abs_uv": 500,
+    "max_peak_to_peak_uv": 1000,
+    "min_channel_std_uv": 0.01,
+    "min_segments_per_session": 1
+  },
+  "split_seed": 20260908,
+  "validation_fraction": 0.2,
+  "pilot_test_subjects": ["sub-01", "sub-02", "sub-03"],
+  "future_neural_seeds": [0, 1, 2],
+  "source_only": {
+    "fit_normalization_on": "train_only",
+    "test_model_mode": "eval",
+    "update_test_parameters": false,
+    "update_test_bn_statistics": false,
+    "tta": false
+  }
+}

@@ -1,0 +1,3 @@
+﻿model,predictors,n_subjects,q2_skill,mae,skill_mae,spearman
+C0_confounds_only,SessionOrder + deltaClock,29,-0.01472655370490239,0.0760449087862004,-0.008772286615985392,-0.8182266009852215
+C1_confounds_plus_dM,SessionOrder + deltaClock + X_M,29,-0.07429929711358763,0.07842169571924891,-0.04030150832879276,-0.7635467980295565

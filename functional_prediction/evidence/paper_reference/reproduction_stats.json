@@ -1,0 +1,257 @@
+{
+  "n_subjects": 29,
+  "reference_values": {
+    "F": 0.54,
+    "CT": 0.56,
+    "PO": null
+  },
+  "regions": {
+    "F": {
+      "delta_theta_variability_mean": 0.008489196829541993,
+      "delta_theta_variability_sd": 0.03786882025500624,
+      "delta_theta_variability_paired_t": 1.207212786124325,
+      "delta_theta_variability_p": 0.23744981843816138,
+      "spearman_vs_delta_rt_ms": {
+        "n": 29,
+        "spearman_rho": 0.10202071224279954,
+        "p_value": 0.5984649820650797,
+        "bootstrap_ci95": [
+          -0.29469314492140475,
+          0.47617756851313064
+        ],
+        "n_bootstrap": 5000
+      },
+      "spearman_vs_log_rt": {
+        "n": 29,
+        "spearman_rho": 0.04088669950738915,
+        "p_value": 0.8332117317373471,
+        "bootstrap_ci95": [
+          -0.3553115070594483,
+          0.42964383938393813
+        ],
+        "n_bootstrap": 5000
+      },
+      "pearson_vs_delta_rt_ms": {
+        "r": 0.18872508107624614,
+        "p": 0.32685977699756624
+      },
+      "reference_rho": 0.54,
+      "difference_from_reference": -0.4379792877572005
+    },
+    "CT": {
+      "delta_theta_variability_mean": 0.01785521560376103,
+      "delta_theta_variability_sd": 0.0324476999250188,
+      "delta_theta_variability_paired_t": 2.9633311117696133,
+      "delta_theta_variability_p": 0.006149561820803885,
+      "spearman_vs_delta_rt_ms": {
+        "n": 29,
+        "spearman_rho": 0.3925579579777287,
+        "p_value": 0.0351701842060941,
+        "bootstrap_ci95": [
+          0.0295789166025933,
+          0.6917487031210917
+        ],
+        "n_bootstrap": 5000
+      },
+      "spearman_vs_log_rt": {
+        "n": 29,
+        "spearman_rho": 0.3290640394088669,
+        "p_value": 0.0813279351390293,
+        "bootstrap_ci95": [
+          -0.05644499559109965,
+          0.6536599260896933
+        ],
+        "n_bootstrap": 5000
+      },
+      "pearson_vs_delta_rt_ms": {
+        "r": 0.40275151567868295,
+        "p": 0.030298487591793963
+      },
+      "reference_rho": 0.56,
+      "difference_from_reference": -0.16744204202227136
+    },
+    "PO": {
+      "delta_theta_variability_mean": 0.018550264751410892,
+      "delta_theta_variability_sd": 0.04034743548462007,
+      "delta_theta_variability_paired_t": 2.4759004309060684,
+      "delta_theta_variability_p": 0.019603823359087093,
+      "spearman_vs_delta_rt_ms": {
+        "n": 29,
+        "spearman_rho": 0.345736858156154,
+        "p_value": 0.06619945200356375,
+        "bootstrap_ci95": [
+          -0.031401446881015864,
+          0.6443871007997228
+        ],
+        "n_bootstrap": 5000
+      },
+      "spearman_vs_log_rt": {
+        "n": 29,
+        "spearman_rho": 0.2955665024630541,
+        "p_value": 0.11954812472369089,
+        "bootstrap_ci95": [
+          -0.0866790031168669,
+          0.6056733577618585
+        ],
+        "n_bootstrap": 5000
+      },
+      "pearson_vs_delta_rt_ms": {
+        "r": 0.3865214909125219,
+        "p": 0.03834011412523141
+      },
+      "reference_rho": null,
+      "difference_from_reference": null
+    }
+  },
+  "theta_relative_mean_change": {
+    "F": {
+      "mean": 0.01022033162832266,
+      "sd": 0.08086240728930745,
+      "ci95": [
+        -0.019210581623778304,
+        0.039651244880423625
+      ],
+      "t": 0.6806397688010043,
+      "p": 0.5016895761348149,
+      "cohen_dz": 0.12639163204425288
+    },
+    "CT": {
+      "mean": 0.027302589919183808,
+      "sd": 0.057633370164430264,
+      "ci95": [
+        0.006326183519768311,
+        0.048278996318599304
+      ],
+      "t": 2.5511079077439787,
+      "p": 0.01648846093711732,
+      "cohen_dz": 0.47372884565466933
+    },
+    "PO": {
+      "mean": 0.026396827307593303,
+      "sd": 0.0790875514109251,
+      "ci95": [
+        -0.0023881043179062554,
+        0.055181758933092864
+      ],
+      "t": 1.797391155761864,
+      "p": 0.08306757092065434,
+      "cohen_dz": 0.3337671585056414
+    }
+  },
+  "other_bands": {
+    "alpha": {
+      "F": {
+        "n": 29,
+        "spearman_rho": -0.03499261144559791,
+        "p_value": 0.8569901658799144,
+        "bootstrap_ci95": [
+          -0.4473035099844768,
+          0.40702907158303975
+        ],
+        "n_bootstrap": 1000
+      },
+      "CT": {
+        "n": 29,
+        "spearman_rho": 0.03203548935160372,
+        "p_value": 0.8689676647533568,
+        "bootstrap_ci95": [
+          -0.368454144274927,
+          0.4429067481900948
+        ],
+        "n_bootstrap": 1000
+      },
+      "PO": {
+        "n": 29,
+        "spearman_rho": 0.17397734986332483,
+        "p_value": 0.36674048256791736,
+        "bootstrap_ci95": [
+          -0.24764780245446855,
+          0.5492753329439898
+        ],
+        "n_bootstrap": 1000
+      }
+    },
+    "beta": {
+      "F": {
+        "n": 29,
+        "spearman_rho": 0.21315921760874784,
+        "p_value": 0.2669023016880474,
+        "bootstrap_ci95": [
+          -0.19893804490076433,
+          0.5443683982558314
+        ],
+        "n_bootstrap": 1000
+      },
+      "CT": {
+        "n": 29,
+        "spearman_rho": 0.16806310567533644,
+        "p_value": 0.38350341500792096,
+        "bootstrap_ci95": [
+          -0.2075252704120425,
+          0.5306597230256226
+        ],
+        "n_bootstrap": 1000
+      },
+      "PO": {
+        "n": 29,
+        "spearman_rho": 0.08329227231416968,
+        "p_value": 0.6675155714381993,
+        "bootstrap_ci95": [
+          -0.30260762231004146,
+          0.4488953169227203
+        ],
+        "n_bootstrap": 1000
+      }
+    }
+  },
+  "n28_filter_sensitivity": {
+    "note": "Reported for transparency only. We do NOT adopt any of these filters; the working cohort is the unfiltered 29 raw-PVT-paired subjects with EEG.",
+    "candidates_yielding_28": [
+      "A_min_valid_trials_45_per_session"
+    ],
+    "counts": {
+      "A_min_valid_trials_40_per_session": 29,
+      "A_min_valid_trials_45_per_session": 28,
+      "A_min_valid_trials_48_per_session": 13,
+      "A_min_valid_trials_50_per_session": 12,
+      "B_median_rt_within_200_1000": 29,
+      "B_median_rt_within_250_600": 29,
+      "B_median_rt_within_100_1000": 29,
+      "C_exclude_sub70_sub71": 27,
+      "D_positive_responders_only_DO_NOT_USE": 27,
+      "E_official_and_raw_both_present": 29
+    },
+    "rho_if_that_filter_were_applied": {
+      "F": {
+        "n": 28,
+        "spearman_rho": 0.09282586276988913,
+        "p_value": 0.638490371055783,
+        "bootstrap_ci95": [
+          -0.296444578333595,
+          0.44951539457304834
+        ],
+        "n_bootstrap": 1000
+      },
+      "CT": {
+        "n": 28,
+        "spearman_rho": 0.3869113395098918,
+        "p_value": 0.04195212970879996,
+        "bootstrap_ci95": [
+          0.042032733477287504,
+          0.6854624598570288
+        ],
+        "n_bootstrap": 1000
+      },
+      "PO": {
+        "n": 28,
+        "spearman_rho": 0.3335159317219025,
+        "p_value": 0.08284847687713819,
+        "bootstrap_ci95": [
+          -0.05189479860992594,
+          0.6346854442327355
+        ],
+        "n_bootstrap": 1000
+      }
+    }
+  }
+}
