@@ -236,3 +236,75 @@ Wording tightened without altering results. Specifically: (1) TTA attribution di
 causation; (2) the lane-centre count corrected; (3) "published" disambiguated; (4) the third-party
 vendoring claim corrected to disclose the archive exception; (5) license separated from citation;
 (6) the internal `CASE 4` label demoted below the scientific meaning.
+
+---
+
+## 14. Addendum — three findings from the owner's independent review of `e9222e3`
+
+The owner reviewed the pushed branch directly and identified three defects. All three were real and
+are fixed in the follow-up commit.
+
+### 14.1 The README contradicted itself about the TTA timeline
+
+**Defect.** The README stated the ds004902 comparison was executed and Phase 1 `EXECUTED /
+VERIFIED`, then `Current Scientific Gate` said the plan was to "reproduce an external EEGNet + TTA
+reference pipeline … then transfer the controlled adaptation mechanism to the frozen ds004902
+source model". A reader would conclude the ds004902 TTA run had not happened.
+
+**Cause.** The stale text predated the corrected TTA status and was not revisited when that status
+changed. It survived the previous pass because the guard suite checked TTA *claims* and had no
+guard for TTA *sequencing*.
+
+**Fix.** `Current Scientific Gate` and `Current Work` now state that the ds004902 experiment is
+already executed and verified; the external pipeline reproduction is a **reference calibration /
+method sanity check** on known-expected data, explicitly *not* a precondition for the ds004902
+work; and the next step is **normalization-mechanism diagnostics on the existing ds004902
+apparatus**, requiring no new adaptation run. Two guards added.
+
+### 14.2 "well-powered" overclaimed
+
+**Defect.** `docs/scientific-status.md` defined `NEGATIVE` as "a **well-powered** test that did not
+support the hypothesis". The project has run **no formal power analysis**, so this asserted
+something unmeasured — and it did so in the definition table, where it would propagate to every row.
+
+**Fix.** Redefined as "a valid, pre-specified test in which the apparatus passed verification but
+the hypothesis was not supported", with an explicit sentence that the term **does not assert
+statistical power**. Guards added. Two surviving uses of "power" elsewhere were checked and are
+correct: `PHASE1_REPORT.md` is a limitation statement ("fixes the achievable statistical power"),
+and `LEGACY_EEGNET_PROVENANCE.md` warns a reader *not* to mistake a subject for a well-powered one.
+
+### 14.3 The size audit was one commit stale — and mixed two measurement methods
+
+**Defect.** `TRACKED_FILE_SIZE_AUDIT.md` claimed 1,144 files / 92,155,870 bytes / "87.89 MB" while
+the pushed tree held 1,155 files.
+
+**Cause, which was worse than the count.** The byte figure matched **neither** commit: the parent
+tree is 91,926,270 bytes and the final tree is 92,172,769. The audit had been summed from the
+**working tree**, which on this checkout is CRLF-expanded (`core.autocrlf=true`), so every text file
+was overstated by its line count. The count was simply pre-final; the bytes were a working-tree
+measurement mislabelled as a repository measurement, and the unit label "MB" was inconsistent with
+the bytes on the same row. **Three defects in one row.**
+
+**Fix.** The audit was **regenerated from git blobs** (`git ls-tree -r -l`) at the pushed commit:
+**1,155 files / 92,172,769 bytes / 87.903 MiB**, largest file 2.85 MiB, 0 files over 3 MiB. Top-25
+table, category breakdown and binary inventory all recomputed. The document now records the ref it
+describes, why blob rather than working-tree sizes are used, and the exact regeneration command.
+
+**Guard added, and deliberately not naively.** The first version compared the audit against `HEAD`,
+which would fail the moment any file is committed — a guard that must be manually refreshed every
+commit is not a guard. It now parses the ref the audit **declares** and verifies the numbers against
+*that* ref, so it stays meaningful as the tree evolves while still catching a stale or
+fabricated audit.
+
+### 14.4 Status after the addendum
+
+| check | result |
+|---|---|
+| `docs/verify_public_numbers.py` | **141/141** (was 127; +14 guards) |
+| `docs/check_links.py` | 27/27 |
+| secret / privacy scan | 0 genuine, 0 privacy hits |
+| unit suites | 16/16, 22/22, SMOKE PASS |
+| `py_compile` | 89 files, 0 failures |
+
+**SCIENTIFIC RESULTS CHANGED: NO. PUBLIC SCIENTIFIC INTERPRETATION CORRECTED: YES** (accuracy of two
+statements and self-consistency of one provenance document).

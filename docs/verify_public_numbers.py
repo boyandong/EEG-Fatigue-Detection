@@ -401,6 +401,61 @@ check("the meaning is stated before the label",
       "no harmful collapse" in DOCS["README.md"].lower()
       and "normalization-switch degradation established" in DOCS["README.md"])
 
+# (p) The size audit must agree with the ref it declares.
+#     This caught a real drift: the audit was generated before the final commit and still claimed
+#     1,144 files / 87.89 "MB" while the tree held 1,155. The guard therefore checks the audit
+#     against the commit the audit NAMES, not against HEAD -- otherwise the audit would be wrong
+#     the moment any file is added, and a "regenerate after every commit" rule is not a guard.
+#     Regenerate with `python docs/refresh/generate_size_audit.py <ref>`.
+import subprocess as _sp
+audit_txt = (ROOT / "docs/refresh/TRACKED_FILE_SIZE_AUDIT.md").read_text(encoding="utf-8")
+
+_m = re.search(r"\|\s*ref\s*\|\s*`([0-9a-f]{7,40})`\s*\|", audit_txt)
+check("size audit declares the ref it describes", _m is not None)
+if _m:
+    _ref = _m.group(1)
+    _ok = _sp.run(["git", "cat-file", "-e", f"{_ref}^{{commit}}"], cwd=ROOT,
+                  capture_output=True).returncode == 0
+    check("the ref the size audit names exists in this repository", _ok, _ref)
+    if _ok:
+        _ls = _sp.run(["git", "ls-tree", "-r", "-l", _ref], cwd=ROOT,
+                      capture_output=True, check=True).stdout.decode("utf-8")
+        _rows = []
+        for _line in _ls.splitlines():
+            _meta, _, _path = _line.partition("\t")
+            _parts = _meta.split()
+            if len(_parts) >= 4 and _parts[3] != "-":
+                _rows.append((_path, int(_parts[3])))
+        _files, _bytes = len(_rows), sum(s for _, s in _rows)
+        check(f"size audit's file count matches ref {_ref[:7]}",
+              f"**{_files:,}**" in audit_txt, f"ref has {_files}")
+        check(f"size audit's byte count matches ref {_ref[:7]}",
+              f"**{_bytes:,}**" in audit_txt, f"ref has {_bytes}")
+        check("size audit's MiB figure matches that ref",
+              f"{_bytes / 1048576:.3f} MiB" in audit_txt)
+check("size audit declares it was generated from git blobs, not the working tree",
+      "git ls-tree" in audit_txt and "core.autocrlf" in audit_txt)
+check("size audit is regenerable by a shipped script",
+      (ROOT / "docs/refresh/generate_size_audit.py").exists())
+check("no Git LFS pointer is tracked", not (ROOT / ".gitattributes").exists()
+      or "filter=lfs" not in (ROOT / ".gitattributes").read_text(encoding="utf-8"))
+
+# (q) The TTA timeline must not read as "the ds004902 TTA experiment is still pending".
+check("README does not present the ds004902 TTA run as pending",
+      "transfer the controlled adaptation mechanism to the frozen ds004902" not in ALL_TEXT)
+check("README describes the external reference reproduction as a sanity check",
+      "method sanity check" in ALL_TEXT)
+check("README states the ds004902 TTA experiment is already executed",
+      "already executed and verified" in ALL_TEXT or "already been executed" in ALL_TEXT)
+check("the mechanism diagnostics are placed on the EXISTING apparatus",
+      "existing ds004902 apparatus" in ALL_TEXT)
+
+# (r) No power claim the project has not made.
+check("no public doc claims the negative result is 'well-powered'",
+      "well-powered test" not in ALL_TEXT)
+check("the NEGATIVE definition explicitly disclaims statistical power",
+      "does not assert statistical power" in ALL_TEXT)
+
 # ---------------------------------------------------------------------------
 print()
 print("=" * 72)

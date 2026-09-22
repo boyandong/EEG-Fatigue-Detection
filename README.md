@@ -123,9 +123,9 @@ The branch implementation and verification suite completed all recorded checks (
 105/105 branch-verifier checks). These counts refer to implementation verification, not experimental
 sample size — the experiment itself is **68 subjects × 3 seeds × 4 arms**.
 
-Current work focuses on reproducing an external EEGNet + TTA reference pipeline and isolating which
-normalization/stream properties produce the observed degradation before evaluating stabilization
-methods.
+Current work is diagnostic, not a re-run: the executed comparison localized *where* the degradation
+arises, and the open question is *which* normalization or stream property produces it. See
+[Current Scientific Gate](#current-scientific-gate).
 
 ---
 
@@ -226,10 +226,20 @@ This project does **not** currently establish that:
 
 ## Current Scientific Gate
 
-The active TTA branch asks which normalization/stream properties produce the observed degradation,
-and first requires reproducing an external EEGNet + TTA reference pipeline in its original setting.
-Once the reference implementation is reproduced, the controlled adaptation mechanism can be
-transferred to the frozen ds004902 source model for further SOURCE / BN-only / TENT comparisons.
+The ds004902 TTA experiment is **already executed and verified** — Phase 1 is not pending. What is
+open is the **mechanism**, and the next steps are diagnostic, not a re-run of the comparison:
+
+1. **Reference calibration.** Reproduce an external EEGNet + TTA reference pipeline
+   (DeepTransferEEG) in its original benchmark setting. This is a **method sanity check** — it
+   confirms that our adaptation implementation behaves like the published one on data where the
+   expected outcome is known. It is *not* a transfer step, and the ds004902 apparatus does not wait
+   on it.
+2. **Normalization-mechanism diagnostics on the existing ds004902 apparatus.** Using the executed
+   SOURCE / BN-only / TENT setup that already exists, measure *which* normalization or stream
+   properties produce the observed degradation — for example by relating source running statistics
+   to the target-batch statistics actually used, and to the per-subject balanced-accuracy change.
+   This needs no new adaptation run.
+3. **Only then** evaluate stabilization methods or new interventions.
 
 The functional-prediction branch remains separate and retains its own validation gates and evidence
 history.
@@ -292,11 +302,12 @@ all — see [`docs/reproducibility.md`](docs/reproducibility.md) §2.
 
 Current priorities are:
 
-1. reproduce a public EEGNet + TTA reference pipeline in its original benchmark setting;
-2. transfer the controlled adaptation mechanism to the frozen ds004902 source trunk;
-3. determine whether the observed degradation is driven by normalization behaviour under the target
-   stream or by a more specific adaptation failure;
-4. only then evaluate established stabilization methods or new interventions.
+1. reproduce an external EEGNet + TTA reference pipeline (DeepTransferEEG) in its original benchmark
+   setting, as a **method sanity check** on known-expected data — *not* as a precondition for the
+   ds004902 work, where the comparison has already been executed;
+2. run **normalization-mechanism diagnostics on the existing ds004902 apparatus** to determine which
+   normalization or stream property drives the observed degradation;
+3. only then evaluate established stabilization methods or new interventions.
 
 New mechanisms are not introduced simply to rescue a failed baseline.
 

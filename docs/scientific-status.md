@@ -8,7 +8,7 @@ Verification vocabulary, used strictly and never loosely:
 | term | meaning |
 |---|---|
 | **VALIDATED / ESTABLISHED** | executed, independently verified, and reproducible from the published artifacts |
-| **NEGATIVE** | a well-powered test that did not support the hypothesis — a *result*, not a failure of the apparatus |
+| **NEGATIVE** | a valid, pre-specified test in which the apparatus passed verification but the hypothesis was not supported — a *result*, not a failure of the apparatus. **This does not assert statistical power**: the project has run no formal power analysis, so "well-powered" is not a claim any row below makes |
 | **REFUTED** | a *suspicion or correction* that was itself tested and not supported |
 | **IN PROGRESS** | designed or partially executed; no verdict yet |
 | **NOT DEMONSTRATED** | never tested at the required standard; absence of evidence |
