@@ -190,7 +190,7 @@ Block structure is not optional in any later model.
 
 | criterion | verdict | evidence |
 |---|---|---|
-| **E1 semantic validity** | PASS | `LN` documented as deviation from centre; centre located at `LN=0` by 100 % sign agreement of 5/5 recordings' own lane events; boundary 0.917 m |
+| **E1 semantic validity** | PASS | `LN` documented as deviation from centre; centre located at `LN=0` by 100 % sign agreement in **4/4 sign-tested recordings** (2 Tier-1 participants × 2 arms — `lane_geometry.json` does not include the T2 preflight recording); boundary 0.917 m |
 | **E2 measurement validity** | PASS | no NaN/inf, no lattice, stable re-derivation, exact pad exclusion, boundary reproducible to 1.9 mm |
 | **E3 temporal linkage** | PASS | one clock, `sample = onset × srate`, per-sample simulator clock, valid window located to the sample |
 | **E4 within-person dynamic range** | PASS | 5-min window range 0.21-2.70 m against a 0.05 m pre-declared threshold; episode-level moving-block CIs are 4-15× narrower than the range |

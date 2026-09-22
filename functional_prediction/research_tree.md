@@ -65,23 +65,33 @@ forbidden pattern.
 
 ---
 
-## INVALIDATED
+## INVALIDATED — an empty category, and one withdrawn entry
 
-**INVALIDATED** means an apparatus or data defect was found, so the run may not be used for a
-hypothesis verdict. It is a *different* category from NEGATIVE and the two must not be merged.
+**`INVALIDATED`** means an apparatus or data defect was found, so the run may not be used for a
+hypothesis verdict. It is a *different* category from `NEGATIVE`, and the two must not be merged.
+
+**No branch currently holds this status.** One entry was assigned it and later withdrawn:
 
 | branch | status |
 |---|---|
-| Phase 4A — historical BCIT baseline | **INVALIDATED (historical reading)** — inter-block gap contamination found after the run |
-| Phase 4A2 — adaptive SFFS historical branch | **INVALIDATED (historical reading)** — same defect |
+| Phase 4A — historical BCIT baseline | **INVALIDATION WITHDRAWN** — see below. Stands as valid negative evidence under its frozen protocol. |
+| Phase 4A2 — adaptive SFFS historical branch | **INVALIDATION WITHDRAWN** — see below. Valid executed branch; no reliable positive effect established. |
 
-⚠️ **The invalidation was subsequently WITHDRAWN by Phase 4A3.** The defect is real but **inert**:
-0 of 82 550 defective rows appeared in any training or test mask, and the corrected run
-reproduces Phase 4A to **~1e-14**. Both the defect history and the resolution must travel
-together — see `evidence/phase4a3/GAP_CONTAMINATION_AUDIT.md` §3 (impact claim refuted) and
+⚠️ **Phase 4A and 4A2 were marked `INVALIDATED`, and that status was subsequently WITHDRAWN by
+Phase 4A3.** The defect is real but **inert**: 0 of 82 550 defective rows appeared in any training
+or test mask, and the corrected run reproduces Phase 4A to **~1e-14** per participant
+(population-level `mean ΔR` = **−4.0e-15**). Both the defect history and the resolution must travel
+together — see `evidence/phase4a3/GAP_CONTAMINATION_AUDIT.md` §3 (impact claim refuted),
+`evidence/phase4a3/mask_definitive.json` (0 of 82,550) and
 `evidence/phase4a3/clean_standard_run.json` (the reproduction).
 
-**Do not present these as clean negatives.** They are the project's most easily misread results.
+**Do not present these as clean negatives, and do not present them as invalidated.** Presenting
+either reading alone is false; the withdrawal is part of the result. These are the project's most
+easily misread entries.
+
+**Phase 4A2's limit must travel with it too:** the calibrated null had only **`K = 8`** replicates
+per participant (p-value floor `1/9 = 0.111`), so it cannot resolve a 5 % effect. The honest
+statement is *"no reliable positive effect established"*, **not** *"disproven"*.
 
 ---
 

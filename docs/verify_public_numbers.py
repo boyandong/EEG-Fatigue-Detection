@@ -344,6 +344,12 @@ check("lane-centre sign test is stated as 4 recordings, not 5",
       and "all 4 audited" in ALL_TEXT)
 check("no public doc asserts 100% agreement in 5/5 recordings",
       "5/5 recordings" not in ALL_TEXT)
+check("no published doc attributes the sign test to 5 recordings",
+      # The artifact lane_geometry.json contains exactly 4 recordings and does NOT include the T2
+      # preflight; any prose that says the sign agreement covers 5 is wrong, however it is phrased.
+      "sign agreement of 5/5" not in ALL_TEXT
+      and "5/5 recordings\'" not in ALL_TEXT
+      and "sign agreement in 5/5" not in ALL_TEXT)
 check("the two lane-coverage quantities are distinguished",
       "behavioural-audit scale" in ALL_TEXT)
 
