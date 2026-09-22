@@ -19,6 +19,16 @@ prototype), because that is where imported architecture code lives.
 `tta_collapse/`). Those were written for this project, and their external dependencies are consumed
 as **installed packages**, not vendored — see §4.
 
+> ### Summary statement, for use anywhere else in this repository
+>
+> **Active research code references pinned external implementations rather than vendoring them. The
+> legacy archive retains several historical third-party-derived components whose upstream provenance
+> and licensing are still being audited; no repository-wide license is therefore asserted.**
+>
+> A blanket claim that "third-party code is referenced, not vendored" would be **false for the
+> archive** and must not be used. The distinction is between the *active* trees (clean) and the
+> *historical* archive (carries derivations with missing notices).
+
 **Method:** read the retained file headers and imports; compare class and function names against
 the public implementations they resemble; record exactly what the local evidence supports and mark
 the rest `NEEDS VERIFICATION`. **No upstream repository was contacted and no network access was
@@ -153,6 +163,27 @@ The reasoning, stated plainly:
   prototype code that no current scientific result depends on.
 
 Until one is chosen, the repository states that no license is granted.
+
+### 5.1 Owner decision recorded 2026-09-22: the files stay
+
+The unresolved legacy third-party-derived files are **retained in place, not deleted**. The reasoning,
+which is worth keeping because it will be questioned again:
+
+* they are **historical artifacts** — deleting them from the current tree would *not* remove them
+  from the repository's Git history, so the licensing question survives the deletion anyway;
+* their **scientific role is negligible**, but **provenance preservation currently matters more than
+  superficial cleanup**. A public repository that quietly dropped inconvenient files would be a worse
+  artifact than one that keeps them and states the problem;
+* **no attribution has been invented.** Nothing has been added to these files that cannot be
+  verified.
+
+They remain under `archive/legacy/legacy_ns_sd_prototype/`, marked in the archive README, and this
+document is the standing record of their unresolved status.
+
+**Consequence for anyone reading the repository:** the legacy archive is published *for provenance*,
+not as a reusable code asset. If you intend to reuse anything under
+`archive/legacy/legacy_ns_sd_prototype/model/models/mscvit_block/`, resolve its upstream provenance
+yourself first.
 
 ---
 

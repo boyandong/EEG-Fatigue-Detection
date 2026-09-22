@@ -27,6 +27,28 @@ Nothing below matters until the canonicalized content is on `main`.
 > If GitHub refuses the PR, the cleanest resolution is a fresh branch based on `main` carrying the
 > v2 tree — ask before doing this, since it changes commit identity.
 
+### 1.5 Repository history strategy — do NOT default to an unrelated-history merge
+
+**An `--allow-unrelated-histories` merge is NOT the recommended path, and should not be the
+default.** It produces a merge commit joining two trees that share no ancestor, which makes the
+resulting history hard to audit and silently mixes the old Phase-0 `main` tree with the canonical
+tree at the top level.
+
+**The recommended strategy, for the owner to decide after visual review (NOT decided in this
+session):**
+
+1. **Review the rendered branch on GitHub first.**
+2. If the canonical tree is what should be public, **preserve the old `main` as a legacy branch**
+   (e.g. `legacy/ns-sd-prototype-2026-02`) rather than merging it.
+3. **Promote the audited v2 root as the new canonical default branch.** This keeps the old state
+   reachable and auditable, and gives `main` a single coherent tree instead of a merge of two
+   unrelated ones.
+4. Only then set the default branch and consider removing the intermediate
+   `repo-refresh-20260922` snapshot.
+
+**This decision is explicitly out of scope for the canonicalization session** and is recorded here
+so it is made deliberately rather than by default.
+
 ---
 
 ## 2. Rename the repository

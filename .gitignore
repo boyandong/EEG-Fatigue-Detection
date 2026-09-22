@@ -105,24 +105,27 @@ logs/
 
 # ---------------------------------------------------------------------------
 # Secrets and credentials — must never be committed
+#
+# NOTE on scope: these rules are ANCHORED to the repository root. An unanchored `*secret*` matches
+# at every depth and silently excluded `docs/refresh/scan_secrets.py` -- the repository's own
+# secret SCANNER -- from the tree. A security rule that removes your security tooling is a bug.
+# Credential material belongs at the root and in config directories, not in a docs tool.
 # ---------------------------------------------------------------------------
-.env
-.env.*
-!.env.example
+/.env
+/.env.*
+!/.env.example
 *.pem
 *.key
 *.ppk
 *.pfx
 *.p12
-id_rsa*
-id_ed25519*
-*_ed25519
-*_rsa
-known_hosts
-.ssh/
-*credential*
-*secret*
-remote_state.json
+/id_rsa*
+/id_ed25519*
+/known_hosts
+/.ssh/
+/credentials*
+/secrets*
+/remote_state.json
 
 # ---------------------------------------------------------------------------
 # Environment / tooling

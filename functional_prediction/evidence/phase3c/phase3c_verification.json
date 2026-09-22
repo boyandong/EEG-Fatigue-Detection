@@ -1,0 +1,376 @@
+{
+  "audit": "phase3c_verification",
+  "checks_total": 54,
+  "checks_passed": 54,
+  "negative_controls_total": 8,
+  "negative_controls_passed": 8,
+  "verdict": "PASS",
+  "results": [
+    {
+      "section": "A1 Phase 3B state recheck exists and is green",
+      "id": "A1 Phase 3B state recheck exists and is green",
+      "pass": true,
+      "detail": "verdict=PHASE3B_STATE_CONFIRMED"
+    },
+    {
+      "section": "A2 all four Tier-1 payloads re-hash byte-identical",
+      "id": "A2 all four Tier-1 payloads re-hash byte-identical",
+      "pass": true,
+      "detail": "n=4 total=6.6245 GiB"
+    },
+    {
+      "section": "B1 no EEG-side analysis in the Phase 3C package",
+      "id": "B1 no EEG-side analysis in the Phase 3C package",
+      "pass": true,
+      "detail": "scanned 18 files"
+    },
+    {
+      "section": "B2 no endpoint-fishing pattern (threshold",
+      "id": "B2 no endpoint-fishing pattern (threshold/smoothing/window sweep)",
+      "pass": true,
+      "detail": "no signal-derived threshold or ad-hoc smoothing found"
+    },
+    {
+      "section": "B3 the column selector returns exactly the four vehicle channels, in order",
+      "id": "B3 the column selector returns exactly the four vehicle channels, in order",
+      "pass": true,
+      "detail": "[1, 3, 4, 5]"
+    },
+    {
+      "section": "B4 every behavioural cache holds vehicle",
+      "id": "B4 every behavioural cache holds vehicle/clock/events only",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "section": "B5 no Phase 3C CSV carries an EEG-derived column",
+      "id": "B5 no Phase 3C CSV carries an EEG-derived column",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "section": "C1 the T2 preflight selection was frozen from metadata before download",
+      "id": "C1 the T2 preflight selection was frozen from metadata before download",
+      "pass": true,
+      "detail": "chosen legacy 1010, 93 tile markers"
+    },
+    {
+      "section": "C2 the preflight recording is excluded from the endpoint cohort",
+      "id": "C2 the preflight recording is excluded from the endpoint cohort",
+      "pass": true,
+      "detail": "exclusion recorded"
+    },
+    {
+      "section": "C3 the T2 preflight payload transferred with size verified",
+      "id": "C3 the T2 preflight payload transferred with size verified",
+      "pass": true,
+      "detail": "status=DOWNLOADED_AND_SIZE_VERIFIED bytes=1686532232"
+    },
+    {
+      "section": "C4 the T2 preflight was executed and reports its five answers",
+      "id": "C4 the T2 preflight was executed and reports its five answers",
+      "pass": true,
+      "detail": "keys=['Q1_3200_present_in_raw_events', 'Q2_condition_sequence_vs_documentation', 'Q3_boundaries_usable_for_segmentation', 'Q4_vehicle_persists_in_every_segment', 'Q5_no_eeg_feature_used', 'Q6_T2_same_instrument_as_T1_T3']"
+    },
+    {
+      "section": "C5 every T2 preflight question has an explicit verdict",
+      "id": "C5 every T2 preflight question has an explicit verdict",
+      "pass": true,
+      "detail": "6 questions"
+    },
+    {
+      "section": "C6 the T2 boundary test uses the pre-declared 5 cm tolerance",
+      "id": "C6 the T2 boundary test uses the pre-declared 5 cm tolerance",
+      "pass": true,
+      "detail": "measured 0.9191 m vs 0.917 m, difference 0.0021 m"
+    },
+    {
+      "section": "C7 the T2 preflight extension exists and reports the safety events",
+      "id": "C7 the T2 preflight extension exists and reports the safety events",
+      "pass": true,
+      "detail": "collisions=1"
+    },
+    {
+      "section": "C8 safety-event codes are reported against the Tier-1 baseline of zero",
+      "id": "C8 safety-event codes are reported against the Tier-1 baseline of zero",
+      "pass": true,
+      "detail": "T2: 4411=4 4421=1; Tier-1 sample: 4411=0 4421=0"
+    },
+    {
+      "section": "C9 safety-event times lie inside the valid window",
+      "id": "C9 safety-event times lie inside the valid window",
+      "pass": true,
+      "detail": "collision at [3068.16] s, window ends 3875.05 s"
+    },
+    {
+      "section": "D1 every 4220 fires where LN>0 and every 4230 where LN<0",
+      "id": "D1 every 4220 fires where LN>0 and every 4230 where LN<0",
+      "pass": true,
+      "detail": "4 recordings, 100% sign agreement in each"
+    },
+    {
+      "section": "D2 the measured lane boundary is consistent across recordings",
+      "id": "D2 the measured lane boundary is consistent across recordings",
+      "pass": true,
+      "detail": "median |LN| at out-of-lane events: [0.9172, 0.9168, 0.9181, 0.9175] (spread 0.00137 m)"
+    },
+    {
+      "section": "D3 LN is finite, NaN-free and non-constant in every recording",
+      "id": "D3 LN is finite, NaN-free and non-constant in every recording",
+      "pass": true,
+      "detail": "n_distinct=[1859385, 7140392, 933905, 3603546]"
+    },
+    {
+      "section": "D4 the reported lane boundary re-derives from the cached vehicle bytes",
+      "id": "D4 the reported lane boundary re-derives from the cached vehicle bytes",
+      "pass": true,
+      "detail": "1001|ds004118:0.91718; 1001|ds004120:0.91677 \u2026"
+    },
+    {
+      "section": "E1 every window boundary is a documented condition onset or a block edge",
+      "id": "E1 every window boundary is a documented condition onset or a block edge",
+      "pass": true,
+      "detail": "starts=0 ends=0 bad; 230 tile onsets; "
+    },
+    {
+      "section": "E1b windows within a block partition it contiguously",
+      "id": "E1b windows within a block partition it contiguously",
+      "pass": true,
+      "detail": "30 windows, no intra-block gaps"
+    },
+    {
+      "section": "E1c no window is longer than the pre-declared 5 min + one tile period",
+      "id": "E1c no window is longer than the pre-declared 5 min + one tile period",
+      "pass": true,
+      "detail": "max duration=338.1 s"
+    },
+    {
+      "section": "E2 the tile grid is periodic enough to define cut points",
+      "id": "E2 the tile grid is periodic enough to define cut points",
+      "pass": true,
+      "detail": "1001|ds004118:median 40.2s; 1001|ds004120:median 38.5s; 3101|ds004118:median 40.2s; 3101|ds004120:median 39.6s"
+    },
+    {
+      "section": "F1 the identity key is legacy_labID, never sub-NN",
+      "id": "F1 the identity key is legacy_labID, never sub-NN",
+      "pass": true,
+      "detail": "sub-NN join warning recorded in the cohort artifact"
+    },
+    {
+      "section": "F2 every (legacy_labID, dataset) pair appears as one recording",
+      "id": "F2 every (legacy_labID, dataset) pair appears as one recording",
+      "pass": true,
+      "detail": "2 participants in the window table"
+    },
+    {
+      "section": "F3 site classes are preserved as declared columns in the cohort artifact",
+      "id": "F3 site classes are preserved as declared columns in the cohort artifact",
+      "pass": true,
+      "detail": "classes=['T1_64ch_1024', 'T2_64ch_2048', 'T3_256ch']"
+    },
+    {
+      "section": "F4 cohort sizes are reported separately and are metadata-derived",
+      "id": "F4 cohort sizes are reported separately and are metadata-derived",
+      "pass": true,
+      "detail": "Cohort A=109, Cohort B=107"
+    },
+    {
+      "section": "G1 the response criterion is quoted verbatim from the release documentation",
+      "id": "G1 the response criterion is quoted verbatim from the release documentation",
+      "pass": true,
+      "detail": "heading>5.1566 deg OR steering>4 deg"
+    },
+    {
+      "section": "G2 the RT definition is a difference of two documented event onsets",
+      "id": "G2 the RT definition is a difference of two documented event onsets",
+      "pass": true,
+      "detail": "RT_j = onset(4311)_j - onset(perturbation)_j, first 4311 within the horizon"
+    },
+    {
+      "section": "G3 the search horizon is declared as a search bound, not a response criterion",
+      "id": "G3 the search horizon is declared as a search bound, not a response criterion",
+      "pass": true,
+      "detail": "horizon=10 s, declared in frozen_parameters"
+    },
+    {
+      "section": "G4 the first RT re-derives from the cached event stream",
+      "id": "G4 the first RT re-derives from the cached event stream",
+      "pass": true,
+      "detail": "recomputed 3.511719 s vs reported 3.511719"
+    },
+    {
+      "section": "G5 the T2 RT in the artifact matches the value used in the report",
+      "id": "G5 the T2 RT in the artifact matches the value used in the report",
+      "pass": true,
+      "detail": "artifact median 1.4399 s present in the report: True"
+    },
+    {
+      "section": "G6 the three-site comparison in the artifact carries all three classes",
+      "id": "G6 the three-site comparison in the artifact carries all three classes",
+      "pass": true,
+      "detail": "3 classes"
+    },
+    {
+      "section": "H1 the primary endpoint re-derives from the cached vehicle bytes",
+      "id": "H1 the primary endpoint re-derives from the cached vehicle bytes",
+      "pass": true,
+      "detail": "1001|ds004118 cache samples [2,666584): 0.370555127 vs 0.3705551269661177"
+    },
+    {
+      "section": "H1b the recording-absolute and cache window indices agree",
+      "id": "H1b the recording-absolute and cache window indices agree",
+      "pass": true,
+      "detail": "abs [90291,756873) - valid_start 90289 == cache [2,666584)"
+    },
+    {
+      "section": "H2 the valid window re-derives and matches the frozen Phase 3B pad values",
+      "id": "H2 the valid window re-derives and matches the frozen Phase 3B pad values",
+      "pass": true,
+      "detail": "4/4 recordings agree"
+    },
+    {
+      "section": "I1 the Phase 3C report exists",
+      "id": "I1 the Phase 3C report exists",
+      "pass": true,
+      "detail": "PHASE3C_BEHAVIOR_ENDPOINT_REPORT.md"
+    },
+    {
+      "section": "I2 the report's Family A (lane) verdict matches the artifact",
+      "id": "I2 the report's Family A (lane) verdict matches the artifact",
+      "pass": true,
+      "detail": "report=ELIGIBLE artifact=ELIGIBLE"
+    },
+    {
+      "section": "I2 the report's Family B (perturbation) verdict matches the artifact",
+      "id": "I2 the report's Family B (perturbation) verdict matches the artifact",
+      "pass": true,
+      "detail": "report=INCONCLUSIVE artifact=INCONCLUSIVE"
+    },
+    {
+      "section": "I2b the report names all six eligibility criteria per family",
+      "id": "I2b the report names all six eligibility criteria per family",
+      "pass": true,
+      "detail": "29 E-criterion mentions"
+    },
+    {
+      "section": "I3 the report's Cohort A count matches the artifact",
+      "id": "I3 the report's Cohort A count matches the artifact",
+      "pass": true,
+      "detail": "report=109 artifact=109"
+    },
+    {
+      "section": "I4 no artifact claims a git commit",
+      "id": "I4 no artifact claims a git commit",
+      "pass": true,
+      "detail": "workspace is not a git repository"
+    },
+    {
+      "section": "I5 a single deterministic entry point exists for the whole lane",
+      "id": "I5 a single deterministic entry point exists for the whole lane",
+      "pass": true,
+      "detail": "run_phase3c.py"
+    },
+    {
+      "section": "K1 exactly five payloads exist: the four Tier-1 recordings plus one preflight",
+      "id": "K1 exactly five payloads exist: the four Tier-1 recordings plus one preflight",
+      "pass": true,
+      "detail": "n=5"
+    },
+    {
+      "section": "K2 the extra payload is exactly the frozen T2 preflight recording",
+      "id": "K2 the extra payload is exactly the frozen T2 preflight recording",
+      "pass": true,
+      "detail": "['sub-10_ses-01_task-DriveWithSpeedChange_run-1_eeg.set']"
+    },
+    {
+      "section": "K3 the extra payload's size and digest are recorded in the Phase 3C manifest",
+      "id": "K3 the extra payload's size and digest are recorded in the Phase 3C manifest",
+      "pass": true,
+      "detail": "1686532232 bytes, sha256 a24fe4aceca64ee6\u2026"
+    },
+    {
+      "section": "K4 the four Tier-1 payloads are untouched (their digests still match)",
+      "id": "K4 the four Tier-1 payloads are untouched (their digests still match)",
+      "pass": true,
+      "detail": "re-hashed at the start of this phase; A2 above"
+    },
+    {
+      "section": "K5 Phase 3B's frozen verifier was NOT edited to accommodate the addition",
+      "id": "K5 Phase 3B's frozen verifier was NOT edited to accommodate the addition",
+      "pass": true,
+      "detail": "20_verify_phase3b.py and its artifacts are byte-unchanged; its A7/D2 FAILs are the expected, correct detection of this phase's scope change and are documented in PHASE3C_BEHAVIOR_ENDPOINT_REPORT.md \u00a714"
+    },
+    {
+      "section": "J1 every artifact the brief names exists",
+      "id": "J1 every artifact the brief names exists",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "section": "J2 lane_endpoint_definition.json reproduces the eligibility verdict",
+      "id": "J2 lane_endpoint_definition.json reproduces the eligibility verdict",
+      "pass": true,
+      "detail": "ELIGIBLE"
+    },
+    {
+      "section": "J3 perturbation_endpoint_definition.json reproduces the eligibility verdict",
+      "id": "J3 perturbation_endpoint_definition.json reproduces the eligibility verdict",
+      "pass": true,
+      "detail": "INCONCLUSIVE"
+    },
+    {
+      "section": "J4 time_on_task_models.json is a view, not a refit",
+      "id": "J4 time_on_task_models.json is a view, not a refit",
+      "pass": true,
+      "detail": "2 models, R^2 identical to the source"
+    },
+    {
+      "section": "J5 behavior_qc.csv covers every recording x every vehicle channel",
+      "id": "J5 behavior_qc.csv covers every recording x every vehicle channel",
+      "pass": true,
+      "detail": "16 rows (expected 16)"
+    }
+  ],
+  "negative_controls": [
+    {
+      "id": "N1 the scope guard fails a file that reads an EEG channel / computes a PSD",
+      "pass": true,
+      "detail": "1/1 injected violation caught"
+    },
+    {
+      "id": "N2 the fishing checker fails a file with a signal-derived threshold",
+      "pass": true,
+      "detail": "caught find_peaks + percentile threshold"
+    },
+    {
+      "id": "N3 a window that swallows a 3200 marker is detected as a violation",
+      "pass": true,
+      "detail": "1001|ds004118: 4 marker(s) inside a window fixed to straddle one"
+    },
+    {
+      "id": "N4 an offset lane centre breaks the sign-agreement check",
+      "pass": true,
+      "detail": "correct centre=1.000 (n=12); centre off by 1.147 m -> 0.000"
+    },
+    {
+      "id": "N5 shuffled participant IDs are detected by the independence check",
+      "pass": true,
+      "detail": "identity permutation rejected; the check compares the artifact's key set to the recording set element-wise"
+    },
+    {
+      "id": "N6 an EEG-derived column in a Phase 3C CSV is detected",
+      "pass": true,
+      "detail": "columns=['legacy_labid', 'y_mean_absln', 'eeg_theta_power']"
+    },
+    {
+      "id": "N6b the same check stays quiet on a clean behavioural table",
+      "pass": true,
+      "detail": "columns=['legacy_labid', 'y_mean_absln']"
+    },
+    {
+      "id": "N7 a report number that disagrees with the artifact is detected",
+      "pass": true,
+      "detail": "injected 116 vs artifact 109"
+    }
+  ]
+}

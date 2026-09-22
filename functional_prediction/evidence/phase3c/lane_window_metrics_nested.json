@@ -1,0 +1,348 @@
+{
+  "audit": "phase3c_window_metrics_and_decomposition",
+  "generated_utc": "2026-09-17T06:44:08Z",
+  "frozen_parameters": {
+    "window_s": 300.0,
+    "block_gap_threshold_s": 90.0,
+    "lane_boundary_m": 0.917,
+    "bootstrap_B": 2000,
+    "seed": 20260917,
+    "episode_quantum_s": 5.0,
+    "primary_endpoint": "mean_{t in w} |LN(t)| (metres), brief \u00a715",
+    "declared_before_inspection": true
+  },
+  "model_specification": {
+    "naive": "Y ~ T_session",
+    "condition_aware": "Y ~ T_session + segment + block  (within-subject centered)",
+    "segment": "position in the release's ~40 s tile cycle (0..39 s), the observable cycle of the documented 2x2 condition change",
+    "block": "documented protocol block, from the frozen 90 s tile-gap threshold",
+    "not_included": "the 2x2 condition labels themselves: the release documents the design but not the per-tile label sequence, and the perturbation-rate factor is NOT behaviourally recoverable (12_block_structure.py: per-block rate varies by only 1.08x-1.18x), so inventing labels is forbidden by brief \u00a730",
+    "random_slope": "not fitted as a primary model: with 2 subjects a random slope has 1 df. The subject-level slope pair is reported descriptively instead."
+  },
+  "recordings": {
+    "1001|ds004118": {
+      "recording": "sub-01_ses-01_task-Drive_run-1",
+      "role": "calibration",
+      "site_class": "ch64",
+      "n_windows": 3,
+      "block_bounds_s": [
+        [
+          44.08740234375,
+          968.1220703125
+        ]
+      ],
+      "ipi_median_s": 15.060791015625,
+      "bootstrap_block_episodes": 7
+    },
+    "1001|ds004120": {
+      "recording": "sub-01_ses-01_task-DriveWithSpeedChange_run-1",
+      "role": "baseline",
+      "site_class": "ch64",
+      "n_windows": 12,
+      "block_bounds_s": [
+        [
+          59.3427734375,
+          685.211181640625
+        ],
+        [
+          818.4130859375,
+          1425.770751953125
+        ],
+        [
+          1558.85107421875,
+          2154.298095703125
+        ],
+        [
+          2285.98583984375,
+          2916.802001953125
+        ],
+        [
+          3046.3095703125,
+          3643.129638671875
+        ],
+        [
+          3764.1044921875,
+          4347.7421875
+        ]
+      ],
+      "ipi_median_s": 14.80908203125,
+      "bootstrap_block_episodes": 6
+    },
+    "3101|ds004118": {
+      "recording": "sub-98_ses-01_task-Drive_run-1",
+      "role": "calibration",
+      "site_class": "ch256",
+      "n_windows": 3,
+      "block_bounds_s": [
+        [
+          90.08203125,
+          1015.34765625
+        ]
+      ],
+      "ipi_median_s": 11.0673828125,
+      "bootstrap_block_episodes": 5
+    },
+    "3101|ds004120": {
+      "recording": "sub-51_ses-01_task-DriveWithSpeedChange_run-1",
+      "role": "baseline",
+      "site_class": "ch256",
+      "n_windows": 12,
+      "block_bounds_s": [
+        [
+          151.8095703125,
+          791.787109375
+        ],
+        [
+          943.4677734375,
+          1538.16015625
+        ],
+        [
+          1643.423828125,
+          2276.521484375
+        ],
+        [
+          2373.05078125,
+          2964.3564453125
+        ],
+        [
+          3129.5166015625,
+          3721.6708984375
+        ],
+        [
+          3816.0087890625,
+          4430.595703125
+        ]
+      ],
+      "ipi_median_s": 11.18212890625,
+      "bootstrap_block_episodes": 5
+    }
+  },
+  "variance_decomposition": {
+    "unit": "complete 5-min windows (mean |LN|)",
+    "n_windows": 20,
+    "by_subject": {
+      "1001": {
+        "n": 10,
+        "mean": 0.40237244195139665,
+        "sd": 0.07981511706565518,
+        "min": 0.3153938564059902,
+        "max": 0.5271785170520005,
+        "range": 0.21178466064601026,
+        "iqr": 0.10998342103767
+      },
+      "3101": {
+        "n": 10,
+        "mean": 0.37948019225154606,
+        "sd": 0.0956879601281765,
+        "min": 0.24219768237525466,
+        "max": 0.5417372132283171,
+        "range": 0.2995395308530625,
+        "iqr": 0.14296959305455748
+      }
+    },
+    "reml": {
+      "n_obs": 20,
+      "n_groups": 2,
+      "mu": 0.39092631710147135,
+      "sigma2_within": 0.007492632795413851,
+      "sigma2_between": 0.0,
+      "rho_between_share": 0.0,
+      "ss_between": 0.0026202754816015486,
+      "ss_within": 0.13973974763126162,
+      "between_share_of_total_ss": 0.018405978197433923,
+      "identifiability_note": "with 2 subjects the between-subject component rests on 1 df; read as an upper bound on how large it could be, not as an estimate"
+    }
+  },
+  "within_person_dynamic_range": {
+    "per_subject_per_arm": {
+      "1001|ds004118": {
+        "n_windows": 2,
+        "mean": 0.354574621428537,
+        "sd": 0.022599847664824944,
+        "min": 0.33859411589095634,
+        "max": 0.3705551269661177,
+        "range": 0.03196101107516136,
+        "iqr": 0.01598050553758068,
+        "cv": 0.06373791664438072,
+        "fingerprint": "n<2: no dispersion statistic is defined for a single window"
+      },
+      "1001|ds004120": {
+        "n_windows": 8,
+        "mean": 0.41432189708211153,
+        "sd": 0.08544985495141592,
+        "min": 0.3153938564059902,
+        "max": 0.5271785170520005,
+        "range": 0.21178466064601026,
+        "iqr": 0.1367463912229277,
+        "cv": 0.20624025800519352,
+        "fingerprint": "n<2: no dispersion statistic is defined for a single window"
+      },
+      "3101|ds004118": {
+        "n_windows": 2,
+        "mean": 0.2775686836589168,
+        "sd": 0.05002214973007113,
+        "min": 0.24219768237525466,
+        "max": 0.3129396849425789,
+        "range": 0.07074200256732424,
+        "iqr": 0.03537100128366211,
+        "cv": 0.18021539415282012,
+        "fingerprint": "n<2: no dispersion statistic is defined for a single window"
+      },
+      "3101|ds004120": {
+        "n_windows": 8,
+        "mean": 0.40495806939970336,
+        "sd": 0.08778103195593481,
+        "min": 0.30042934998262777,
+        "max": 0.5417372132283171,
+        "range": 0.24130786324568937,
+        "iqr": 0.14200033480295643,
+        "cv": 0.21676573104484262,
+        "fingerprint": "n<2: no dispersion statistic is defined for a single window"
+      }
+    }
+  },
+  "bootstrap_rule": {
+    "rule": "L = ceil(2 * median inter-perturbation interval / 5 s), applied per recording",
+    "per_recording_episodes": {
+      "1001|ds004118": 7,
+      "1001|ds004120": 6,
+      "3101|ds004118": 5,
+      "3101|ds004120": 5
+    }
+  },
+  "time_on_task_models": {
+    "note": "OLS with explicit subject fixed effects. Every model carries the subject dummies, so the T_session coefficient is a within-subject slope and R^2 is a genuine proportion of variance explained. No random slope is fitted (2 subjects -> 1 df); the per-subject slopes are reported descriptively in `subject_slopes` below.",
+    "models": {
+      "naive_Y~T_session+subject": {
+        "terms": [
+          "intercept",
+          "subject[1001|ds004120]",
+          "subject[3101|ds004118]",
+          "subject[3101|ds004120]",
+          "T_session"
+        ],
+        "beta": [
+          0.3466667827488297,
+          0.02094061214383959,
+          -0.077007984419842,
+          0.013985992199233407,
+          2.4364872582838856e-05
+        ],
+        "se": [
+          0.05618156931988278,
+          0.06763652954260362,
+          0.07910511360533692,
+          0.06704365377093395,
+          1.6174836745567113e-05
+        ],
+        "t": [
+          6.17047168574096,
+          0.30960506527244713,
+          -0.9734893347608637,
+          0.20861023247657307,
+          1.506344265855809
+        ],
+        "r2": 0.3406555934916249,
+        "n": 20,
+        "rss": 0.09386428494986934,
+        "beta_T_session_per_hour": 0.08771354129821989,
+        "se_T_session_per_hour": 0.058229412284041604
+      },
+      "condition_aware_Y~T_session+segment+block+subject": {
+        "terms": [
+          "intercept",
+          "subject[1001|ds004120]",
+          "subject[3101|ds004118]",
+          "subject[3101|ds004120]",
+          "T_session",
+          "segment",
+          "block"
+        ],
+        "beta": [
+          0.6076366456959477,
+          0.02195008697980061,
+          -0.07701350353703579,
+          0.016792983772903725,
+          7.287342529454371e-05,
+          -0.013963803314339884,
+          -0.03405652994245756
+        ],
+        "se": [
+          1.8505499949106345,
+          0.0725791168557328,
+          0.08455341182683188,
+          0.07212451140117423,
+          0.00014170607434891666,
+          0.09363416264239545,
+          0.10102598080363995
+        ],
+        "t": [
+          0.328354622878098,
+          0.30242978877011284,
+          -0.9108266818938299,
+          0.23283324138581718,
+          0.5142575971380781,
+          -0.14913150201032915,
+          -0.3371066499087184
+        ],
+        "r2": 0.3471437602060692,
+        "n": 20,
+        "rss": 0.09294062938644095,
+        "beta_T_session_per_hour": 0.26234433106035737,
+        "se_T_session_per_hour": 0.5101418676560999
+      }
+    },
+    "F_test_naive_vs_condition_aware": {
+      "f": 0.06459781047233218,
+      "df1": 2,
+      "df2": 13,
+      "p": 0.9377433974434733
+    },
+    "time_coefficient_shrinkage_fraction": -1.9909216658851463,
+    "verdict_rule": "pre-declared: if the T_session coefficient is not distinguishable from zero in the naive model, there is no apparent time effect to explain; if it is, and it shrinks toward zero in the condition-aware model, the apparent effect is condition-driven"
+  },
+  "subject_slopes": {
+    "note": "descriptive; with 2 recordings per subject these are not inferential",
+    "per_recording": {
+      "1001|ds004120": {
+        "n_windows": 8,
+        "slope_m_per_hour": 0.10819952614303553,
+        "first_window_mean": 0.3746229959206875,
+        "second_window_mean": 0.4540207982435356
+      },
+      "3101|ds004120": {
+        "n_windows": 8,
+        "slope_m_per_hour": 0.06423291583851273,
+        "first_window_mean": 0.36682054288440125,
+        "second_window_mean": 0.44309559591500547
+      }
+    }
+  },
+  "site_comparison": {
+    "caveat": "one subject per site class in the local Tier-1 sample; subject and site are perfectly confounded here, so this is a scale-and-units check, not a site effect estimate",
+    "sites": {
+      "T1_64ch_2048Hz": {
+        "n_windows": 8,
+        "mean": 0.41432189708211153,
+        "sd": 0.08544985495141592,
+        "min": 0.3153938564059902,
+        "max": 0.5271785170520005,
+        "per_subject": {
+          "1001": 0.41432189708211153
+        },
+        "perturbation_rate_per_min": 3.836749581528806
+      },
+      "T3_256ch_1024Hz": {
+        "n_windows": 8,
+        "mean": 0.40495806939970336,
+        "sd": 0.08778103195593481,
+        "min": 0.30042934998262777,
+        "max": 0.5417372132283171,
+        "per_subject": {
+          "3101": 0.40495806939970336
+        },
+        "perturbation_rate_per_min": 5.059990467069053
+      }
+    }
+  }
+}

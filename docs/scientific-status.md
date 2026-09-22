@@ -49,8 +49,9 @@ Verification vocabulary, used strictly and never loosely:
 > A reproducible cross-subject EEG trunk was built and a predefined tonic representation did not
 > demonstrate out-of-sample PVT predictive skill; the suspicion that this invalidated a later
 > behavioural-baseline family was itself tested and refuted; and under the frozen source model both
-> normalization-only and entropy-minimizing adaptation degraded to near chance, implicating test-time
-> normalization behaviour rather than entropy minimisation.
+> normalization-only and entropy-minimizing adaptation degraded to near chance, **without harmful
+> prediction collapse**, localizing the first-order failure to the normalization switch rather than
+> the entropy update.
 
 ---
 
@@ -60,17 +61,23 @@ The internal session label `CASE 4 — BN/NORMALIZATION INSTABILITY` is the **fr
 of an executed and verified experiment. It is recorded verbatim in
 `tta_collapse/outputs/collapse_verdict.json` and `evidence/metrics/KEY_FINDINGS.json`.
 
-**For public writing, it should be translated into the scientific statement rather than quoted as a
-label** — an internal case code is not meaningful to an external reader:
+**For public writing, the scientific meaning is stated first, and the internal label follows in
+parentheses — never the other way round.** A reader must not need the internal case taxonomy to
+understand the result:
 
-> Under the frozen ds004902 EEGNet protocol, both BN-only adaptation and TENT showed harmful
-> degradation, indicating that the observed instability is not specific to entropy-gradient updates
-> and implicating test-time normalization behavior as the first-order failure mode.
+> **TTA Phase 1 — EXECUTED / VERIFIED. No harmful collapse; normalization-switch degradation
+> established.** Switching from frozen source BatchNorm statistics to target-batch statistics was
+> sufficient to reproduce the observed degradation, while the entropy-gradient step produced no
+> detectable additional degradation under this protocol. *(Internally classified as Case 4.)*
+
+The branch README may retain the label as its heading, because a reader who reaches it has already
+seen the meaning. The **root README and the status table state the meaning**, and the label appears
+only as a parenthetical.
 
 **Scope that must travel with it:** the verdict establishes *attribution*, not *mechanism*. It does
-not establish that BatchNorm is the causal mechanism (that needs an intervention experiment), and it
-does not establish that TENT collapses universally on EEG. In this dataset, TENT did not collapse at
-all — it degraded to chance, exactly as the gradient-free control did.
+not establish that BatchNorm statistics are the causal mechanism (that needs an intervention
+experiment), and it does not establish that TENT collapses universally on EEG. In this dataset, TENT
+did not collapse at all — it degraded to chance, exactly as the gradient-free control did.
 
 **Implementation verification vs. experimental sample size.** `816/816 units` and `105/105 verifier
 checks` are **verification counts** and belong in reproducibility material, never presented as

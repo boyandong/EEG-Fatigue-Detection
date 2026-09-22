@@ -74,7 +74,7 @@ total gap rows inside Phase 4A test masks        : 0
 
 **Measurement 3 — the whole cohort.** The corrected standard run reproduces Phase 4A on all 25 participants: per-participant mean ΔR = **−4.0e-15**, max |ΔR| = **5.5e-14**, with identical SD / median / IQR / min / max / positive count. `11_verify_standard.py`, which recomputes every R from the raw caches without importing the pipeline, agrees to **5.6e-14**.
 
-**Consequence:** the Phase 4A standard result, the Phase 4A2 standard *and* adaptive results, and the Phase 4A2 calibrated null are **not** invalidated by this defect. They stand as published; the `INVALIDATED FOR SCIENTIFIC VERDICT` status the brief attached to them is withdrawn by this audit.
+**Consequence:** the Phase 4A standard result, the Phase 4A2 standard *and* adaptive results, and the Phase 4A2 calibrated null are **not** invalidated by this defect. They remain scientifically valid under their frozen protocols; the `INVALIDATED FOR SCIENTIFIC VERDICT` status the brief attached to them is withdrawn by this audit.
 
 ### 3b. An honest unresolved discrepancy in THIS audit's instrumentation
 

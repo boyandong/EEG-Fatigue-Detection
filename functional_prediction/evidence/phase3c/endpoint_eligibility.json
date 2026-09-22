@@ -1,0 +1,424 @@
+{
+  "audit": "phase3c_endpoint_eligibility",
+  "generated_utc": "2026-09-17T06:44:10Z",
+  "rule": "Eligible = E1 AND E2 AND E3 AND E4 AND E5 AND E6 (brief \u00a731). Not a majority vote. Verdicts are per family, and the two families are NOT compared on effect size (brief \u00a720).",
+  "family_A_lane_control": {
+    "E1_semantic_validity": {
+      "verdict": "PASS",
+      "what_the_endpoint_means": "mean absolute lane deviation from the lane centre in metres, L(t)=|LN(t)|",
+      "evidence": {
+        "channel_documentation": "LN = 'Lane deviation from center line in meters.' (*_channels.tsv description, verbatim)",
+        "task_documentation": "subjects were instructed to return the vehicle to the center of the lane (both READMEs, verbatim)",
+        "centre_identified": "the release's own lane vocabulary fires where the vehicle is 'right of'/'left of' the defined lane of travel; every 4220 falls at LN>0 and every 4230 at LN<0",
+        "frac_4220_with_LN_positive": 1.0,
+        "frac_4230_with_LN_negative": 1.0,
+        "measured_boundary_absLN_median_per_recording": [
+          0.9171816110610962,
+          0.9167686700820923,
+          0.9181339740753174,
+          0.9174502193927765
+        ],
+        "measured_boundary_spread_m": 0.0013653039932250977,
+        "boundary_confirmed_in_T2_class": 0.9191285669803619,
+        "boundary_across_all_five_recordings": [
+          0.9171816110610962,
+          0.9167686700820923,
+          0.9181339740753174,
+          0.9174502193927765,
+          0.9191285669803619
+        ]
+      },
+      "source_artifacts": [
+        "outputs/lane_geometry.json",
+        "outputs/lane_measurement_qc.csv",
+        "outputs/t2_preflight.json"
+      ],
+      "residual_caveat": "the signing convention (which side is positive) is undocumented and is NOT needed: |LN| is sign-free. What the test establishes is that LN=0 is the lane centre, not which side is which.",
+      "open_scientific_question": "the endpoint can in principle be driven far outside the lane: the T2 preflight recording reaches |LN| = 31.5 m with 24.7 % of time beyond the 0.917 m boundary, and contains the sample's only collision and its four near-misses. Whether 'mean |LN|' and 'hard safety failure' should be one target or two is a WHAT decision for the PI and is NOT resolved here."
+    },
+    "E2_measurement_validity": {
+      "verdict": "PASS",
+      "evidence": {
+        "finite_no_nan_no_inf": true,
+        "distinct_values": {
+          "1001|ds004118": 1859385,
+          "1001|ds004120": 7140392,
+          "3101|ds004118": 933905,
+          "3101|ds004120": 3603546
+        },
+        "quantisation": "float32 with continuous steps; no integer lattice, so no quantisation floor to correct for",
+        "interior_exact_zeros": {
+          "1001|ds004118": 0,
+          "1001|ds004120": 0,
+          "3101|ds004118": 0,
+          "3101|ds004120": 0
+        },
+        "padding_excluded": {
+          "1001|ds004118": [
+            44.08642578125,
+            968.1220703125
+          ],
+          "1001|ds004120": [
+            59.34228515625,
+            4347.7421875
+          ],
+          "3101|ds004118": [
+            90.0810546875,
+            1015.34765625
+          ],
+          "3101|ds004120": [
+            151.8076171875,
+            4430.595703125
+          ]
+        },
+        "reconstruction_is_reproducible": "the valid window is re-derived from the bytes in this lane and agrees with Phase 3B's `vehicle_effective_sampling.csv` pad values to floating point"
+      },
+      "source_artifacts": [
+        "outputs/vehicle_extraction_qc.json",
+        "outputs/lane_geometry.json"
+      ]
+    },
+    "E3_temporal_linkage": {
+      "verdict": "PASS",
+      "evidence": {
+        "vehicle_channels_share_the_eeg_matrix": true,
+        "per_sample_simulator_clock_present": true,
+        "event_sample_equals_onset_times_srate": true,
+        "source": "Phase 3B `temporal_alignment.csv`, verdict FULL on all four recordings; Phase 3C re-derives the valid window and agrees"
+      },
+      "source_artifacts": [
+        "audit/phase3b/outputs/temporal_alignment.csv",
+        "outputs/vehicle_extraction_qc.json"
+      ],
+      "note": "Phase 3C does not use EEG, so E3 is about the *behavioural* series being locatable in time, which it is to the sample."
+    },
+    "E4_within_person_dynamic_range": {
+      "verdict": "PASS",
+      "evidence": {
+        "baseline_windows_per_subject": {
+          "1001|ds004120": 8,
+          "3101|ds004120": 8
+        },
+        "range_m": [
+          0.21178466064601026,
+          0.24130786324568937
+        ],
+        "iqr_m": [
+          0.1367463912229277,
+          0.14200033480295643
+        ],
+        "cv": [
+          0.20624025800519352,
+          0.21676573104484262
+        ],
+        "level_m": [
+          0.41432189708211153,
+          0.40495806939970336
+        ],
+        "episode_level_moving_block_ci95": {
+          "1001|ds004118": [
+            0.3088958454438738,
+            0.3775211735454215
+          ],
+          "1001|ds004120": [
+            0.3859970642282563,
+            0.4635047143941213
+          ],
+          "3101|ds004118": [
+            0.28376476321554245,
+            0.4297192595001288
+          ],
+          "3101|ds004120": [
+            0.3856765905027417,
+            0.43702775419428996
+          ]
+        },
+        "t2_preflight_range_m": 2.7028150441681897,
+        "rule": "pre-declared: a range of at least 0.05 m across 5-minute windows is required. Observed 0.21-0.24 m on the four Tier-1 recordings, i.e. 4-5x the threshold; the T2 preflight recording reaches 2.70 m, two orders of magnitude above it.",
+        "not_a_fatigue_claim": "this establishes that the target varies within a person; it does not establish that it declines",
+        "scale_warning": "the dynamic range is NOT homogeneous across participants: the T2 preflight recording's range is 11-13x the Tier-1 ranges, so a single pooled variance would be dominated by such participants. This is a property of the cohort, not a defect of the endpoint, and it is a reason the cohort-scale audit was requested rather than assumed."
+      },
+      "source_artifacts": [
+        "outputs/lane_window_metrics_nested.json",
+        "outputs/uncertainty.json",
+        "outputs/t2_preflight_extension.json"
+      ]
+    },
+    "E5_confound_separability": {
+      "verdict": "PASS",
+      "evidence": {
+        "documented_condition_markers_present": {
+          "1001|ds004118": 23,
+          "1001|ds004120": 91,
+          "3101|ds004118": 23,
+          "3101|ds004120": 93
+        },
+        "condition_cycle_is_a_measurable_period": "tile markers arrive at a median spacing of 38.5-40.2 s in every recording, and 6 blocks are separated by >90 s gaps that match the documented 6-block protocol",
+        "perturbation_rate_factor_not_recoverable": {
+          "max_over_min_rate_per_block": {
+            "1001|ds004120": 1.0841197088163925,
+            "3101|ds004120": 1.180479226203561
+          },
+          "consequence": "the 2x2 condition labels cannot be recovered behaviourally, so a condition-label model is NOT fitted; the observable cycle and the block are used instead"
+        },
+        "time_on_task_estimate": {
+          "naive_beta_per_hour": 0.08771354129821989,
+          "naive_se_per_hour": 0.058229412284041604,
+          "condition_aware_beta_per_hour": 0.26234433106035737,
+          "condition_aware_se_per_hour": 0.5101418676560999,
+          "F_test_p": 0.9377433974434733
+        },
+        "separability_argument": "time-on-task contrast is expressible (T_session spans 0.7-1.2 h), the documented condition cycle is expressible (T_local within a ~40 s tile), and the block effect is expressible, so the brief's key diagnostic \u2014 naive vs condition-aware \u2014 is constructible rather than blocked"
+      },
+      "source_artifacts": [
+        "outputs/block_structure.json",
+        "outputs/lane_window_metrics_nested.json"
+      ]
+    },
+    "E6_cohort_coverage": {
+      "verdict": "PASS",
+      "evidence": {
+        "cohort_A_endpoint_validation": 109,
+        "cohort_B_future_paired": 107,
+        "site_classes_baseline": {
+          "T2_64ch_2048": 22,
+          "T3_256ch": 78,
+          "T1_64ch_1024": 28
+        },
+        "local_validation_sample": "2 participants x 1 baseline recording each (T1 64ch@2048 and T3 256ch@1024), which is what the endpoint reconstruction is demonstrated on",
+        "rule": "pre-declared: >= 30 independent participants with usable Baseline vehicle data. This is a *metadata* count from the frozen index; the behavioural audit itself has NOT been run at cohort scale (see the access plan) \u2014 the count establishes that the cohort exists, not that the endpoint has been validated on it."
+      },
+      "source_artifacts": [
+        "outputs/cohort_inventory.json"
+      ]
+    },
+    "ELIGIBILITY": "ELIGIBLE"
+  },
+  "family_B_perturbation_response": {
+    "E1_semantic_validity": {
+      "verdict": "PASS",
+      "evidence": {
+        "perturbation_onset": "event 1111/1121 'Start of left/right perturbation'",
+        "response_onset": "event 4311 'Driver starts correcting lane position.'",
+        "documented_detection_criterion": "Course correction has been detected because the vehicle has a heading error of more than 5.1566 degrees from the forward direction or the driver is steering away from the perturbation with a steering angle of more than 4 degrees.",
+        "why_no_threshold_was_invented": "the producer documents the criterion that generates 4311/4312, so RT is built from the delivered marker; no steering or derivative threshold, percentile or latency cutoff was chosen by this lane"
+      },
+      "source_artifacts": [
+        "outputs/perturbation_endpoint.json",
+        "audit/phase3b/raw/ds0041{18,0}/code/task-*_events.json"
+      ],
+      "residual_caveat": "the criterion is a disjunction (heading error OR steering away) and heading error is not among the released channels, so the marker's internal branch cannot be recomputed from the signal"
+    },
+    "E2_measurement_validity": {
+      "verdict": "INCONCLUSIVE",
+      "evidence": {
+        "median_rt_s": {
+          "1001|ds004118": 4.246826171875,
+          "1001|ds004120": 3.65283203125,
+          "3101|ds004118": 1.41455078125,
+          "3101|ds004120": 1.4189453125
+        },
+        "iqr_rt_s": {
+          "1001|ds004118": 2.01318359375,
+          "1001|ds004120": 2.641357421875,
+          "3101|ds004118": 0.2158203125,
+          "3101|ds004120": 0.287109375
+        },
+        "cross_recording_median_ratio": 2.574328974535444,
+        "direction_symmetry_within_50ms": {
+          "1001|ds004120": false,
+          "3101|ds004120": true
+        },
+        "missed_response_fraction": {
+          "1001|ds004118": 0.017543859649122806,
+          "1001|ds004120": 0.004166666666666667,
+          "3101|ds004118": 0.0,
+          "3101|ds004120": 0.006349206349206349
+        },
+        "negative_rt": {
+          "1001|ds004118": 0,
+          "1001|ds004120": 0,
+          "3101|ds004118": 0,
+          "3101|ds004120": 0
+        },
+        "three_site_classes_identical_definition": {
+          "T1_64ch_2048": {
+            "median_s": 3.65283203125,
+            "iqr_s": 2.641357421875,
+            "cv": 0.5024810636619891
+          },
+          "T2_64ch_2048": {
+            "median_s": 1.43994140625,
+            "iqr_s": 0.43017578125,
+            "cv": 0.3225900810809948,
+            "missed_fraction": 0.11067193675889328
+          },
+          "T3_256ch_1024": {
+            "median_s": 1.4189453125,
+            "iqr_s": 0.287109375,
+            "cv": 0.24210023735662664
+          }
+        },
+        "why_inconclusive": "the marker forms two clusters across the three site classes, measured with an identical definition: T2 and T3 agree closely (median 1.4399 s vs 1.4189 s, neither has any RT above 5 s), while T1 is separated by 2.5x in median and 6-9x in IQR with 25.5% of responses above 5 s and a detectable left/right asymmetry the others do not show. Both use the same event codes and the same documented criterion, so this is either a site/protocol difference or a marker that does not measure the same thing everywhere. Nothing in the release, and nothing in these five recordings, decides which.",
+        "secondary_anomaly": "T2's missed rate is 11.1% against 0.4-0.6% elsewhere; this recording contains 3200 gaps as short as 2.9 s, so overlapping episodes are a candidate mechanism. NOT verified here \u2014 recorded as the next check.",
+        "not_a_threshold_problem": "this cannot be fixed by choosing a different threshold, because the marker is the producer's; the ambiguity is about what the marker means"
+      },
+      "source_artifacts": [
+        "outputs/perturbation_endpoint.json",
+        "outputs/perturbation_summary.csv",
+        "outputs/t2_preflight_extension.json"
+      ]
+    },
+    "E3_temporal_linkage": {
+      "verdict": "PASS",
+      "evidence": {
+        "n_perturbations": {
+          "1001|ds004118": 57,
+          "1001|ds004120": 240,
+          "3101|ds004118": 80,
+          "3101|ds004120": 315
+        },
+        "n_4311": {
+          "1001|ds004118": 57,
+          "1001|ds004120": 239,
+          "3101|ds004118": 80,
+          "3101|ds004120": 313
+        },
+        "pairing": "every perturbation carries a sample index on the EEG clock; the response marker is on the same clock",
+        "boundary_perturbations_in_last_10s": {
+          "1001|ds004118": 0,
+          "1001|ds004120": 0,
+          "3101|ds004118": 0,
+          "3101|ds004120": 1
+        }
+      },
+      "source_artifacts": [
+        "outputs/perturbation_trials.csv"
+      ]
+    },
+    "E4_within_person_dynamic_range": {
+      "verdict": "PASS",
+      "evidence": {
+        "cv_of_rt": {
+          "1001|ds004118": 0.3864415037526033,
+          "1001|ds004120": 0.5024810636619891,
+          "3101|ds004118": 0.19035921484114052,
+          "3101|ds004120": 0.24210023735662664
+        },
+        "iqr_rt_s": {
+          "1001|ds004118": 2.01318359375,
+          "1001|ds004120": 2.641357421875,
+          "3101|ds004118": 0.2158203125,
+          "3101|ds004120": 0.287109375
+        },
+        "n_events_per_recording": {
+          "1001|ds004118": 56,
+          "1001|ds004120": 239,
+          "3101|ds004118": 80,
+          "3101|ds004120": 313
+        },
+        "episode_level_ci": {
+          "1001|ds004118": [
+            4.127118137904576,
+            4.753101021902902
+          ],
+          "1001|ds004120": [
+            3.480899877827537,
+            4.006004480337997
+          ],
+          "3101|ds004118": [
+            1.3462869262695312,
+            1.4732965087890626
+          ],
+          "3101|ds004120": [
+            1.3640903460712859,
+            1.4361607365714857
+          ]
+        },
+        "rule": "pre-declared CV > 0.05; observed 0.19-0.50"
+      },
+      "source_artifacts": [
+        "outputs/perturbation_endpoint.json"
+      ]
+    },
+    "E5_confound_separability": {
+      "verdict": "INCONCLUSIVE",
+      "evidence": {
+        "site_classes_present_locally": [
+          "T1_64ch_2048Hz",
+          "T3_256ch_1024Hz"
+        ],
+        "site_label_is_inseparable_from_subject_here": "the local sample is one participant per site class, so site and subject are perfectly confounded in Phase 3C",
+        "block_and_condition_effects": "not yet evaluated for RT at window scale, because E2 is unresolved and a time-on-task model on a marker of unknown meaning would add no information",
+        "reason": "E5 cannot be established while E2 is unresolved: separating a site effect from a block effect requires first knowing that the quantity being compared is the same quantity"
+      },
+      "source_artifacts": [
+        "outputs/perturbation_endpoint.json",
+        "outputs/cohort_inventory.json"
+      ]
+    },
+    "E6_cohort_coverage": {
+      "verdict": "PASS",
+      "evidence": {
+        "cohort_A_endpoint_validation": 109,
+        "n_perturbations_per_baseline_recording_metadata": "the release's own sidecars carry hundreds of perturbations per baseline recording; Phase 3C verified 240-315 valid RTs in the two local baselines",
+        "calibration_has_no_response_markers": {
+          "1001|ds004118": 57,
+          "3101|ds004118": 80
+        },
+        "consequence": "a perturbation-RT endpoint is a Baseline-arm endpoint only: the Calibration recordings in this sample deliver perturbation onsets but zero course-correction markers, which is the first behavioural evidence that Calibration and Baseline are different task configurations"
+      },
+      "source_artifacts": [
+        "outputs/cohort_inventory.json",
+        "outputs/perturbation_endpoint.json"
+      ]
+    },
+    "ELIGIBILITY": "INCONCLUSIVE"
+  },
+  "t2_preflight_available": true,
+  "t2_preflight_questions": {
+    "Q1_3200_present_in_raw_events": "PASS",
+    "Q2_condition_sequence_vs_documentation": "PASS",
+    "Q3_boundaries_usable_for_segmentation": "PASS",
+    "Q4_vehicle_persists_in_every_segment": "PASS",
+    "Q5_no_eeg_feature_used": "PASS",
+    "Q6_T2_same_instrument_as_T1_T3": "CONSISTENT"
+  },
+  "safety_events_observed": {
+    "n_4411_near_miss": 4,
+    "n_4421_collision": 1,
+    "near_miss_times_s": [
+      1527.1,
+      2053.14,
+      2842.22,
+      3419.3
+    ],
+    "collision_times_s": [
+      3068.16
+    ],
+    "near_miss_absLN": [
+      6.555376052856445,
+      7.019035816192627,
+      5.882340431213379,
+      6.648318767547607
+    ],
+    "collision_absLN": [
+      7.684875011444092
+    ],
+    "occurrence_in_tier1_sample": {
+      "4411": 0,
+      "4421": 0,
+      "source": "Phase 3B `event_marker_audit.csv`"
+    },
+    "documentation": {
+      "4411": "Vehicle approached within 3 meters of obstacle resulting in near miss.",
+      "4421": "Vehicle collided with an environmental entity."
+    },
+    "interpretation": "these are the only unambiguous objective functional failures present in the sample: a collision is a task failure by definition, not a continuous score. n=1 collision in one recording is not a rate estimate; it is an eligibility-relevant fact about whether the task can produce hard failure events at all"
+  },
+  "distance_to_goal_inputs": {
+    "cohort_A": 109,
+    "cohort_B": 107,
+    "behavioural_audit_scale": "5 recordings / 3 participants after the T2 preflight (2 Tier-1 participants x 2 arms + 1 T2 baseline); cohort scale NOT executed (see behavior_data_access_plan.md)"
+  }
+}

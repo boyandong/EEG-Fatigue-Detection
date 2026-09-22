@@ -1,13 +1,51 @@
 # README claim audit
 
 Every substantive scientific claim in the public Markdown, with its evidentiary basis. Produced by
-the 2026-09-22 canonicalization to verify that no sentence promises more than an artifact supports.
+the 2026-09-22 canonicalization to verify that no sentence promises more than an artifact supports,
+and extended by the final-framing pass.
 
-**Result: no unsupported claim found.** Three wording risks were corrected during the audit and are
-recorded in §3.
+**Result: no unsupported claim found.** Six wording risks were corrected across the two passes;
+all are recorded in §3.
 
 Method: read every public `.md` outside `archive/legacy/`; extract sentences asserting a scientific
-result, capability or absence; require each to map to an artifact.
+result, capability or absence; require each to map to an artifact. Every check in §0 is
+machine-enforced by `docs/verify_public_numbers.py` (127/127 passing), so a regression fails the
+build rather than going unnoticed.
+
+---
+
+## 0. Mandated phrase audit
+
+Each phrase was searched across every public Markdown file. **Status** distinguishes a *claim*
+(a scientific assertion) from a *quotation* (the phrase appearing inside a prohibition, a
+forbidden-wording column, or an explicit disclaimer).
+
+| phrase | occurrences | status | file(s) | evidence source | allowed? | notes |
+|---|---|---|---|---|---|---|
+| **collapse** | several | **NOT asserted as the Phase 1 result** | `tta_collapse/README.md` §3, §8; `docs/validation-protocols.md` §9; `docs/scientific-status.md` | `collapse_verdict.json` — `tent_literal_collapse: false`, `tent_det_collapse: false`, `bn_only_collapse: false` | **yes, only as a defined term or a negation** | Appears as (a) the frozen two-part *definition*, (b) "no harmful collapse", (c) an explicit "never write 'TENT collapses'". The branch is *named* `tta_collapse`; the name is not a result |
+| **causes** | 1 relevant | **NOT asserted** | `docs/scientific-status.md` (forbidden column) | no intervention experiment exists | **yes, only negated** | "BN causes the degradation" appears solely as a forbidden overclaim |
+| **attributable** | 2 | **removed from the public claim** | — | `literature` | **no longer used for the TTA result** | Replaced by "sufficient to reproduce"; the one surviving use is `PHASE2_REPORT.md`'s unrelated "not attributable to a 60 s measurement" |
+| **normalization instability** | several | **asserted, scoped** | `tta_collapse/README.md`, `docs/scientific-status.md` | `KEY_FINDINGS.json` four-arm table | **yes** | Permitted as *attribution* ("instability is not specific to entropy-gradient updates"), never as mechanism |
+| **predicts PVT** | 0 as a claim | **absent** | — | — | **correctly absent** | The result is a *negative*; the phrase would invert it |
+| **predicts vigilance** | 0 as a claim | **absent** | — | — | **correctly absent** | Appears only in the "What Is Not Yet Demonstrated" list |
+| **generalizes** | 0 as a claim | **absent** | — | — | **correctly absent** | Negated in the root README |
+| **robust** | 0 | **absent** | — | — | **correctly absent** | Not used anywhere as a property of a model |
+| **validated** | several | **scoped** | `docs/scientific-status.md`, branch READMEs | per-row artifacts | **yes, only with a named scope** | Used only as `VALIDATED FOR ENDPOINT ELIGIBILITY` (the BCIT endpoint) and for the trunk. **Never** "validated biomarker" or "validated predictor" |
+| **biomarker** | 1 | **negated** | `functional_prediction/README.md` | Phase 1 | **yes, only negated** | "`M` is NOT a validated vigilance biomarker" |
+| **deployment-ready** | 0 as a claim | **absent** | — | — | **correctly absent** | Negated in the root README |
+| **state-of-the-art** | 0 | **absent** | — | — | **correctly absent** | — |
+| **published** | ~150 | **retained only where it means "shipped in this repository"** | all docs | — | **yes, with the distinction below** | See §3.5 — two internal-artifact uses were corrected; the file/artifact senses are correct and were kept |
+| **"third-party code is referenced, not vendored"** | 0 | **REMOVED — was false** | — | `docs/third-party-provenance.md` | **no longer used** | Replaced by the two-part statement in §3.6 |
+
+### Required confirmations
+
+| must be confirmed | result |
+|---|---|
+| "collapse" is **not** asserted as the Phase 1 result | **CONFIRMED** — asserted as *absent* in every arm; `*_collapse: false` in all four |
+| "BN causes degradation" is **not** asserted | **CONFIRMED** — causation explicitly denied; only sufficiency of the switch is claimed |
+| "published" is not used ambiguously for internal artifacts | **CONFIRMED** — 2 occurrences corrected; a machine guard now fails the build if "stand as published" returns |
+| the legacy third-party exception is disclosed | **CONFIRMED** — root README + `docs/third-party-provenance.md` §1 summary statement |
+| lane-centre sign-test count is **4**, not 5/5 | **CONFIRMED** — derived from `lane_geometry.json` by the verifier (4 sign-tested recordings), and all public prose says 4 |
 
 ---
 
@@ -96,6 +134,48 @@ statement of failure that discards valid negative evidence. Corrected.
 The first correction ("inert, so valid") risked tipping into "the adaptive effect was disproven."
 The calibrated null's `K = 8` and p-floor of `0.111` do not support that. The README now says "did
 not establish a reliable positive effect" and names the null's limitation in the same sentence.
+
+### 3.5 "published" could read as "peer-reviewed", and no longer can
+
+`published` was being used for two different things: (a) *shipped in this repository*, and (b)
+*appeared in a paper*. Sense (a) is legitimate and accounts for ~150 occurrences (published files,
+published tree, published artifacts) — those were **kept**, because replacing them would be churn
+without benefit.
+
+Two uses of sense (b) were **wrong**, because no paper exists:
+
+* `docs/project-history.md` — "Phase 4A and 4A2 **stand as published**" → "**remain scientifically
+  valid under their frozen protocols**"
+* `functional_prediction/evidence/phase4a3/…` — the same phrase in two inherited artifacts →
+  the same correction
+
+A machine guard now fails the build if "stand as published" or "valid, published, closed" returns.
+
+### 3.6 "Third-party code is referenced, not vendored" was false, and was removed
+
+The claim was true of the **active** trees and false of the **archive**, which retains four
+third-party-derived components with missing notices. A blanket statement is therefore not
+permissible. Replaced with the two-part statement:
+
+> Active research code references pinned external implementations rather than vendoring them. The
+> legacy archive retains several historical third-party-derived components whose upstream provenance
+> and licensing are still being audited; no repository-wide license is therefore asserted.
+
+Recorded in the root README and as the summary statement of `docs/third-party-provenance.md` §1.
+
+### 3.7 License and citation were entangled, and are now separate
+
+The README previously implied that an unlicensed repository cannot be cited. Those are independent
+matters, and conflating them would understate the project's citability. The sections are now
+distinct: **License** states that no repository-wide grant is made while provenance is unresolved;
+**Citation** states that there is no DOI yet but that the repository URL and commit SHA are the
+reference, and that absence of a license does not itself prevent citation.
+
+### 3.8 `CASE 4` was the headline of the public result, and is now a parenthetical
+
+The root README and status table now state the **scientific meaning** first — "EXECUTED / VERIFIED;
+no harmful collapse; normalization-switch degradation established" — with "(internally classified as
+Case 4)" appended. A machine guard asserts the label never appears in the root README as `CASE 4`.
 
 ## 4. Standing rule
 

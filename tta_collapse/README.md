@@ -102,13 +102,18 @@ Three facts carry the verdict:
 3. **The normalisation switch is sufficient.** The gradient-free `BN_ONLY` control reproduces the
    entire ~8.9-point degradation, so entropy minimisation is not required to produce it.
 
+**State the attribution, not a cause.** Switching from frozen source BatchNorm statistics to
+target-batch statistics was **sufficient to reproduce** the observed degradation, while the
+entropy-gradient step produced **no detectable additional degradation** under this protocol. That
+localizes the first-order failure to the normalization switch. It does **not** establish that
+BatchNorm statistics are the causal mechanism.
+
 `SOURCE` reproduced the historical baseline exactly (`BAcc = 0.5924169784325324`, matching the
 record to 16 digits), so this is a comparison against the real benchmark.
 
 **What is NOT established: *why* the test-batch normalisation switch harms performance.** That is
-a separate question and needs a new PI decision. This branch has established *that* the
-degradation is attributable to the normalisation switch, and *that* entropy minimisation is
-inert — not the mechanism underneath.
+a separate question and needs a new PI decision. This branch has localized *where* the degradation
+arises and shown *that* entropy minimisation is inert — not the mechanism underneath.
 
 ---
 

@@ -191,6 +191,25 @@ population-level null analysis was not sufficiently large for a stronger formal 
 
 ---
 
+## Scientific Status
+
+One row per claim, with the status used strictly and never loosely:
+
+| component | status | what it means |
+|---|---|---|
+| **ds004902 source trunk** | **EXECUTED / VERIFIED** | 68 valid paired subjects, 9,390 four-second windows, 61 channels, 500 Hz, 68-fold subject-LOSO |
+| **ds004902 `M → PVT`** | **VALID NEGATIVE / CLOSED** | reproducibly measurable representation, no demonstrated out-of-sample utility; closed after bounded diagnostics |
+| **BCIT behavioural endpoint** | **VALIDATED FOR ENDPOINT ELIGIBILITY** | lane semantics and geometry audited; **this is not evidence of EEG prediction** |
+| **Phase 4A historical baseline** | **VALID EXECUTED EVIDENCE** | fixed-channel baseline; suspected gap contamination later shown inert |
+| **Phase 4A2 adaptive branch** | **VALID EXECUTED / CLOSED** | no reliable positive effect established. A strong population-level *disproof* is **not** claimed — the calibrated null has `K = 8`, whose resolution cannot support it |
+| **Phase 4B cross-subject** | **NOT LICENSED** | requires a new PI decision; not run |
+| **TTA Phase 1** | **EXECUTED / VERIFIED** | **no harmful collapse**; normalization-switch degradation established (internally classified as Case 4) |
+| **TTA mechanism explanation** | **IN PROGRESS / NOT YET ESTABLISHED** | which normalization or stream property drives the degradation is not explained |
+| **SAR · DELTA · T-TIME · T3A · CoTTA · BFT · EATA · MEMO · custom interventions** | **PARKED / NOT STARTED** | no artifact exists for any of them |
+| **Deployment · safety · real-time use** | **NOT DEMONSTRATED** | nothing in this repository supports a deployment claim |
+
+---
+
 ## What Is Not Yet Demonstrated
 
 This project does **not** currently establish that:
@@ -289,22 +308,31 @@ This repository originally contained an NS-vs-SD classifier with LSTM, EEGNet, f
 and MSCViT+TCN prototypes.
 
 Those early implementations are preserved under `archive/legacy/legacy_ns_sd_prototype/`, byte-for-
-byte as they were published, but they are no longer treated as the scientific definition of the
-project.
+byte as they appeared in the repository's original state, but they are no longer treated as the
+scientific definition of the project.
 
 See [`docs/project-history.md`](docs/project-history.md).
 
 ---
 
-## Citation and License
+## License
 
-This is an ongoing undergraduate research project. A formal project citation has not yet been
-assigned.
+No repository-wide software license is currently granted.
 
-**No repository-wide software license has been assigned yet.** The reason is not indecision: parts of
-the retained archive derive from third-party implementations whose upstream licensing and
-attribution are not fully established. See
-[`docs/third-party-provenance.md`](docs/third-party-provenance.md). Until that audit is resolved, no
-license is granted for any part of this repository.
+Licensing will be resolved after the provenance of the retained legacy third-party-derived components
+has been verified. Parts of `archive/legacy/legacy_ns_sd_prototype/` appear to derive from external
+implementations whose notices were not preserved, so a repository-wide grant would over-claim.
+See [`docs/third-party-provenance.md`](docs/third-party-provenance.md).
+
+Active research code references pinned external implementations rather than vendoring them. The
+legacy archive retains several historical third-party-derived components whose upstream provenance
+and licensing are still being audited; no repository-wide license is therefore asserted.
 
 Third-party dependencies (`braindecode`, `torch`, `mne`, …) keep their own licenses.
+
+## Citation
+
+No formal publication or DOI is currently associated with this project.
+
+For collaboration, review or attribution, refer to the repository URL and the commit SHA. Absence of
+a license does not by itself prevent citation or scholarly reference — the two are separate matters.

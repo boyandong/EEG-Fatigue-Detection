@@ -18,6 +18,7 @@ import csv
 import hashlib
 import json
 import pathlib
+import re
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -252,7 +253,7 @@ check("root/branch README does not claim 5/5 sign agreement",
 
 # (e) No license is claimed while provenance is unresolved.
 check("README states no repository-wide license is assigned",
-      "No repository-wide software license has been assigned yet" in texts["README.md"])
+      "No repository-wide software license is currently granted" in texts["README.md"])
 check("no LICENSE file is shipped",
       not (ROOT / "LICENSE").exists() and not (ROOT / "LICENSE.md").exists())
 check("third-party provenance audit exists and flags mscvit",
@@ -266,6 +267,139 @@ check("legacy archive retains the original baseline/README.md",
       (legacy / "baseline/README.md").exists())
 check("legacy archive README marks it superseded",
       "superseded" in (legacy / "README.md").read_text(encoding="utf-8").lower())
+
+# ---------------------------------------------------------------------------
+section("Final-framing regression guards")
+# ---------------------------------------------------------------------------
+# Each guard below exists because a specific wrong sentence was actually shipped once, or was
+# explicitly forbidden by the owner. They are STRING checks over documentation: the numbers they
+# protect are checked numerically in the sections above. Keeping the two kinds separate is
+# deliberate -- a string check can only catch wording drift, never a wrong number.
+
+DOCS = {p: (ROOT / p).read_text(encoding="utf-8") for p in [
+    "README.md", "functional_prediction/README.md", "tta_collapse/README.md",
+    "docs/scientific-status.md", "docs/project-history.md", "docs/third-party-provenance.md",
+    "docs/validation-protocols.md", "docs/data-boundaries.md",
+]}
+ALL_TEXT = "\n".join(DOCS.values())
+
+# (g) TTA causal language: attribution yes, causation no.
+for p in ["README.md", "functional_prediction/README.md", "tta_collapse/README.md",
+          "docs/project-history.md"]:
+    t = DOCS[p]
+    check(f"{p}: does not claim the degradation IS CAUSED by normalization",
+          "causes the degradation" not in t and "is caused by the normalization switch" not in t)
+    check(f"{p}: does not assert harmful prediction collapse as the Phase 1 result",
+          "harmful collapse was observed" not in t
+          and "the model collapsed" not in t)
+check("some public doc states the normalization switch is SUFFICIENT (the supported claim)",
+      "sufficient to reproduce" in ALL_TEXT)
+check("some public doc states the entropy gradient is inert",
+      "entropy gradient is inert" in ALL_TEXT.lower() or "entropy gradient is **inert**" in ALL_TEXT)
+check("some public doc denies BatchNorm causal status",
+      "not establish that BatchNorm" in ALL_TEXT
+      or "does not establish that BatchNorm" in ALL_TEXT)
+check("some public doc states TTA mechanism is not yet established",
+      "NOT YET ESTABLISHED" in ALL_TEXT or "not the mechanism underneath" in ALL_TEXT)
+
+# (h) 816 must never be presented as a sample of participants.
+check("816 is not presented as a participant/sample count",
+      "816 participants" not in ALL_TEXT and "816 subjects" not in ALL_TEXT
+      and "816-sample" not in ALL_TEXT)
+check("816 is labelled as implementation verification / executed units",
+      "implementation-verification counts" in ALL_TEXT
+      or "implementation verification, not" in ALL_TEXT
+      or "verification counts" in ALL_TEXT)
+check("the real subject-level sample is stated",
+      "68 subjects × 3 seeds × 4 arms" in ALL_TEXT and "n = 68" in ALL_TEXT)
+
+# (i) The PVT negative must never be generalized.
+#     The disclaimer exists in two equivalent forms; either is acceptable, but one must be present
+#     in the docs that report the result, and no doc may assert the generalization as a finding.
+check("public docs carry the PVT non-generalization disclaimer",
+      ("not evidence that EEG can never predict PVT" in ALL_TEXT)
+      or ("not evidence that EEG cannot predict PVT" in ALL_TEXT))
+check("no bare assertion that EEG cannot predict PVT",
+      "EEG cannot predict PVT." not in ALL_TEXT
+      and "that EEG cannot predict PVT in general" in ALL_TEXT)
+check("the PVT negative is scoped to representation/dataset/protocol",
+      "representation-, task- and" in ALL_TEXT or "dataset and protocol" in ALL_TEXT)
+
+# (j) Lane-centre sign test: derive the count from the artifact, then check the docs agree.
+#     This is a CONTENT check, not a string check: the number of recordings is read from
+#     lane_geometry.json, so if the artifact ever grows to 5 recordings this check changes with it
+#     rather than silently going stale.
+geo = load_json("functional_prediction/evidence/phase3c/lane_geometry.json")
+recs = geo["recordings"]
+n_sign_tested = 0
+for _rid, blob in recs.items():
+    sa = blob.get("geometry", {}).get("sign_agreement", {})
+    if sa.get("4220_right_fires_with_LN_positive") == 1.0 and \
+       sa.get("4230_left_fires_with_LN_negative") == 1.0:
+        n_sign_tested += 1
+check("lane_geometry.json carries exactly 4 sign-tested recordings", n_sign_tested == 4,
+      f"n={n_sign_tested}")
+check("lane-centre sign test is stated as 4 recordings, not 5",
+      "4 audited lane-geometry recordings" in ALL_TEXT
+      and "all 4 audited" in ALL_TEXT)
+check("no public doc asserts 100% agreement in 5/5 recordings",
+      "5/5 recordings" not in ALL_TEXT)
+check("the two lane-coverage quantities are distinguished",
+      "behavioural-audit scale" in ALL_TEXT)
+
+# (k) Phase 4A/4A2 must not be described as contaminated or invalidated.
+check("no public doc calls Phase 4A/4A2 contaminated results",
+      "contaminated scientific result" not in ALL_TEXT
+      and "contaminated results" not in ALL_TEXT)
+check("no public doc restores a bare INVALIDATED status label",
+      "INVALIDATED —" not in ALL_TEXT and "**INVALIDATED**" not in ALL_TEXT)
+check("Phase 4A2 is never ASSERTED as definitively disproven",
+      # Two legitimate appearances: inside an explicit negation ("is *not* \"definitively
+      # disproven\"") and echoed in the forbidden-overclaim column of the status table. What must
+      # never appear is an affirmative assertion.
+      "is definitively disproven" not in ALL_TEXT
+      and "was definitively disproven" not in ALL_TEXT
+      and ALL_TEXT.count("definitively disproven") == 2,
+      f"occurrences={ALL_TEXT.count('definitively disproven')} (expect 2, both non-assertive)")
+check("the K=8 null limitation is stated where Phase 4A2 is reported",
+      "K = 8" in ALL_TEXT or "K=8" in ALL_TEXT)
+
+# (l) "published" must not be used for internal artifacts.
+check("no public doc uses 'stand as published' for internal artifacts",
+      "stand as published" not in ALL_TEXT and "stands as published" not in ALL_TEXT)
+check("no public doc uses 'valid, published, closed'",
+      "valid, published, closed" not in ALL_TEXT)
+check("Phase 4A/4A2 status uses 'remain scientifically valid under their frozen protocols'",
+      "remain scientifically" in ALL_TEXT)
+
+# (m) Third-party: no blanket "referenced, not vendored".
+check("no public doc claims blanket non-vendoring",
+      "Third-party code is referenced, not vendored" not in ALL_TEXT)
+check("the legacy third-party exception is disclosed in the root README",
+      "legacy archive retains several historical third-party-derived components"
+      in DOCS["README.md"])
+check("no repository-wide license is asserted",
+      "No repository-wide software license is currently granted" in DOCS["README.md"])
+check("license and citation are separate sections/claims",
+      "## License" in DOCS["README.md"] and "## Citation" in DOCS["README.md"])
+check("citation correctness is decoupled from licensing",
+      "Absence of\na license does not by itself prevent citation" in DOCS["README.md"]
+      or "does not by itself prevent citation" in DOCS["README.md"])
+
+# (n) The public status table must exist and carry the owner's rows.
+check("root README has a Scientific Status table", "## Scientific Status" in DOCS["README.md"])
+for row in ["VALID NEGATIVE / CLOSED", "VALIDATED FOR ENDPOINT ELIGIBILITY",
+            "VALID EXECUTED EVIDENCE", "VALID EXECUTED / CLOSED", "NOT LICENSED",
+            "EXECUTED / VERIFIED", "IN PROGRESS / NOT YET ESTABLISHED",
+            "PARKED / NOT STARTED", "NOT DEMONSTRATED"]:
+    check(f"status table carries '{row}'", row in DOCS["README.md"])
+
+# (o) CASE 4 must not be the headline of the public result.
+check("CASE 4 / Case 4 appears only as a parenthetical in the root README",
+      DOCS["README.md"].count("Case 4") <= 1 and "CASE 4" not in DOCS["README.md"])
+check("the meaning is stated before the label",
+      "no harmful collapse" in DOCS["README.md"].lower()
+      and "normalization-switch degradation established" in DOCS["README.md"])
 
 # ---------------------------------------------------------------------------
 print()

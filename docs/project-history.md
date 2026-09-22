@@ -142,8 +142,11 @@ absolute lane deviation in metres — passes all six pre-registered eligibility 
 Measurements that constrain every later phase:
 
 * `LN` is a **signed** deviation about the lane centre; `LN = 0` **is** the centre, verified from
-  the release's own `4220`/`4230` events with 100 % agreement in 5/5 recordings. Lane half-width is
-  **0.917 m**, spread 1.9 mm across three site classes.
+  the release's own `4220`/`4230` events with fraction **1.000** agreement in **all 4 audited
+  lane-geometry recordings**. (The wider behavioural-audit scale is *5 recordings / 3 participants*;
+  the T2 preflight recording is excluded from the endpoint cohort by construction. The two counts
+  are different quantities and must not be conflated — the sign test is **4**, not 5.) Lane
+  half-width is **0.9172 m**, read off the data.
 * The `3200` marker is a **~40 s periodic grid** (median 38.5–40.2 s) delimiting **6 protocol
   blocks** — not an occasional event. Analysis windows are >= 300 s and are cut only on `3200`
   onsets.
@@ -211,7 +214,8 @@ A finding was published claiming those rows sat inside every training mask, whic
 * the corrected series is exactly the shipped series restricted to the blocks, verified to float32
   precision, reconstructible with **no re-extraction**.
 
-**The `INVALIDATED` status was therefore WITHDRAWN.** Phase 4A and 4A2 stand as published.
+**The `INVALIDATED` status was therefore WITHDRAWN.** Phase 4A and Phase 4A2 remain scientifically
+valid under their frozen protocols.
 
 One audit-instrumentation discrepancy remains unexplained: read literally, Phase 4A's mask loop
 should include the defective rows; executed, it does not. Both candidate readings were evaluated
@@ -287,9 +291,11 @@ collapse" rather than "collapse": dominant-class share **falls** 0.7104 → 0.54
 **rises** 0.5358 → 0.6862. The adapted model stopped making a confident near-constant prediction and
 drifted toward chance. `0 subjects` met the strongly-harmed criterion.
 
-The degradation is therefore attributable to the **test-batch normalisation switch**, not to
-entropy minimisation — the gradient-free `BN_ONLY` control reproduces the entire ~8.9-point drop.
-**The entropy gradient is inert.**
+The degradation is therefore localized to the **test-batch normalisation switch**, not to entropy
+minimisation — the gradient-free `BN_ONLY` control reproduces the entire ~8.9-point drop. Stated
+precisely: switching from frozen source BatchNorm statistics to target-batch statistics was
+**sufficient to reproduce** the observed degradation, while the entropy-gradient step produced **no
+detectable additional degradation** under this protocol. **The entropy gradient is inert.**
 
 **What this does NOT establish.** The verdict establishes *attribution*, not *mechanism*. It does not
 establish that BatchNorm statistics are the *cause* — that requires an intervention experiment which

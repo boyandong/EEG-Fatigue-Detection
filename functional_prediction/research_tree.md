@@ -78,7 +78,8 @@ hypothesis verdict. It is a *different* category from NEGATIVE and the two must 
 ⚠️ **The invalidation was subsequently WITHDRAWN by Phase 4A3.** The defect is real but **inert**:
 0 of 82 550 defective rows appeared in any training or test mask, and the corrected run
 reproduces Phase 4A to **~1e-14**. Both the defect history and the resolution must travel
-together — see `functional_prediction/audit/phase4a3/PHASE4A3_GAP_CORRECTED_REPORT.md`.
+together — see `evidence/phase4a3/GAP_CONTAMINATION_AUDIT.md` §3 (impact claim refuted) and
+`evidence/phase4a3/clean_standard_run.json` (the reproduction).
 
 **Do not present these as clean negatives.** They are the project's most easily misread results.
 
