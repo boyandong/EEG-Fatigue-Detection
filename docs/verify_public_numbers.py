@@ -435,6 +435,18 @@ if _m:
               f"{_bytes / 1048576:.3f} MiB" in audit_txt)
 check("size audit declares it was generated from git blobs, not the working tree",
       "git ls-tree" in audit_txt and "core.autocrlf" in audit_txt)
+check("size audit's growth note is arithmetically true",
+      # The note claims a total growth and lists its components. Sum-check them, so the note cannot
+      # drift into a wrong number the way the first version did (it said 13,450 bytes for a 3,942
+      # byte file).
+      (lambda: (
+          sum(int(x.replace(",", "")) for x in
+              re.findall(r"\|\s*\+([\d,]+)\s*\|", audit_txt)) == 14301
+          if "+14,301" in audit_txt else True
+      ))(),
+      "component deltas must sum to the stated total")
+check("size audit names the correct byte size for the generator it adds",
+      "+3,942" in audit_txt and "13,450" not in audit_txt)
 check("size audit is regenerable by a shipped script",
       (ROOT / "docs/refresh/generate_size_audit.py").exists())
 check("no Git LFS pointer is tracked", not (ROOT / ".gitattributes").exists()

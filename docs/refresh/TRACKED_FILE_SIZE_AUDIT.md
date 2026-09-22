@@ -32,15 +32,28 @@ is within 30× of the hard limit**, and no push approaches a pack-size limit.
 
 > ### This audit describes the commit it names, not the current tip
 >
-> The tree has since grown by exactly **one** file: `docs/refresh/generate_size_audit.py`, added by
-> the follow-up commit that regenerated this document, at **13,450 bytes**. Current branch tip
-> (`cb8dd75`) is therefore **1,156 files / 92,186,219 bytes / 87.916 MiB** — one script more than
-> the table above, and otherwise identical. Re-run the generator to confirm either state rather than
-> trusting this note.
+> Relative to this audit's ref (`e9222e3`), the tree has gained **one new file** and seen **five
+> edited**:
 >
-> The total growth over the originally reviewed `e9222e3` is **1.3 %**, and it is entirely the
-> additions in the follow-up commit: this generator, the secret scanner, the dangling-reference
-> repair script, the review addendum, and seven Phase-3C endpoint artifacts.
+> | change | bytes |
+> |---|---:|
+> | added `docs/refresh/generate_size_audit.py` | +3,942 |
+> | edited `docs/verify_public_numbers.py` (new guards) | +3,233 |
+> | edited `docs/refresh/GITHUB_FINAL_REVIEW.md` (this addendum) | +4,177 |
+> | edited `README.md` (TTA timeline fix) | +842 |
+> | edited `docs/refresh/TRACKED_FILE_SIZE_AUDIT.md` (this regeneration) | +1,911 |
+> | edited `docs/scientific-status.md` (power disclaimer) | +196 |
+> | **total** | **+14,301 (+0.016 %)** |
+>
+> Re-run the generator for exact current figures rather than trusting this note:
+>
+> ```bash
+> python docs/refresh/generate_size_audit.py e9222e3    # this audit's ref
+> python docs/refresh/generate_size_audit.py HEAD       # current tip
+> ```
+>
+> **None of these additions changes a conclusion in this audit**: still 0 files over 3 MiB, still 0
+> raw-data files, still 0 waveform caches, still exactly 1 legacy checkpoint.
 
 > **Unit and method note.** Sizes are **blob** sizes read from `git ls-tree -r -l`, i.e. what the
 > repository actually stores. They are deliberately **not** working-tree sizes: this checkout runs
