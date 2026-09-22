@@ -1,0 +1,143 @@
+# .gitignore — public research repository
+#
+# Design rule: exclude RAW DATA, LARGE BLOBS, GENERATED CACHES and SECRETS — but NEVER exclude a
+# tracked scientific artifact. A too-broad rule here would silently remove the ability to check a
+# published number, which is a worse failure than a large repository.
+#
+# The exclusion set is deliberately NARROW and NAME-BASED rather than extension-based, so that a
+# `.json`, `.csv` or `.npz` which is genuine evidence is never swallowed by accident.
+#
+# Verify the effect of any change with:
+#     git status --porcelain --ignored | Select-String '^!!'
+# and confirm nothing under */evidence/, */configs/, */outputs/ or docs/ is listed.
+
+# ---------------------------------------------------------------------------
+# Raw datasets — not redistributed, never committed
+# ---------------------------------------------------------------------------
+/data/
+**/raw/*.set
+**/raw/*.fdt
+**/raw/*.cnt
+**/raw/*.mat
+**/raw/*.edf
+**/raw/*.bdf
+**/raw/*.vhdr
+**/raw/*.eeg
+
+# ---------------------------------------------------------------------------
+# Large waveform / feature arrays — regenerable via prepare_data.py
+# (the published manifest and splits are .csv/.json and are NOT matched here)
+# ---------------------------------------------------------------------------
+**/waveforms/
+*.npy
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.parquet
+*.feather
+
+# ---------------------------------------------------------------------------
+# Model checkpoints — represented by CHECKPOINT_MANIFEST.csv instead of bytes.
+# The single published exception is the 1.2 MB legacy prototype checkpoint.
+# ---------------------------------------------------------------------------
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+!archive/legacy/ns_sd_prototype_2026/feature_extracting/feature_data/lstm_fatigue_best.pt
+
+# ---------------------------------------------------------------------------
+# Archives and bulk payloads
+# ---------------------------------------------------------------------------
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+*.iso
+
+# Discarded by exception: keep the third-party pin manifests, which are small JSON.
+!shared/ds004902_source_trunk/third_party/*.json
+
+# ---------------------------------------------------------------------------
+# Python build / bytecode
+# ---------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+
+# ---------------------------------------------------------------------------
+# Logs, scratch and runtime output
+# ---------------------------------------------------------------------------
+*.log
+logs/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+*~
+*.norm
+
+# External frozen phase caches (fold Grams, BCIT staging) live outside the repository by design.
+# If one is ever staged in-tree, keep it out — but do NOT exclude the published outputs/ or
+# evidence/ trees, which hold the manifests and statistics the READMEs cite.
+**/folds/
+**/integrity_test/
+**/partial_run*/
+
+# ---------------------------------------------------------------------------
+# Secrets and credentials — must never be committed
+# ---------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.ppk
+*.pfx
+*.p12
+id_rsa*
+id_ed25519*
+*_ed25519
+*_rsa
+known_hosts
+.ssh/
+*credential*
+*secret*
+remote_state.json
+
+# ---------------------------------------------------------------------------
+# Environment / tooling
+# ---------------------------------------------------------------------------
+.venv/
+venv/
+env/
+ENV/
+.conda/
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+.ipynb_checkpoints/
+*.ipynb
