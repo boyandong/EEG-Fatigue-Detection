@@ -1,0 +1,215 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T02:26:42Z",
+  "definition": "M_i = union_b ( B_ib \u2229 [valid_start_i, valid_stop_i) )",
+  "n_participants": 25,
+  "n_valid_blocks_total": 149,
+  "n_folds_total": 149,
+  "corrected_target_global_min": 0.09452342987060547,
+  "corrected_target_global_max": 3.3501248359680176,
+  "corrected_target_global_mean": 0.37521600229289365,
+  "lane_half_width_m": 0.9172,
+  "checks": [
+    {
+      "legacy_labID": "3101",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3102",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3103",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3104",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3105",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3106",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3107",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3108",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3109",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3110",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3111",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3112",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3113",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3114",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3115",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3116",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3117",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3118",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3119",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3120",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3124",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3127",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 5
+    },
+    {
+      "legacy_labID": "3201",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3202",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    },
+    {
+      "legacy_labID": "3203",
+      "driving_and_gap_disjoint": true,
+      "driving_union_gap_equals_valid_span": true,
+      "driving_equals_union_of_blocks": true,
+      "driving_inside_valid_span": true,
+      "n_valid_blocks": 6
+    }
+  ],
+  "problems": []
+}

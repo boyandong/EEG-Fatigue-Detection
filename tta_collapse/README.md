@@ -27,7 +27,7 @@ through relative paths declared in one place, `src/p1_common.py`:
 | EEGNet architecture + optimiser + batch size | `../shared/ds004902_source_trunk/legacy_apparatus/configs/baselines.json` | `P.LEGACY` |
 | the runner that trained them | `../shared/ds004902_source_trunk/legacy_apparatus/run_baselines.py` | `P.LEGACY` |
 | pinned official TENT reference | `../shared/ds004902_source_trunk/third_party/sources.json` (commit `e9e926a6`) | documentation + hash pin |
-| raw ds004902 | external dataset — see `../docs/REPRODUCIBILITY.md` | `P.METADATA` |
+| raw ds004902 | external dataset — see `../docs/reproducibility.md` | `P.METADATA` |
 
 The checkpoint tree is the **single** source of truth: 204 checkpoints with 204 distinct
 contents. The handful of same-architecture checkpoints elsewhere were registered as either proven
@@ -189,4 +189,4 @@ this branch is named for any of them. **Do not describe any of them as completed
 redacted from `SERVER_RUNBOOK.md`, `05_remote.py` and `evidence/metrics/KEY_FINDINGS.json` when
 this public snapshot was produced. The SSH password was never stored in this repository — it is
 read from the environment variable `EEGTTA_SSH_PASSWORD` at run time only. See
-`../docs/PROJECT_HISTORY.md` §"Path portability".
+`../docs/project-history.md` §"Path portability".

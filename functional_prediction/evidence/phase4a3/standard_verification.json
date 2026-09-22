@@ -1,0 +1,225 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "arm": "standard",
+  "generated_utc": "2026-09-20T02:48:27Z",
+  "verifier": "11_verify_standard.py",
+  "independence": "does not import p4a3_common / p4a3_runner; re-derives mask, smoothing, PCA, OLS and R from the raw caches",
+  "n_checks": 18,
+  "n_pass": 18,
+  "n_fail": 0,
+  "failures": [],
+  "checks": [
+    {
+      "id": "A1",
+      "desc": "standard artifacts all present",
+      "ok": true,
+      "detail": "missing=[]"
+    },
+    {
+      "id": "A2",
+      "desc": "subject table has OK rows",
+      "ok": true,
+      "detail": "n_ok=25/25"
+    },
+    {
+      "id": "A3",
+      "desc": "run.json declares the corrected mask",
+      "ok": true,
+      "detail": "DRIVING_MASK_SPEC.md: union of frozen blocks \u2229 valid span"
+    },
+    {
+      "id": "B1",
+      "desc": "cohort is the frozen N=25",
+      "ok": true,
+      "detail": "n=25"
+    },
+    {
+      "id": "B2",
+      "desc": "no participant substituted or dropped",
+      "ok": true,
+      "detail": "missing=[] extra=[]"
+    },
+    {
+      "id": "C1",
+      "desc": "fold rows == sum_i n_valid_blocks(i) == 149",
+      "ok": true,
+      "detail": "rows=149 sum=149"
+    },
+    {
+      "id": "C2",
+      "desc": "no participant has fewer than 5 folds",
+      "ok": true,
+      "detail": "min=5"
+    },
+    {
+      "id": "C3",
+      "desc": "legacy 3127 carries 5 blocks (documented deviation, not repaired)",
+      "ok": true,
+      "detail": "3127 blocks=5"
+    },
+    {
+      "id": "D1",
+      "desc": "no fold mask contains a gap row",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "D2",
+      "desc": "test points == driving rows on every participant",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "E1",
+      "desc": "corrected target finite and inside a physical lane range on every participant",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "id": "E2",
+      "desc": "shipped gap rows reach >= 10 m on every participant (defect is real cohort-wide)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F1",
+      "desc": "independent recomputation reproduces every participant's R",
+      "ok": true,
+      "detail": "worst |dR| = 5.554e-14"
+    },
+    {
+      "id": "G1",
+      "desc": "delta vs Phase 4A is arithmetically consistent",
+      "ok": true,
+      "detail": "worst = 0.000e+00"
+    },
+    {
+      "id": "G2",
+      "desc": "Phase 4A artifact is present and unmodified in this phase",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H1",
+      "desc": "the mask invariant driving \u2229 gap == empty holds",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H2",
+      "desc": "recomputed contamination delta is positive on average",
+      "ok": true,
+      "detail": "mean dR = +0.0000 (n=25)"
+    },
+    {
+      "id": "I1",
+      "desc": "no Phase 4A3 artifact was written into the Phase 4A lane",
+      "ok": true,
+      "detail": "[]"
+    }
+  ],
+  "worst_R_recompute_diff": 5.5538906806873456e-14,
+  "recomputed_R": {
+    "3101": {
+      "R": 0.34453486204758277,
+      "n_test": 13871
+    },
+    "3102": {
+      "R": -0.14900491494292392,
+      "n_test": 13742
+    },
+    "3103": {
+      "R": -0.4120745256409352,
+      "n_test": 13854
+    },
+    "3104": {
+      "R": -0.16727482189002268,
+      "n_test": 13749
+    },
+    "3105": {
+      "R": -0.026520868879250557,
+      "n_test": 13654
+    },
+    "3106": {
+      "R": -0.06739158734209695,
+      "n_test": 13813
+    },
+    "3107": {
+      "R": 0.13882487231679422,
+      "n_test": 13704
+    },
+    "3108": {
+      "R": 0.06383732680853935,
+      "n_test": 13789
+    },
+    "3109": {
+      "R": -0.3628021305964446,
+      "n_test": 13788
+    },
+    "3110": {
+      "R": 0.009062034324611364,
+      "n_test": 13769
+    },
+    "3111": {
+      "R": 0.44644379900964454,
+      "n_test": 13817
+    },
+    "3112": {
+      "R": 0.265051899003227,
+      "n_test": 13799
+    },
+    "3113": {
+      "R": 0.04614198528191885,
+      "n_test": 13821
+    },
+    "3114": {
+      "R": -0.2574970851608047,
+      "n_test": 13747
+    },
+    "3115": {
+      "R": -0.39555148991813727,
+      "n_test": 13748
+    },
+    "3116": {
+      "R": -0.24143658216309738,
+      "n_test": 13743
+    },
+    "3117": {
+      "R": -0.2698571152023731,
+      "n_test": 13795
+    },
+    "3118": {
+      "R": -0.1770647033888181,
+      "n_test": 13816
+    },
+    "3119": {
+      "R": 0.20502421969188442,
+      "n_test": 13855
+    },
+    "3120": {
+      "R": -0.4196699369508785,
+      "n_test": 13766
+    },
+    "3124": {
+      "R": 0.00453281666910058,
+      "n_test": 13817
+    },
+    "3127": {
+      "R": 0.0443731135201627,
+      "n_test": 11478
+    },
+    "3201": {
+      "R": 0.21860781407475216,
+      "n_test": 13806
+    },
+    "3202": {
+      "R": -0.24531699183535813,
+      "n_test": 13774
+    },
+    "3203": {
+      "R": 0.15661507177061557,
+      "n_test": 13772
+    }
+  },
+  "recomputed_delta_mean": 5.398459457239824e-17
+}

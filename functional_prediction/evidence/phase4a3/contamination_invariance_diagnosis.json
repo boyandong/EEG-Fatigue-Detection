@@ -1,0 +1,932 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T02:44:17Z",
+  "hypothesis": "the contaminated training rows dominate the least-squares fit, so the held-out prediction is an affine image of the clean one; Pearson R is invariant to positive affine rescaling",
+  "worst_|corr(pred_contaminated, pred_clean)-1|_cohort": 2.220446049250313e-16,
+  "any_retained_component_count_changed": false,
+  "worst_ratio_spread_sd_across_folds": 0.0,
+  "verdict_supported": true,
+  "participants": [
+    {
+      "legacy_labID": "3101",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "gap_target_mean_m": 3173.889765427821,
+      "gap_target_max_m": 6007.779296875,
+      "driving_target_mean_m": 0.41855154820466023,
+      "driving_target_max_m": 0.6669817566871643,
+      "gap_row_over_driving_sum_ratio": 1.0348019668596282
+    },
+    {
+      "legacy_labID": "3102",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "gap_target_mean_m": 4584.856459330347,
+      "gap_target_max_m": 7401.111328125,
+      "driving_target_mean_m": 0.560969925572164,
+      "driving_target_max_m": 0.9334748387336731,
+      "gap_row_over_driving_sum_ratio": 0.9600799807628153
+    },
+    {
+      "legacy_labID": "3103",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          8,
+          8
+        ]
+      ],
+      "gap_target_mean_m": 3066.4465169257837,
+      "gap_target_max_m": 4774.2607421875,
+      "driving_target_mean_m": 0.3007219165146256,
+      "driving_target_max_m": 0.5422148704528809,
+      "gap_row_over_driving_sum_ratio": 1.1459505309109541
+    },
+    {
+      "legacy_labID": "3104",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "gap_target_mean_m": 2049.9033059268295,
+      "gap_target_max_m": 3422.630126953125,
+      "driving_target_mean_m": 0.2510189095240947,
+      "driving_target_max_m": 0.6946858763694763,
+      "gap_row_over_driving_sum_ratio": 0.9917048067962727
+    },
+    {
+      "legacy_labID": "3105",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          7,
+          7
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "gap_target_mean_m": 2565.6030328236293,
+      "gap_target_max_m": 4697.31298828125,
+      "driving_target_mean_m": 0.3131234518440433,
+      "driving_target_max_m": 0.5932006239891052,
+      "gap_row_over_driving_sum_ratio": 1.098687046683182
+    },
+    {
+      "legacy_labID": "3106",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "gap_target_mean_m": 2859.2444462276007,
+      "gap_target_max_m": 5453.68603515625,
+      "driving_target_mean_m": 0.39913776309249593,
+      "driving_target_max_m": 1.6497999429702759,
+      "gap_row_over_driving_sum_ratio": 0.9891890527637743
+    },
+    {
+      "legacy_labID": "3107",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "gap_target_mean_m": 3631.7664047990525,
+      "gap_target_max_m": 6149.2578125,
+      "driving_target_mean_m": 0.392363253735132,
+      "driving_target_max_m": 0.9085450768470764,
+      "gap_row_over_driving_sum_ratio": 1.143633910238566
+    },
+    {
+      "legacy_labID": "3108",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "gap_target_mean_m": 2160.5085022944977,
+      "gap_target_max_m": 3854.076904296875,
+      "driving_target_mean_m": 0.2812870615026536,
+      "driving_target_max_m": 0.42975544929504395,
+      "gap_row_over_driving_sum_ratio": 0.9936600938111156
+    },
+    {
+      "legacy_labID": "3109",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ]
+      ],
+      "gap_target_mean_m": 3726.2992404520833,
+      "gap_target_max_m": 8000.2578125,
+      "driving_target_mean_m": 0.5521664519607589,
+      "driving_target_max_m": 1.1870110034942627,
+      "gap_row_over_driving_sum_ratio": 1.0508305524459054
+    },
+    {
+      "legacy_labID": "3110",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "gap_target_mean_m": 2189.92337587699,
+      "gap_target_max_m": 3555.432861328125,
+      "driving_target_mean_m": 0.2386969109501088,
+      "driving_target_max_m": 0.42699840664863586,
+      "gap_row_over_driving_sum_ratio": 1.0817907993943312
+    },
+    {
+      "legacy_labID": "3111",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 0.0,
+      "n_components_pairs_old_new": [
+        [
+          13,
+          13
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          11,
+          11
+        ],
+        [
+          12,
+          12
+        ],
+        [
+          12,
+          12
+        ]
+      ],
+      "gap_target_mean_m": 2893.081316686722,
+      "gap_target_max_m": 4854.40771484375,
+      "driving_target_mean_m": 0.39144515846157296,
+      "driving_target_max_m": 0.6782544255256653,
+      "gap_row_over_driving_sum_ratio": 0.8975353567082249
+    },
+    {
+      "legacy_labID": "3112",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "gap_target_mean_m": 2453.7824470250675,
+      "gap_target_max_m": 3936.434326171875,
+      "driving_target_mean_m": 0.27573821690905154,
+      "driving_target_max_m": 0.5684481859207153,
+      "gap_row_over_driving_sum_ratio": 1.0345665505443775
+    },
+    {
+      "legacy_labID": "3113",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          7,
+          7
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "gap_target_mean_m": 3072.3392723931206,
+      "gap_target_max_m": 5262.07861328125,
+      "driving_target_mean_m": 0.38076432307060976,
+      "driving_target_max_m": 0.6143045425415039,
+      "gap_row_over_driving_sum_ratio": 0.9999116214698914
+    },
+    {
+      "legacy_labID": "3114",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "gap_target_mean_m": 2922.1906061893596,
+      "gap_target_max_m": 4469.1552734375,
+      "driving_target_mean_m": 0.3255027146732069,
+      "driving_target_max_m": 0.49750185012817383,
+      "gap_row_over_driving_sum_ratio": 0.9987640372085854
+    },
+    {
+      "legacy_labID": "3115",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "gap_target_mean_m": 6990.529763099316,
+      "gap_target_max_m": 11909.556640625,
+      "driving_target_mean_m": 0.7439692145148994,
+      "driving_target_max_m": 0.9433862566947937,
+      "gap_row_over_driving_sum_ratio": 1.1643970754204687
+    },
+    {
+      "legacy_labID": "3116",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          8,
+          8
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ]
+      ],
+      "gap_target_mean_m": 3401.5639789021666,
+      "gap_target_max_m": 5634.73095703125,
+      "driving_target_mean_m": 0.32273190349767644,
+      "driving_target_max_m": 0.5361829400062561,
+      "gap_row_over_driving_sum_ratio": 1.2704270684918961
+    },
+    {
+      "legacy_labID": "3117",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "gap_target_mean_m": 1707.146748597008,
+      "gap_target_max_m": 2990.347900390625,
+      "driving_target_mean_m": 0.19013276901116358,
+      "driving_target_max_m": 0.3392794132232666,
+      "gap_row_over_driving_sum_ratio": 1.140100246650678
+    },
+    {
+      "legacy_labID": "3118",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 0.0,
+      "n_components_pairs_old_new": [
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "gap_target_mean_m": 3802.6759325613384,
+      "gap_target_max_m": 6949.62060546875,
+      "driving_target_mean_m": 0.396040672262711,
+      "driving_target_max_m": 0.7131323218345642,
+      "gap_row_over_driving_sum_ratio": 1.2701031191669434
+    },
+    {
+      "legacy_labID": "3119",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 0.0,
+      "n_components_pairs_old_new": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "gap_target_mean_m": 2756.4337337366987,
+      "gap_target_max_m": 4747.814453125,
+      "driving_target_mean_m": 0.32197044697620086,
+      "driving_target_max_m": 0.5737149715423584,
+      "gap_row_over_driving_sum_ratio": 1.064317486461174
+    },
+    {
+      "legacy_labID": "3120",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          13,
+          13
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "gap_target_mean_m": 3473.053296821984,
+      "gap_target_max_m": 6161.2705078125,
+      "driving_target_mean_m": 0.4030417941394854,
+      "driving_target_max_m": 0.6301745176315308,
+      "gap_row_over_driving_sum_ratio": 1.110484313286482
+    },
+    {
+      "legacy_labID": "3124",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 0.0,
+      "n_components_pairs_old_new": [
+        [
+          4,
+          4
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          4,
+          4
+        ]
+      ],
+      "gap_target_mean_m": 3881.8508122951444,
+      "gap_target_max_m": 8716.9208984375,
+      "driving_target_mean_m": 0.6151829507594742,
+      "driving_target_max_m": 3.3501248359680176,
+      "gap_row_over_driving_sum_ratio": 1.0255221771756706
+    },
+    {
+      "legacy_labID": "3127",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          10,
+          10
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          9,
+          9
+        ],
+        [
+          8,
+          8
+        ]
+      ],
+      "gap_target_mean_m": 2252.5027656158636,
+      "gap_target_max_m": 3954.8603515625,
+      "driving_target_mean_m": 0.24567527213481313,
+      "driving_target_max_m": 0.46440446376800537,
+      "gap_row_over_driving_sum_ratio": 1.4025019918145978
+    },
+    {
+      "legacy_labID": "3201",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 1.1102230246251565e-16,
+      "n_components_pairs_old_new": [
+        [
+          9,
+          9
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          8,
+          8
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          7,
+          7
+        ],
+        [
+          8,
+          8
+        ]
+      ],
+      "gap_target_mean_m": 2379.941782541969,
+      "gap_target_max_m": 3865.50244140625,
+      "driving_target_mean_m": 0.27908116089473956,
+      "driving_target_max_m": 0.40239858627319336,
+      "gap_row_over_driving_sum_ratio": 1.0032462891057166
+    },
+    {
+      "legacy_labID": "3202",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          4,
+          4
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ],
+        [
+          5,
+          5
+        ]
+      ],
+      "gap_target_mean_m": 3441.3716485388927,
+      "gap_target_max_m": 5576.85302734375,
+      "driving_target_mean_m": 0.2783672723773647,
+      "driving_target_max_m": 0.49073004722595215,
+      "gap_row_over_driving_sum_ratio": 1.4544906929435844
+    },
+    {
+      "legacy_labID": "3203",
+      "median_prediction_ratio_clean_over_contaminated": 1.0,
+      "ratio_spread_sd_across_folds": 0.0,
+      "worst_|corr(pred_old,pred_new)-1|": 2.220446049250313e-16,
+      "n_components_pairs_old_new": [
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ],
+        [
+          6,
+          6
+        ]
+      ],
+      "gap_target_mean_m": 4000.381932002146,
+      "gap_target_max_m": 7230.962890625,
+      "driving_target_mean_m": 0.48143972765038673,
+      "driving_target_max_m": 0.8668683171272278,
+      "gap_row_over_driving_sum_ratio": 1.0905791588421034
+    }
+  ]
+}

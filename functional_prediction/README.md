@@ -26,7 +26,7 @@ the split or the EEGNet checkpoints.
 | 61-channel order, label mapping | same directory, `channels.json` / `config.json` |
 | EEGNet architecture + hyper-parameters | `../shared/ds004902_source_trunk/legacy_apparatus/configs/baselines.json` |
 | 204 EEGNet LOSO checkpoints | manifest at `../shared/ds004902_source_trunk/checkpoints/` (weights not redistributed) |
-| raw ds004902 and BCIT payloads | external datasets — see `../docs/REPRODUCIBILITY.md` |
+| raw ds004902 and BCIT payloads | external datasets — see `../docs/reproducibility.md` |
 
 ---
 
@@ -72,23 +72,29 @@ all closed. Reopening any of them is a **new scientific branch**, not debugging.
 
 ---
 
-## 3. The BCIT family — endpoint validated, with a defect history
+## 3. The BCIT family — endpoint validated, negative baseline, refuted contamination scare
 
 | phase | status | finding |
 |---|---|---|
 | Phase 3 | HISTORICAL | BCIT metadata audit. |
 | Phase 3B | HISTORICAL | Tier-1 raw byte audit. |
 | Phase 3C | **VALIDATED** | Behavioural endpoint validation. `mean |LN|` is the project's first **eligibility-passed objective target** (E1–E6). |
-| Phase 4A | **STANDS AS PUBLISHED** | Historical baseline. An apparatus defect was found afterwards and then measured to be **inert**. |
-| Phase 4A2 | **STANDS AS PUBLISHED — branch CLOSED** | Adaptive SFFS historical branch; same defect, same inert verdict. |
-| Phase 4A3 | **THE RESOLUTION** | The defect is **real but inert**: 0 of 82,550 defective rows touched any mask; Phase 4A reproduces to ~1e-14. The `INVALIDATED` status was **withdrawn**. |
+| Phase 4A | **VALID EXECUTION / NEGATIVE EVIDENCE** | Fixed historical baseline. Mean R `−0.0499`; no reliable EEG→lane-performance signal established. |
+| Phase 4A2 | **VALID EXECUTION / NO RELIABLE POSITIVE EFFECT** | Adaptive SFFS. Mean ΔR `+0.0543`, paired t `p = 0.140`, 0/25 decidable; calibrated null `K = 8` cannot resolve 5 %, so *not* "disproven". |
+| Phase 4A3 | **THE RESOLUTION — a refuted suspicion** | The gap defect is **real but inert**: 0 of 82,550 defective rows touched any mask; the correction moves R by `~1e-15`. The `INVALIDATED` status was **withdrawn**. |
 
 ### 3.1 Frozen BCIT endpoint facts (do not re-derive)
 
 * `LN` is a *signed* lateral deviation about the lane centre. `LN = 0` **is** that centre —
-  verified from the release's own `4220`/`4230` events with 100 % agreement in 5/5 recordings.
-  The lane half-width measures **0.917 m** (spread 1.9 mm across three site classes). Units are
-  metres.
+  verified from the release's own `4220`/`4230` events: `4220` ("moves right of lane") fires at
+  `LN > 0` with fraction **1.000**, and `4230` ("moves left") at `LN < 0` with fraction **1.000**,
+  in **all 4 audited lane-geometry recordings** (`1001|ds004118`, `1001|ds004120`, `3101|ds004118`,
+  `3101|ds004120`). The lane half-width measures **0.9172 m**. Units are metres.
+
+  ⚠️ A separate figure, **"5 recordings / 3 participants"**, describes the broader *behavioural
+  audit scale* (2 Tier-1 participants × 2 arms + the T2 preflight). The T2 recording is **excluded
+  from the endpoint cohort by construction**. Do not merge the two counts: the sign-convention test
+  is **4 recordings**, the behavioural-audit scale is **5**.
 * The `3200` marker is a measured **~40 s periodic grid** (median 38.5–40.2 s) delimiting
   **6 protocol blocks**. Analysis windows are >= 300 s and are cut **only on `3200` onsets**
   (<= 340 s apart), inside the valid (non-zero-padded) window.
@@ -102,8 +108,9 @@ all closed. Reopening any of them is a **new scientific branch**, not debugging.
 
 ### 3.2 What is NOT established for BCIT
 
-* That the BCIT endpoint supports any EEG modelling claim. It is under clean-baseline validation,
-  and **no BCIT objective-behaviour modelling result is claimed.**
+* That the BCIT endpoint supports any EEG modelling claim, **in the positive direction**. The fixed
+  historical baseline provided **negative evidence**, and the adaptive branch established no
+  reliable positive effect — see §3.4.
 * That a time-on-task effect exists: naive `T_session` coefficient **+0.088 ± 0.058 m/h**,
   condition-aware F-test **p = 0.94**.
 
@@ -129,14 +136,15 @@ both phases. **Phase 4A3 measured it and refuted the impact claim:**
   precision with **no re-extraction**.
 
 **Therefore the `INVALIDATED FOR SCIENTIFIC VERDICT` status attached to Phase 4A / 4A2 is
-WITHDRAWN.** One audit-instrumentation discrepancy remains unexplained and changes no number.
+WITHDRAWN.** The earlier Phase 4A/4A2 results **remain valid scientific evidence** rather than
+invalidated runs. One audit-instrumentation discrepancy remains unexplained and changes no number.
 
 ⚠️ **Both readings must travel together.** Presenting Phase 4A/4A2 as a clean negative is false.
 Presenting them as invalidated-by-contamination *without* citing Phase 4A3 is also false. The
 authoritative reading is Phase 4A3: the defect is real, it is in the smoothing helper rather than
 the driving, and it changed no number.
 
-### 3.4 The Phase 4A-family numbers, and why the branch is closed
+### 3.4 The Phase 4A-family numbers, and the status of each arm
 
 Cohort N = 25, within-person, leave-one-BLOCK-out over **149 folds**, target `mean |LN|` in
 metres.
@@ -148,12 +156,24 @@ metres.
 | median R | −0.0265 | −0.0089 | — |
 | participants R > 0 | 12/25 | — | — |
 
-**No significance claim is made.** There is no calibrated null for these observed effects. On the
-adaptive branch specifically: 15/25 positive, paired t-test **p = 0.140**, **0/25** decidable
-against the calibrated block-wise iAAFT full-pipeline null, and fold-to-fold selection stability
-**Jaccard 0.118** with 136 distinct channel subsets across 149 folds. The adaptive lifetime ends
-here; changing the channel count, criterion, frequency range, smoothing, PCA, regression or cohort
-is a **new scientific branch**, not debugging.
+**Phase 4A — the fixed historical baseline: `VALID EXECUTION / NEGATIVE EVIDENCE`.**
+The fixed-channel historical replication did not establish a reliable EEG→lane-performance
+predictive signal: mean R `−0.0499`, and **0/25** participants decidable against the calibrated null.
+
+**Phase 4A2 — the adaptive SFFS branch: `VALID EXECUTION / NO RELIABLE POSITIVE EFFECT`.**
+15/25 participants positive, paired t-test **p = 0.140**, **0/25** decidable against the calibrated
+block-wise iAAFT full-pipeline null, and fold-to-fold selection stability **Jaccard 0.118** with 136
+distinct channel subsets across 149 folds.
+
+⚠️ **Do not overstate that as "disproven".** The calibrated null has **`K = 8` replicates per
+participant** (`K_per_participant: 8`, `K_achieved_min: 8`), so its p-value floor is
+**`1/9 = 0.111`** — a `K` of 8 **cannot resolve a 5 % effect**. The honest statement is that this
+branch established no reliable positive effect, and that its population-level null was too small for
+a stronger formal claim. A resource plan for a larger `K` exists and requires a server; it was **not**
+run.
+
+The adaptive lifetime ends here regardless: changing the channel count, criterion, frequency range,
+smoothing, PCA, regression or cohort is a **new scientific branch**, not debugging.
 
 The published `R ≈ 0.374` from the historical literature is a **reference, never a target.** No
 code path reads it as an objective, stopping rule or threshold. Tuning toward it is forbidden
@@ -197,7 +217,7 @@ sensitivity that never crosses a block or condition boundary).
 
 Every phase ends with an independent verifier whose exit code gates completion, and every static
 check has proved negative controls. Full table and run instructions:
-`../docs/REPRODUCIBILITY.md`. The public, data-free baseline is:
+`../docs/reproducibility.md`. The public, data-free baseline is:
 
 ```bash
 python tests/test_mechanism.py        # unit tests, no data required
@@ -225,5 +245,5 @@ additionally require the raw datasets — their coverage is stated rather than i
 
 ⚠️ Some reports and manifests contain the **literal absolute paths of the machine at execution
 time**. They are **historical records, not live configuration** — nothing reads them to locate
-data. See `../docs/PROJECT_HISTORY.md` §"Path portability" for the declared substitutions made
+data. See `../docs/project-history.md` §"Path portability" for the declared substitutions made
 when this public snapshot was produced.

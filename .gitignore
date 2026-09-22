@@ -126,6 +126,12 @@ remote_state.json
 
 # ---------------------------------------------------------------------------
 # Environment / tooling
+#
+# NOTE on `.vscode/`: the rule is ANCHORED to the repository root (`/.vscode/`). An unanchored
+# `.vscode/` matches at every depth and would silently drop
+# archive/legacy/legacy_ns_sd_prototype/.vscode/settings.json -- which is part of the byte-exact
+# historical record of what this repository used to publish. The editor's local settings are
+# ignored; the archived copy is preserved.
 # ---------------------------------------------------------------------------
 .venv/
 venv/
@@ -133,7 +139,7 @@ env/
 ENV/
 .conda/
 .idea/
-.vscode/
+/.vscode/
 *.swp
 *.swo
 .DS_Store

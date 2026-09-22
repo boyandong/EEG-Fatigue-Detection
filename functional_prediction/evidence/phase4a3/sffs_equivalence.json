@@ -1,0 +1,92 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T03:18:42Z",
+  "purpose": "pin the faster SFFS criterion against the frozen p4a2 parent on real data",
+  "mode": "broad",
+  "n": 16,
+  "n_pass": 16,
+  "all_pass": true,
+  "failures": [],
+  "checks": [
+    {
+      "name": "3101/b0: both models see the same fold geometry",
+      "ok": true,
+      "detail": "n_train=11470/11470 n_test=2401/2401"
+    },
+    {
+      "name": "3101/b0: per-subset inner RMSE identical (10 subsets)",
+      "ok": true,
+      "detail": "max|diff|=5.551e-17 n_finite=10"
+    },
+    {
+      "name": "3101/b0: SFFS selects the same subset",
+      "ok": true,
+      "detail": "slow=['D24', 'B23', 'D32', 'B30'] (k=4) fast=['D24', 'B23', 'D32', 'B30'] (k=4)"
+    },
+    {
+      "name": "3101/b0: leak self-test path also agrees",
+      "ok": true,
+      "detail": "slow=['D24'] fast=['D24']"
+    },
+    {
+      "name": "3101/b1: both models see the same fold geometry",
+      "ok": true,
+      "detail": "n_train=11650/11650 n_test=2221/2221"
+    },
+    {
+      "name": "3101/b1: per-subset inner RMSE identical (10 subsets)",
+      "ok": true,
+      "detail": "max|diff|=1.110e-16 n_finite=10"
+    },
+    {
+      "name": "3101/b1: SFFS selects the same subset",
+      "ok": true,
+      "detail": "slow=['D27', 'E14', 'C21', 'E3', 'D5', 'C23', 'B26'] (k=7) fast=['D27', 'E14', 'C21', 'E3', 'D5', 'C23', 'B26'] (k=7)"
+    },
+    {
+      "name": "3101/b1: leak self-test path also agrees",
+      "ok": true,
+      "detail": "slow=['D24'] fast=['D24']"
+    },
+    {
+      "name": "3127/b0: both models see the same fold geometry",
+      "ok": true,
+      "detail": "n_train=9063/9063 n_test=2415/2415"
+    },
+    {
+      "name": "3127/b0: per-subset inner RMSE identical (10 subsets)",
+      "ok": true,
+      "detail": "max|diff|=2.082e-17 n_finite=10"
+    },
+    {
+      "name": "3127/b0: SFFS selects the same subset",
+      "ok": true,
+      "detail": "slow=['D30', 'B30', 'A3'] (k=3) fast=['D30', 'B30', 'A3'] (k=3)"
+    },
+    {
+      "name": "3127/b0: leak self-test path also agrees",
+      "ok": true,
+      "detail": "slow=['A24', 'G23', 'B15', 'A19', 'A21'] fast=['A24', 'G23', 'B15', 'A19', 'A21']"
+    },
+    {
+      "name": "3127/b1: both models see the same fold geometry",
+      "ok": true,
+      "detail": "n_train=9261/9261 n_test=2217/2217"
+    },
+    {
+      "name": "3127/b1: per-subset inner RMSE identical (10 subsets)",
+      "ok": true,
+      "detail": "max|diff|=5.551e-17 n_finite=10"
+    },
+    {
+      "name": "3127/b1: SFFS selects the same subset",
+      "ok": true,
+      "detail": "slow=['D12', 'A24'] (k=2) fast=['D12', 'A24'] (k=2)"
+    },
+    {
+      "name": "3127/b1: leak self-test path also agrees",
+      "ok": true,
+      "detail": "slow=['A24', 'G23', 'B15', 'A19', 'A21'] fast=['A24', 'G23', 'B15', 'A19', 'A21']"
+    }
+  ]
+}

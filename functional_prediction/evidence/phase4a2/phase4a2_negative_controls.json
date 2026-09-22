@@ -1,0 +1,81 @@
+{
+  "phase": "SRTP-PHASE4A2-20260918-ADAPTIVE-SFFS",
+  "generated_utc": "2026-09-18T19:22:24Z",
+  "n_controls": 12,
+  "n_caught": 12,
+  "all_behaved": true,
+  "controls": [
+    {
+      "id": "CTRL0 clean artifacts are not flagged",
+      "desc": "the untouched artifacts trip no detector",
+      "caught": true,
+      "detail": ""
+    },
+    {
+      "id": "NC1 participant identity substituted",
+      "desc": "a foreign participant in the result table",
+      "caught": true,
+      "detail": "cohort mismatch: 25 rows vs 25 frozen"
+    },
+    {
+      "id": "NC1b participant silently dropped",
+      "desc": "one participant missing from the table",
+      "caught": true,
+      "detail": "cohort mismatch: 24 rows vs 25 frozen"
+    },
+    {
+      "id": "NC6 fold count asserted as N x 6",
+      "desc": "the 149-fold total is not 25 x 6",
+      "caught": true,
+      "detail": "149 != 150 -> 148 OK folds, expected sum_i n_blocks(i) = 149"
+    },
+    {
+      "id": "NC5 vehicle channel in the candidate pool",
+      "desc": "|LN| is the target's own source",
+      "caught": true,
+      "detail": "non-scalp channels in the candidate pool: ['LN']"
+    },
+    {
+      "id": "NC7 standard/adaptive cohort mismatch",
+      "desc": "the arms cover different participants",
+      "caught": true,
+      "detail": "one participant's folds removed"
+    },
+    {
+      "id": "NC2 held-out block read during selection",
+      "desc": "selection must be invariant to the held-out block's content",
+      "caught": true,
+      "detail": "invariant across zeroing 2401 test rows (87s)"
+    },
+    {
+      "id": "NC2b detector fires on the injected leak",
+      "desc": "the deliberate violation must change the selection (proves NC2 can fail)",
+      "caught": true,
+      "detail": "leaky selection ['D24'] vs clean ['D24', 'B23', 'D32', 'B30'] (12s)"
+    },
+    {
+      "id": "NC3 whole-participant PCA instead of train-fold PCA",
+      "desc": "the PCA actually used must be the training-fold basis",
+      "caught": true,
+      "detail": "train-fold keeps 3, whole-participant keeps 1 components; detector verdict: the used basis IS the train-fold one"
+    },
+    {
+      "id": "NC3b detector rejects the inflated basis",
+      "desc": "handing it the whole-participant basis must be caught",
+      "caught": true,
+      "detail": "the PCA used is NOT the training-fold basis (overlap 0.985)"
+    },
+    {
+      "id": "NC4 fixed surrogate reused without re-running SFFS",
+      "desc": "replicates must be distinct and seed-reproducible",
+      "caught": true,
+      "detail": ""
+    },
+    {
+      "id": "NC8 null labels presented as interchangeable",
+      "desc": "calibrated and historical nulls must be distinguishable",
+      "caught": true,
+      "detail": "swap detected"
+    }
+  ]
+}

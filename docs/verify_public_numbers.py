@@ -187,8 +187,8 @@ texts = {p: (ROOT / p).read_text(encoding="utf-8") for p in
 check("both branch READMEs state they are independent",
       "independent" in texts["functional_prediction/README.md"]
       and "independent" in texts["tta_collapse/README.md"])
-check("root README states the repository evolved from NS-vs-SD",
-      "evolved from an NS-vs-SD" in texts["README.md"])
+check("root README states the project began as NS-vs-SD classification",
+      "began as a normal-sleep vs. sleep-deprivation EEG classification task" in texts["README.md"])
 check("Branch A README presents the PVT result as a NEGATIVE",
       "NEGATIVE" in texts["functional_prediction/README.md"])
 check("Branch A README warns that both Phase 4A readings must travel together",
@@ -198,6 +198,74 @@ check("Branch B README forbids calling TENT_DET canonical TENT",
       or "TENT_DET` called \"canonical TENT\"" in texts["tta_collapse/README.md"])
 check("Branch B README records the parked methods as not started",
       "not started" in texts["tta_collapse/README.md"])
+
+# ---------------------------------------------------------------------------
+section("Corrected statuses (v2 canonicalization)")
+# ---------------------------------------------------------------------------
+# These two checks exist because an earlier public draft got BOTH of these wrong, in opposite
+# directions. They are regression tests against re-introducing either error.
+
+# (a) Phase 4A/4A2 must NOT be published as invalidated-by-contamination.
+mask = load_json("functional_prediction/evidence/phase4a3/mask_definitive.json")
+clean = load_json("functional_prediction/evidence/phase4a3/clean_standard_run.json")
+check("Phase 4A3 records 0 of 82,550 gap rows inside any training mask",
+      mask["total_gap_rows"] == 82550
+      and mask["total_gap_rows_inside_phase4a_training_masks"] == 0
+      and mask["total_gap_rows_inside_phase4a_test_masks"] == 0,
+      f"gap={mask['total_gap_rows']} train={mask['total_gap_rows_inside_phase4a_training_masks']}")
+delta = abs(clean["contamination_delta_population"]["mean_delta_R"])
+check("the gap correction moves mean R by ~1e-15 (inert)", delta < 1e-12, f"|delta|={delta:.3e}")
+for p in ["README.md", "functional_prediction/README.md"]:
+    t = (ROOT / p).read_text(encoding="utf-8")
+    check(f"{p} does NOT publish Phase 4A/4A2 as INVALIDATED",
+          "INVALIDATED —" not in t and "**INVALIDATED**" not in t,
+          "no bare INVALIDATED status label")
+    check(f"{p} states the earlier results remain valid evidence", "remain valid" in t)
+
+# (b) The calibrated adaptive null must be bounded by its own K.
+null = load_json("functional_prediction/evidence/phase4a2/adaptive_null_summary_FORMAL.json")
+check("adaptive calibrated null is K = 8 per participant",
+      null["K_per_participant"] == 8 and null["K_achieved_min"] == 8,
+      f"K={null['K_per_participant']}")
+check("its p-value floor is 1/9, so it cannot resolve 5%",
+      abs(null["calibrated_p_floor"] - 1 / 9) < 1e-9, f"floor={null['calibrated_p_floor']:.4f}")
+check("no post-hoc null selection was used", null["null_chosen_post_hoc"] is False)
+check("Phase 4A2 wording says 'no reliable positive effect', not 'disproven'",
+      "NO RELIABLE POSITIVE EFFECT" in texts["functional_prediction/README.md"]
+      and "definitively disproven" not in texts["functional_prediction/README.md"])
+
+# (c) The TTA counts must be labelled as verification, not sample size.
+check("root README separates verification counts from sample size",
+      "not experimental sample size" in texts["README.md"]
+      or "refer to implementation verification, not" in texts["README.md"])
+check("root README states the real sample (68 x 3 x 4)",
+      "68 subjects × 3 seeds × 4 arms" in texts["README.md"])
+check("root README denies BatchNorm causation",
+      "does not establish that BatchNorm is the causal mechanism" in texts["README.md"])
+check("root README denies universal TENT collapse",
+      "nor that TENT universally collapses on EEG" in texts["README.md"])
+
+# (d) The lane-centre count must be 4 recordings, not 5.
+check("root/branch README does not claim 5/5 sign agreement",
+      "5/5" not in texts["functional_prediction/README.md"],
+      "the sign test covers 4 recordings")
+
+# (e) No license is claimed while provenance is unresolved.
+check("README states no repository-wide license is assigned",
+      "No repository-wide software license has been assigned yet" in texts["README.md"])
+check("no LICENSE file is shipped",
+      not (ROOT / "LICENSE").exists() and not (ROOT / "LICENSE.md").exists())
+check("third-party provenance audit exists and flags mscvit",
+      "NEEDS VERIFICATION" in (ROOT / "docs/third-party-provenance.md").read_text(encoding="utf-8"))
+
+# (f) Legacy archive is complete and marked superseded.
+legacy = ROOT / "archive/legacy/legacy_ns_sd_prototype"
+check("legacy archive retains the original 备忘录.md (restored from commit 625dc3b)",
+      (legacy / "备忘录.md").exists())
+check("legacy archive retains the original baseline/README.md",
+      (legacy / "baseline/README.md").exists())
+check("legacy archive README marks it superseded",
+      "superseded" in (legacy / "README.md").read_text(encoding="utf-8").lower())
 
 # ---------------------------------------------------------------------------
 print()

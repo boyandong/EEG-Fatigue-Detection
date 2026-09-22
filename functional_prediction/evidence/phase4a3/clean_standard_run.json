@@ -1,0 +1,50 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "arm": "standard (fixed Fz/Cz/Pz/Oz) \u2014 the control",
+  "generated_utc": "2026-09-20T02:43:10Z",
+  "mask": "DRIVING_MASK_SPEC.md: union of frozen blocks \u2229 valid span",
+  "target": "mean |LN| (m), block-local 90 s mean, 4 Hz grid \u2014 unchanged definition",
+  "estimator": "train-fold PCA (>=1% var) -> OLS with intercept \u2014 unchanged",
+  "n_participants_requested": 25,
+  "n_participants_ok": 25,
+  "n_folds_total": 149,
+  "n_rows_total": 342287,
+  "wall_s_total": 661.2,
+  "wall_s_mean_per_participant": 26.4,
+  "clean_population": {
+    "n": 25,
+    "standard_mean_R": -0.04993651757569635,
+    "standard_sd_R": 0.2454776664013528,
+    "standard_median_R": -0.026520868879245197,
+    "standard_iqr_R": [
+      -0.24531699183536765,
+      0.13882487231680118
+    ],
+    "standard_min_R": -0.41966993695087834,
+    "standard_max_R": 0.44644379900965725,
+    "standard_n_positive": 12
+  },
+  "phase4a_population_recomputed_from_artifact": {
+    "n": 25,
+    "mean_R": -0.04993651757569237,
+    "sd_R": 0.24547766640135166,
+    "median_R": -0.026520868879250807,
+    "n_positive": 12
+  },
+  "contamination_delta_population": {
+    "n": 25,
+    "mean_delta_R": -3.998607001065579e-15,
+    "median_delta_R": -5.551115123125783e-17,
+    "sd_delta_R": 1.538047939694498e-14,
+    "min_delta_R": -5.545564008002657e-14,
+    "max_delta_R": 1.3673090437649194e-14,
+    "n_improved": 12,
+    "n_worsened": 13
+  },
+  "reference_published": {
+    "standard_driving_R": 0.079,
+    "sd": 0.224,
+    "n": 25,
+    "note": "reference, NOT an optimisation target; no code path reads it"
+  }
+}

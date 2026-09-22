@@ -11,7 +11,7 @@ refresh of `github.com/boyandong/EEG-Fatigue-Detection`.
 
 | item | finding |
 |---|---|
-| working directory | `C:\Users\董伯言\Desktop\srtp` |
+| working directory | `<WORKSPACE>` |
 | is the working directory a git repository? | **No.** `git rev-parse` reports *not a git repository*. |
 | `origin` configured? | **No** — there was no repository, so no remote. |
 | untracked / modified files | **Not applicable** — no repository existed at the workspace root. |
@@ -42,7 +42,7 @@ refresh adds a branch, it does not rewrite history.
 
 ## 1. Local state — authoritative structure
 
-`C:\Users\董伯言\Desktop\srtp\project\srtp` is the scientific source of truth (11,762 files,
+`<WORKSPACE>\project\srtp` is the scientific source of truth (11,762 files,
 **29.46 GB** total).
 
 | top-level | files | size | role |

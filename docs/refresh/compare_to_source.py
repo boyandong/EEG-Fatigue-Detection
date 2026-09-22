@@ -18,7 +18,7 @@ import sys
 
 PUB = pathlib.Path(__file__).resolve().parents[2]
 SRC = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else
-                   r"C:\Users\董伯言\Desktop\srtp\project\srtp")
+                   r"<WORKSPACE>\project\srtp")
 
 
 def sha(p: pathlib.Path) -> str:

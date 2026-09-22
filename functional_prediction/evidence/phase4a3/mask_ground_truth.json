@@ -1,0 +1,269 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T02:46:33Z",
+  "question": "does Phase 4A's own training mask contain the rows whose shipped smoothed values are defective, and does removing them change R?",
+  "gap_rows_inside_4a_masks_total": 0,
+  "worst_R_difference": {
+    "legacy_labID": "3101",
+    "n_gap_rows_in_valid_span": 3244,
+    "gap_rows_inside_phase4a_training_masks": 0,
+    "gap_rows_as_fraction_of_all_training_rows": 0.0,
+    "n_train_rows_phase4a_total": 69355,
+    "R_phase4a_mask_on_shipped_arrays": 0.34453486204758277,
+    "R_corrected_mask_on_shipped_arrays": 0.34453486204758277,
+    "R_difference": 0.0
+  },
+  "max_abs_R_difference": 0.0,
+  "participants": [
+    {
+      "legacy_labID": "3101",
+      "n_gap_rows_in_valid_span": 3244,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69355,
+      "R_phase4a_mask_on_shipped_arrays": 0.34453486204758277,
+      "R_corrected_mask_on_shipped_arrays": 0.34453486204758277,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3102",
+      "n_gap_rows_in_valid_span": 2865,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68710,
+      "R_phase4a_mask_on_shipped_arrays": -0.14900491494292392,
+      "R_corrected_mask_on_shipped_arrays": -0.14900491494292392,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3103",
+      "n_gap_rows_in_valid_span": 3131,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69270,
+      "R_phase4a_mask_on_shipped_arrays": -0.4120745256409352,
+      "R_corrected_mask_on_shipped_arrays": -0.4120745256409352,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3104",
+      "n_gap_rows_in_valid_span": 2202,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68745,
+      "R_phase4a_mask_on_shipped_arrays": -0.16727482189002268,
+      "R_corrected_mask_on_shipped_arrays": -0.16727482189002268,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3105",
+      "n_gap_rows_in_valid_span": 3308,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68270,
+      "R_phase4a_mask_on_shipped_arrays": -0.026520868879250557,
+      "R_corrected_mask_on_shipped_arrays": -0.026520868879250557,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3106",
+      "n_gap_rows_in_valid_span": 2860,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69065,
+      "R_phase4a_mask_on_shipped_arrays": -0.06739158734209695,
+      "R_corrected_mask_on_shipped_arrays": -0.06739158734209695,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3107",
+      "n_gap_rows_in_valid_span": 3584,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68520,
+      "R_phase4a_mask_on_shipped_arrays": 0.13882487231679422,
+      "R_corrected_mask_on_shipped_arrays": 0.13882487231679422,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3108",
+      "n_gap_rows_in_valid_span": 2762,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68945,
+      "R_phase4a_mask_on_shipped_arrays": 0.06383732680853935,
+      "R_corrected_mask_on_shipped_arrays": 0.06383732680853935,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3109",
+      "n_gap_rows_in_valid_span": 3907,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68940,
+      "R_phase4a_mask_on_shipped_arrays": -0.3628021305964446,
+      "R_corrected_mask_on_shipped_arrays": -0.3628021305964446,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3110",
+      "n_gap_rows_in_valid_span": 3364,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68845,
+      "R_phase4a_mask_on_shipped_arrays": 0.009062034324611364,
+      "R_corrected_mask_on_shipped_arrays": 0.009062034324611364,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3111",
+      "n_gap_rows_in_valid_span": 2782,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69085,
+      "R_phase4a_mask_on_shipped_arrays": 0.44644379900964454,
+      "R_corrected_mask_on_shipped_arrays": 0.44644379900964454,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3112",
+      "n_gap_rows_in_valid_span": 2521,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68995,
+      "R_phase4a_mask_on_shipped_arrays": 0.265051899003227,
+      "R_corrected_mask_on_shipped_arrays": 0.265051899003227,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3113",
+      "n_gap_rows_in_valid_span": 3060,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69105,
+      "R_phase4a_mask_on_shipped_arrays": 0.04614198528191885,
+      "R_corrected_mask_on_shipped_arrays": 0.04614198528191885,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3114",
+      "n_gap_rows_in_valid_span": 4113,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68735,
+      "R_phase4a_mask_on_shipped_arrays": -0.2574970851608047,
+      "R_corrected_mask_on_shipped_arrays": -0.2574970851608047,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3115",
+      "n_gap_rows_in_valid_span": 3708,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68740,
+      "R_phase4a_mask_on_shipped_arrays": -0.39555148991813727,
+      "R_corrected_mask_on_shipped_arrays": -0.39555148991813727,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3116",
+      "n_gap_rows_in_valid_span": 4233,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68715,
+      "R_phase4a_mask_on_shipped_arrays": -0.24143658216309738,
+      "R_corrected_mask_on_shipped_arrays": -0.24143658216309738,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3117",
+      "n_gap_rows_in_valid_span": 2392,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68975,
+      "R_phase4a_mask_on_shipped_arrays": -0.2698571152023731,
+      "R_corrected_mask_on_shipped_arrays": -0.2698571152023731,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3118",
+      "n_gap_rows_in_valid_span": 3060,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69080,
+      "R_phase4a_mask_on_shipped_arrays": -0.1770647033888181,
+      "R_corrected_mask_on_shipped_arrays": -0.1770647033888181,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3119",
+      "n_gap_rows_in_valid_span": 3066,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69275,
+      "R_phase4a_mask_on_shipped_arrays": 0.20502421969188442,
+      "R_corrected_mask_on_shipped_arrays": 0.20502421969188442,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3120",
+      "n_gap_rows_in_valid_span": 3463,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68830,
+      "R_phase4a_mask_on_shipped_arrays": -0.4196699369508785,
+      "R_corrected_mask_on_shipped_arrays": -0.4196699369508785,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3124",
+      "n_gap_rows_in_valid_span": 4431,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69085,
+      "R_phase4a_mask_on_shipped_arrays": 0.00453281666910058,
+      "R_corrected_mask_on_shipped_arrays": 0.00453281666910058,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3127",
+      "n_gap_rows_in_valid_span": 4329,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 45912,
+      "R_phase4a_mask_on_shipped_arrays": 0.0443731135201627,
+      "R_corrected_mask_on_shipped_arrays": 0.0443731135201627,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3201",
+      "n_gap_rows_in_valid_span": 2446,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 69030,
+      "R_phase4a_mask_on_shipped_arrays": 0.21860781407475216,
+      "R_corrected_mask_on_shipped_arrays": 0.21860781407475216,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3202",
+      "n_gap_rows_in_valid_span": 3424,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68870,
+      "R_phase4a_mask_on_shipped_arrays": -0.24531699183535813,
+      "R_corrected_mask_on_shipped_arrays": -0.24531699183535813,
+      "R_difference": 0.0
+    },
+    {
+      "legacy_labID": "3203",
+      "n_gap_rows_in_valid_span": 4295,
+      "gap_rows_inside_phase4a_training_masks": 0,
+      "gap_rows_as_fraction_of_all_training_rows": 0.0,
+      "n_train_rows_phase4a_total": 68860,
+      "R_phase4a_mask_on_shipped_arrays": 0.15661507177061557,
+      "R_corrected_mask_on_shipped_arrays": 0.15661507177061557,
+      "R_difference": 0.0
+    }
+  ]
+}

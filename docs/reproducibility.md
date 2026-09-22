@@ -22,7 +22,7 @@ This project distinguishes three levels, and uses the words exactly:
 
 This snapshot is **re-checkable** everywhere, **re-runnable** for the ds004902 trunk and the
 Phase 1–2 lanes, and **partially re-executable** — the TTA Phase 1 container is gone and the two
-branches ran under different Python/torch versions. `ENVIRONMENT_AUDIT.md` §5 lists exactly what
+branches ran under different Python/torch versions. `docs/environment-audit.md` §5 lists exactly what
 is not reconstructible. **Do not describe this repository as fully reproducible.**
 
 The reason the distinction is kept honest: this project's own rule is that a claim is not
@@ -276,7 +276,7 @@ Two exceptions, both deliberate and both documented:
 2. **Historical reports and manifests** — some contain the literal absolute paths of the machine
    at execution time. They are **historical records, not live configuration**; nothing reads them
    to locate data. Machine-specific and personal path strings were substituted when this public
-   snapshot was produced; see `docs/PROJECT_HISTORY.md` §"Path portability" for the exact
+   snapshot was produced; see `docs/project-history.md` §"Path portability" for the exact
    substitution classes.
 
 ---

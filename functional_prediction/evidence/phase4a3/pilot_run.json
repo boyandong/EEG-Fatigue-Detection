@@ -1,0 +1,137 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T02:27:13Z",
+  "participants": [
+    {
+      "legacy_labID": "3101",
+      "folds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "selfcheck": [
+        {
+          "legacy_labID": "3101",
+          "fold": 0,
+          "max_abs_lowrank_vs_literal": 2.7755575615628914e-16,
+          "max_abs_lowrank_vs_pipeline": 2.7755575615628914e-16,
+          "n_components_lowrank": 3,
+          "n_components_literal": 3,
+          "n_components_pipeline": 3,
+          "ok": true
+        },
+        {
+          "legacy_labID": "3101",
+          "fold": 1,
+          "max_abs_lowrank_vs_literal": 2.220446049250313e-16,
+          "max_abs_lowrank_vs_pipeline": 2.220446049250313e-16,
+          "n_components_lowrank": 3,
+          "n_components_literal": 3,
+          "n_components_pipeline": 3,
+          "ok": true
+        }
+      ],
+      "selfcheck_all_ok": true,
+      "wall_s": 270.5,
+      "per_fold": [
+        {
+          "block": 0,
+          "seconds": 42.01,
+          "n_train": 11470,
+          "n_test": 2401,
+          "k": 4,
+          "iters": 5
+        },
+        {
+          "block": 1,
+          "seconds": 141.28,
+          "n_train": 11650,
+          "n_test": 2221,
+          "k": 7,
+          "iters": 9
+        },
+        {
+          "block": 2,
+          "seconds": 12.14,
+          "n_train": 11497,
+          "n_test": 2374,
+          "k": 1,
+          "iters": 2
+        },
+        {
+          "block": 3,
+          "seconds": 12.96,
+          "n_train": 11664,
+          "n_test": 2207,
+          "k": 1,
+          "iters": 2
+        },
+        {
+          "block": 4,
+          "seconds": 22.13,
+          "n_train": 11661,
+          "n_test": 2210,
+          "k": 2,
+          "iters": 3
+        },
+        {
+          "block": 5,
+          "seconds": 39.83,
+          "n_train": 11413,
+          "n_test": 2458,
+          "k": 3,
+          "iters": 5
+        }
+      ],
+      "standard_R": 0.34453486204758177,
+      "adaptive_R": 0.27261222683535946,
+      "delta_R": -0.07192263521222231,
+      "n_test_points": 13871,
+      "target_mean_abs_LN_m": 0.41855154820466023,
+      "target_sd": 0.09893032482351846,
+      "adaptive_k": [
+        4,
+        7,
+        1,
+        1,
+        2,
+        3
+      ],
+      "adaptive_labels": [
+        [
+          "D24",
+          "B23",
+          "D32",
+          "B30"
+        ],
+        [
+          "D27",
+          "E14",
+          "C21",
+          "E3",
+          "D5",
+          "C23",
+          "B26"
+        ],
+        [
+          "D24"
+        ],
+        [
+          "D24"
+        ],
+        [
+          "D24",
+          "H29"
+        ],
+        [
+          "D32",
+          "D30",
+          "D24"
+        ]
+      ]
+    }
+  ]
+}

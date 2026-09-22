@@ -218,9 +218,29 @@ should include the defective rows; executed, it does not. Both candidate reading
 and only one reproduces the published R, so the discrepancy is a question about the audit script
 and **cannot change a number**.
 
-**The rule this episode produced:** presenting Phase 4A/4A2 as a clean negative is false;
-presenting them as invalidated-by-contamination without citing Phase 4A3 is also false. Both
-readings travel together.
+**Where the two phases actually land, stated with the care each deserves:**
+
+* **Phase 4A — the fixed historical baseline: VALID EXECUTION / NEGATIVE EVIDENCE.** The
+  fixed-channel historical replication did not establish a reliable EEG→lane-performance predictive
+  signal (mean R `−0.0499`, 0/25 decidable against the calibrated null).
+* **Phase 4A2 — the adaptive SFFS branch: VALID EXECUTION / NO RELIABLE POSITIVE EFFECT.** Adaptive
+  mean R `+0.0044`, mean ΔR `+0.0543`, 15/25 participants positive, paired t `p = 0.140`, and **0/25**
+  decidable against the calibrated null. But the calibrated null has **`K = 8` replicates per
+  participant** (`K_per_participant: 8`), giving a p-value floor of `1/9 = 0.111` — **a `K` of 8
+  cannot resolve a 5 % effect.** So this branch is *not* "definitively disproven"; it is a valid
+  execution that established no reliable positive effect, with a population-level null too small for
+  a stronger formal claim.
+
+**The rule this episode produced, in both directions:** presenting Phase 4A/4A2 as a clean negative
+is false; presenting them as invalidated-by-contamination without citing Phase 4A3 is *also* false.
+Both readings travel together.
+
+The more interesting point is what the episode demonstrates about method. A suspicion arose that
+looked sufficient to overturn two experiments. It was not announced as contamination and it was not
+suppressed. It was **audited**, measured to have **zero exposure** and a numerical effect of
+`~1e-15`, and the original results were **restored**. The audit that refuted the suspicion is a
+result in its own right — arguably a more useful one than the finding would have been, because it
+establishes that the pipeline's masks were correct all along.
 
 ---
 
@@ -262,16 +282,33 @@ mutually indistinguishable — `BN_ONLY` 0.5039, `TENT_LITERAL` 0.5043, `TENT_DE
 `SOURCE` 0.5924. `TENT_LITERAL − BN_ONLY` = **+0.00048** (t = +0.22); `BN_ONLY` and `TENT_DET`
 agree on **99.65 %** of windows.
 
+**The diversity evidence runs opposite to a collapse signature**, which is why the verdict is "no
+collapse" rather than "collapse": dominant-class share **falls** 0.7104 → 0.5414 and marginal entropy
+**rises** 0.5358 → 0.6862. The adapted model stopped making a confident near-constant prediction and
+drifted toward chance. `0 subjects` met the strongly-harmed criterion.
+
 The degradation is therefore attributable to the **test-batch normalisation switch**, not to
-entropy minimisation. **The entropy gradient is inert.** What remains unexplained — *why* the
-normalisation switch harms performance — is a separate question requiring a new PI decision.
+entropy minimisation — the gradient-free `BN_ONLY` control reproduces the entire ~8.9-point drop.
+**The entropy gradient is inert.**
+
+**What this does NOT establish.** The verdict establishes *attribution*, not *mechanism*. It does not
+establish that BatchNorm statistics are the *cause* — that requires an intervention experiment which
+does not exist. It also does not establish that TENT collapses universally on EEG; in this dataset
+TENT did not collapse at all, it degraded to chance exactly as the gradient-free control did. Why the
+normalisation switch harms performance is a separate question requiring a new PI decision.
 
 **Verification:** independent verifier **105/105**; negative controls NC1–NC27 **75/75 bite**;
 synthetic smoke PASS; remote environment, provenance, closure and smoke gates all PASS.
 
+**Read the counts correctly.** `816/816` and `105/105` are **implementation-verification counts**,
+not experimental sample size. The experiment is **68 subjects × 3 seeds × 4 arms**, and the paired
+contrasts treat the **subject** (`n = 68`) as the unit — never the 9,390 windows.
+
 **`CASE 4` names a verdict of an executed experiment.** It is not a taxonomy entry, and it is not
-a proposal. The parked methods (SAR, DELTA, T-TIME, T3A, CoTTA, BFT, EATA, MEMO, and the rest)
-exist **only as prose in a park list** — there is no artefact for any of them.
+a proposal. For public writing it should be translated into the scientific statement rather than
+quoted as an internal label — see `docs/scientific-status.md` §3. The parked methods (SAR, DELTA,
+T-TIME, T3A, CoTTA, BFT, EATA, MEMO, and the rest) exist **only as prose in a park list** — there is
+no artefact for any of them.
 
 ---
 

@@ -1,0 +1,11 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T02:50:29Z",
+  "n_participants": 25,
+  "n_valid_rows_total": 342287,
+  "n_gap_rows_total": 82550,
+  "fraction_gap_rows_min": 0.138048,
+  "fraction_gap_rows_max": 0.273866,
+  "worst_gap_over_driving_scale_ratio": 12624.3,
+  "problems": []
+}

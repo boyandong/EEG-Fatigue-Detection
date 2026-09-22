@@ -1,0 +1,142 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T05:44:16Z",
+  "n_controls": 10,
+  "n_bite": 9,
+  "n_not_biting": 1,
+  "all_bite": false,
+  "wall_s": 108.2,
+  "controls": [
+    {
+      "id": "NC1",
+      "title": "a gap row re-entering the training mask is detected",
+      "violation": "training mask := valid span minus held-out block (gaps included)",
+      "detected": true,
+      "evidence": {
+        "gap rows now in training": 19464,
+        "R with corrected mask": 0.344535,
+        "R with gap-contaminated mask": "FIT FAILED TO CONVERGE",
+        "folds that could not be fitted": 6,
+        "exception": "LinAlgError('SVD did not converge in Linear Least Squares')",
+        "why this is a detection": "a target spanning ~1e4 m of non-physical values makes the least-squares SVD diverge \u2014 the contamination is detected by breaking the fit, not by moving R"
+      }
+    },
+    {
+      "id": "NC2",
+      "title": "cross-gap smoothing is detected at the block edges",
+      "violation": "90 s window taken over the whole valid span, gaps removed afterwards",
+      "detected": true,
+      "evidence": {
+        "driving rows whose smoothed value changes": 2160,
+        "max |change| (m)": 0.285613,
+        "mean |change| (m)": 0.00662
+      }
+    },
+    {
+      "id": "NC3",
+      "title": "a block's smoothing reading block b+1 is detected",
+      "violation": "smoothing bounds widened by one row into the next block",
+      "detected": true,
+      "evidence": {
+        "driving rows whose smoothed value changes": 900,
+        "max |change| (m)": 0.002348566
+      }
+    },
+    {
+      "id": "NC4",
+      "title": "the 25x6 fold invariant is detected as wrong",
+      "violation": "assert N_folds == 25 * 6 instead of sum_i n_valid_blocks(i)",
+      "detected": true,
+      "evidence": {
+        "sum_i n_valid_blocks(i)": 149,
+        "25 x 6": 150,
+        "participants with != 6 blocks": [
+          "3127"
+        ]
+      }
+    },
+    {
+      "id": "NC5",
+      "title": "held-out block entering SFFS is detected",
+      "violation": "SFFS scored with the held-out block inside its training folds (--leak-selftest)",
+      "detected": true,
+      "evidence": {
+        "honest subset": [
+          "D24",
+          "B23",
+          "D32",
+          "B30"
+        ],
+        "k_honest": 4,
+        "leaked subset": [
+          "D24"
+        ],
+        "k_leaked": 1,
+        "subsets identical": false
+      }
+    },
+    {
+      "id": "NC6",
+      "title": "whole-data PCA is detected",
+      "violation": "PCA fitted on every driving row instead of the outer training fold",
+      "detected": true,
+      "evidence": {
+        "R with train-fold PCA": 0.344535,
+        "R with whole-data PCA": 0.354706,
+        "|difference|": 0.010171
+      }
+    },
+    {
+      "id": "NC7",
+      "title": "a modified candidate-channel set is detected",
+      "violation": "remove a channel the frozen run actually selected",
+      "detected": true,
+      "evidence": {
+        "frozen subset": [
+          "D24",
+          "B23",
+          "D32",
+          "B30"
+        ],
+        "k_frozen": 4,
+        "removed channel": "D24",
+        "mutated subset": [
+          "B30",
+          "E14"
+        ],
+        "k_mutated": 2,
+        "removed channel present after mutation": false,
+        "outcome changed": true
+      }
+    },
+    {
+      "id": "NC8",
+      "title": "standard and adaptive using different valid masks is detected",
+      "violation": "one arm's training mask widened to include gap rows",
+      "detected": true,
+      "evidence": {
+        "arms share one mask object": true,
+        "gap rows the forbidden mask would add": 3244
+      }
+    },
+    {
+      "id": "NC9",
+      "title": "a surrogate that bridges the gaps is detected",
+      "violation": "one iAAFT surrogate over the whole valid span writes the gap rows",
+      "detected": true,
+      "evidence": {
+        "gap rows written by the whole-span surrogate": 3244,
+        "gap rows in the block-wise construction": 0
+      }
+    },
+    {
+      "id": "NC10",
+      "title": "a pilot output labelled significant is detected",
+      "violation": "structural check on the pilot artifact (not yet produced)",
+      "detected": false,
+      "evidence": {
+        "reason": "null_pilot_results.csv absent \u2014 run the pilot first"
+      }
+    }
+  ]
+}

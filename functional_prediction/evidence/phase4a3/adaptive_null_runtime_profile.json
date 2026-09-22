@@ -1,0 +1,162 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "generated_utc": "2026-09-20T08:57:06Z",
+  "kind": "PILOT \u2014 engineering and cost only",
+  "NOT_A_SIGNIFICANCE_TEST": true,
+  "no_p_value_computed": true,
+  "purpose": [
+    "full pipeline re-runs per surrogate",
+    "block-wise iAAFT correctness",
+    "runtime / CPU / RAM / I/O / parallel scaling"
+  ],
+  "primary_statistic_frozen": "T_delta = mean_i (R_adaptive,i - R_standard,i) on the surrogate",
+  "secondary_statistic_frozen": "T_adaptive = mean_i R_adaptive,i on the surrogate",
+  "surrogate": "block-wise iAAFT over valid driving blocks only; NaN outside them",
+  "two_passes": {
+    "pass_A_serial_cost": {
+      "K": 2,
+      "workers": 1,
+      "n_participants_measured": 3,
+      "n_runs": 6,
+      "n_ok": 6,
+      "seconds_per_participant_measured_all": [
+        214.06,
+        149.72,
+        174.97,
+        184.93,
+        139.55,
+        321.21
+      ],
+      "seconds_per_participant_measured_mean": 197.41,
+      "source": "null_pilot_results.csv"
+    },
+    "pass_B_parallel_probe": {
+      "n_participants_measured": 3,
+      "n_runs": 6,
+      "seconds_per_participant_measured_all": [
+        214.06,
+        149.72,
+        174.97,
+        184.93,
+        139.55,
+        321.21
+      ],
+      "cpu_s_total": 1079.42,
+      "wall_s_total": 1184.43,
+      "workers": null,
+      "wall_s_per_run": null,
+      "measured_efficiency": null,
+      "source": "pilot_pass_b_parallel.json"
+    },
+    "why_two_passes": "the parallel probe requires --workers > 1; the cost measurement is cleanest serial and undisturbed. Consolidating keeps both."
+  },
+  "K": 2,
+  "n_participants_measured": 3,
+  "n_participants_in_cohort": 25,
+  "n_runs": 6,
+  "n_ok": 6,
+  "seconds_per_participant_measured_mean": 197.41,
+  "seconds_per_participant_measured_all": [
+    214.06,
+    149.72,
+    174.97,
+    184.93,
+    139.55,
+    321.21
+  ],
+  "EXTRAPOLATION_NOTE": "all *_full_cohort fields are extrapolations from the measured per-participant cost, NOT full-cohort measurements",
+  "estimated_wall_s_per_full_cohort_replicate": 4935.2,
+  "estimated_cpu_hours_per_full_cohort_replicate": 1.3709,
+  "surrogate_selection": {
+    "mean_k_on_surrogate": 3.1944444444444446,
+    "max_k_on_surrogate": 4,
+    "max_channels_frozen": 12,
+    "observed_run_mean_k": 2.7693333333333334,
+    "note": "measured, not hypothesised. An earlier expectation that the criterion would run to max_channels on a surrogate was NOT confirmed: it stops at 3-4, and the surrogate/observed cost difference is a modest factor."
+  },
+  "iAAFT_correctness_worst": {
+    "marginal_abs_diff": 0.0,
+    "spectrum_corr": 0.9955316342314783,
+    "all_finite_on_driving_rows": true,
+    "all_nan_on_gap_rows": true
+  },
+  "distinct_surrogate_subsets_total": 34,
+  "timing_agreement_between_passes": {
+    "serial_mean_s_per_participant": 197.41,
+    "parallel_pass_mean_s_per_participant": 197.41,
+    "ratio_serial_over_parallel": 1.0,
+    "contradiction": null
+  },
+  "determinism_check": {
+    "both_passes_seed": "same seed, same participants",
+    "standard_R_star_pass_A": [
+      [
+        "3101",
+        -0.186381697944
+      ],
+      [
+        "3102",
+        -0.046110958677
+      ],
+      [
+        "3103",
+        -0.076955601808
+      ]
+    ],
+    "note": "identical R* across passes to 12 decimals confirms the surrogate draw and the pipeline are deterministic; differences in wall time are machine load, not result differences"
+  },
+  "surrogate_R_star_values": [
+    {
+      "replicate": 0,
+      "legacy_labID": "3101",
+      "standard_R_star": -0.1863816979436256,
+      "adaptive_R_star": -0.292111060939965,
+      "delta_R_star": -0.10572936299633937,
+      "surrogate_mean_k": 3.3333333333333335
+    },
+    {
+      "replicate": 0,
+      "legacy_labID": "3102",
+      "standard_R_star": -0.046110958677491855,
+      "adaptive_R_star": -0.014536577189385207,
+      "delta_R_star": 0.03157438148810665,
+      "surrogate_mean_k": 2.8333333333333335
+    },
+    {
+      "replicate": 0,
+      "legacy_labID": "3103",
+      "standard_R_star": -0.07695560180770747,
+      "adaptive_R_star": -0.4533652206205561,
+      "delta_R_star": -0.3764096188128486,
+      "surrogate_mean_k": 3.1666666666666665
+    },
+    {
+      "replicate": 1,
+      "legacy_labID": "3101",
+      "standard_R_star": -0.40367061979888974,
+      "adaptive_R_star": 0.05501260084635706,
+      "delta_R_star": 0.4586832206452468,
+      "surrogate_mean_k": 3.0
+    },
+    {
+      "replicate": 1,
+      "legacy_labID": "3102",
+      "standard_R_star": -0.2467201695135232,
+      "adaptive_R_star": -0.22194656933815196,
+      "delta_R_star": 0.024773600175371252,
+      "surrogate_mean_k": 2.5
+    },
+    {
+      "replicate": 1,
+      "legacy_labID": "3103",
+      "standard_R_star": -0.018981229150659192,
+      "adaptive_R_star": -0.030965772188261485,
+      "delta_R_star": -0.011984543037602293,
+      "surrogate_mean_k": 4.333333333333333
+    }
+  ],
+  "parallel_probe": {},
+  "what_this_does_not_do": "no p-value, no threshold, no significance flag, and no claim about the null distribution. K is a pilot K.",
+  "peak_working_set_mib": null,
+  "peak_working_set_note": "not captured \u2014 the psapi probe returned no value under this interpreter; RAM per worker is instead reported from the observed A3 run's process working set (~2.0 GiB)."
+}

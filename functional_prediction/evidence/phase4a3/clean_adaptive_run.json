@@ -1,0 +1,83 @@
+{
+  "phase": "SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE",
+  "arm": "adaptive SFFS vs fixed midline standard, corrected driving mask",
+  "generated_utc": "2026-09-20T05:42:23Z",
+  "gate": {
+    "standard_verification": 18,
+    "of": 18,
+    "honoured": true
+  },
+  "n_participants_requested": 25,
+  "n_participants_ok": 25,
+  "n_folds_total": 149,
+  "n_selection_rows": 149,
+  "wall_s_total": 8045.7,
+  "wall_s_mean_per_participant": 321.8,
+  "population": {
+    "n": 25,
+    "standard_mean_R": -0.04993651757569635,
+    "standard_sd_R": 0.2454776664013528,
+    "standard_median_R": -0.026520868879245197,
+    "standard_iqr_R": [
+      -0.24531699183536765,
+      0.13882487231680118
+    ],
+    "standard_min_R": -0.41966993695087834,
+    "standard_max_R": 0.44644379900965725,
+    "standard_n_positive": 12,
+    "adaptive_mean_R": 0.004401556785416416,
+    "adaptive_sd_R": 0.2666241616620093,
+    "adaptive_median_R": -0.00885738672925432,
+    "adaptive_iqr_R": [
+      -0.2035757038083943,
+      0.2375818276978015
+    ],
+    "adaptive_min_R": -0.5098664924643167,
+    "adaptive_max_R": 0.5340823019032918,
+    "adaptive_n_positive": 12,
+    "delta_mean": 0.05433807436111278,
+    "delta_median": 0.061401985727441696,
+    "delta_sd": 0.17811819486158206,
+    "delta_iqr": [
+      -0.06362842079998048,
+      0.1761411440767551
+    ],
+    "delta_min": -0.2839705202312672,
+    "delta_max": 0.3962491700144171,
+    "n_delta_positive": 15,
+    "paired_t": 1.5253375547439045,
+    "paired_t_p": 0.1402460032919825,
+    "wilcoxon_stat": 112.0,
+    "wilcoxon_p": 0.18172985315322876,
+    "delta_mean_excl_top2": 0.026128255193659293,
+    "delta_mean_excl_top4": 0.003839238060784191,
+    "delta_bottom_half_mean": -0.09243638487423739
+  },
+  "channel_selection": {
+    "mean_k": 2.7693333333333334,
+    "min_k": 1,
+    "max_k": 4,
+    "n_distinct_subsets": 136,
+    "n_folds": 149,
+    "jaccard_mean": 0.11704789204789204,
+    "jaccard_min": 0.0,
+    "jaccard_median": 0.0,
+    "n_folds_selecting_exactly_the_four_midline": 0,
+    "folds_with_all_midline": 0
+  },
+  "phase4a2_population_recomputed_from_artifact": {
+    "n": 25,
+    "adaptive_mean_R": 0.004401556785416379
+  },
+  "contamination_delta_population": {
+    "n": 25,
+    "mean_delta_R": 3.4555691641458e-17,
+    "max_abs_delta_R": 1.0824674490095276e-15
+  },
+  "reference_published": {
+    "adaptive_driving_R": 0.374,
+    "standard_driving_R": 0.079,
+    "n": 25,
+    "note": "reference, NOT an optimisation target"
+  }
+}

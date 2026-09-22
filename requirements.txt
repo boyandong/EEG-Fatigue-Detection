@@ -3,7 +3,7 @@
 # Derived from the actual import statements of the published source trees
 # (shared/, functional_prediction/, tta_collapse/), NOT from memory and NOT inherited from the
 # legacy prototype's list. Versions are those actually present in the environment that produced
-# the published numbers -- see ../ENVIRONMENT_AUDIT.md for the evidence and for what is NOT
+# the published numbers -- see ../docs/environment-audit.md for the evidence and for what is NOT
 # reconstructible.
 #
 # The legacy NS-vs-SD prototype under archive/legacy/ has its own, different dependency list

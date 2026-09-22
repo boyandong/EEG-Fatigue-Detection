@@ -1,0 +1,3 @@
+adaptive_R,adaptive_status,delta_R,finite_on_all_driving_rows,legacy_labID,n_distinct_surrogate_subsets,n_folds,nan_on_all_gap_rows,replicate,seconds,standard_R,standard_status,status,surrogate_max_k,surrogate_mean_k,surrogate_selections,worst_block_marginal_abs_diff,worst_block_spectrum_corr
+-0.292111060939965,OK,-0.10572936299633937,True,3101,6,6,True,0,215.5,-0.1863816979436256,OK,OK,7,3.3333333333333335,39.31.62.28|36.14.62|49.43.47.6.44.41.62|53.50|39.31|31.30,0.0,0.9997679384640731
+-0.014536577189385207,OK,0.03157438148810665,True,3102,5,6,True,0,146.48,-0.046110958677491855,OK,OK,6,2.8333333333333335,60.58.62.59|47|47.49.44.63.61.3|47.48.60|47|3.59,0.0,0.9955316342314783

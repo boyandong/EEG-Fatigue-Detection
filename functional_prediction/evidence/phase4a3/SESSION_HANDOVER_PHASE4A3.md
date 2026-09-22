@@ -1,0 +1,288 @@
+
+> **UPDATE 2026-09-20 (BCIT lane):** that lane has since advanced to
+> **`SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE`**, which resolved the gap-contamination
+> question. Read §2 of this file; **the gap defect was real but touched no mask, and the
+> Phase 4A / 4A2 `INVALIDATED` status is withdrawn.**
+
+---
+
+**Written at the hard stop of `SRTP-PHASE4A3-20260920-GAP-CORRECTED-BASELINE`** — the
+gap-corrected re-run of the last historical branch of Phase 4A.
+
+Branch: `project/vigilance_generalization_v1/`. Lane: `audit/phase4a3/`.
+Workspace root: `<WORKSPACE>`.
+
+> Read `AGENTS.md` first, then §2 (what changed) and §3 (the verified result) below.
+> **The one thing a successor must not lose: `audit/phase4a2/GAP_CONTAMINATION_FINDING.md` was
+> WRONG about the impact. `AGENTS.md` §2 has been corrected. Do not re-open it as a
+> contamination panic.**
+
+Recommended successor session name: **`SRTP-PHASE4A4-<YYYYMMDD>-FORMAL-CALIBRATED-NULL`** if the
+PI funds a server, otherwise **`SRTP-PHASE4B-<YYYYMMDD>-BASELINE-REASSESSMENT`**.
+**Phase 4B (cross-subject) remains NOT licensed** — see §7.
+
+---
+
+## 1. PHASE STATUS
+
+| deliverable | state |
+|---|---|
+| gap-contamination audit (`GAP_CONTAMINATION_AUDIT.md`, `gap_contamination_by_subject.csv`) | **DONE** |
+| authoritative driving mask (`DRIVING_MASK_SPEC.md`, `driving_block_manifest.csv`) | **DONE** — 149 valid blocks, 149 folds |
+| block-local smoothing audit (`BLOCK_LOCAL_SMOOTHING_AUDIT.md`) | **DONE** |
+| clean reconstruction proved faithful to the shipped in-block bytes | **DONE** — features 2.38e-07, target 1.20e-07 cohort worst |
+| clean STANDARD run, cohort-wide | **DONE** — see §3 |
+| independent standard verifier | **DONE** — `11_verify_standard.py` **18/18** |
+| clean ADAPTIVE run (A3), cohort-wide | **DONE** — see §3 |
+| SFFS-criterion equivalence (optimised vs frozen path) | **DONE** — 16/16, max per-subset diff 1.1e-16 |
+| negative controls NC1–NC10 | **DONE** — see §5 |
+| null PILOT (engineering + cost only) | **DONE** — see §6 |
+| resource plan (`FULL_NULL_RESOURCE_PLAN.md`) | **DONE** |
+| phase verifier | `90_verify_phase4a3.py` → `outputs/phase4a3_verification.json` |
+| report | `PHASE4A3_GAP_CORRECTED_REPORT.md` |
+| `AGENTS.md` §2 corrected | **DONE** |
+
+**HARD STOP observed.** No formal `K = 1000` null was started. No cross-subject analysis, no new
+model, no new feature, no second SFFS rescue, no deep learning, no personalisation, no HumanEngine.
+**No GPU was used.**
+
+---
+
+## 2. WHAT THIS PHASE CHANGED — and the correction it published
+
+**Changed:** which rows may enter a target, a training/validation mask, a smoothing window or an
+evaluation set. The authoritative mask is `DRIVING_MASK_SPEC.md`: the union of the frozen protocol
+blocks intersected with the valid (non-zero-padded) span. **Nothing else was touched** — cohort,
+target definition, EEG recipe, PSD, PCA rule, OLS, midline scheme, 64-channel candidate space,
+SFFS parameters and outer CV are all inherited frozen. No parameter was re-tuned after seeing a
+result.
+
+**Published correction, in two parts:**
+
+1. **The defect is real.** `20_extract_cache.py`'s `moving_average` leaves every row outside the
+   protocol-block intervals holding values no 90 s mean can produce: the target reaches
+   **11 909 m** of lane deviation against a measured **0.9172 m** lane half-width, and the
+   predictor matrix reaches **±79 769** log-units against a legitimate range of −3.45 … +9.82.
+   The underlying `abs_ln4` in those rows is **physically normal** (`mean 0.343 m`, `max 1.51 m`
+   on `3101`), so the values were manufactured by the smoothing helper, not measured.
+   **82 550** rows across the cohort (**13.8 %–27.4 %** of each valid span) are affected.
+
+2. **Its impact claim is refuted.** `GAP_CONTAMINATION_FINDING.md` inferred those rows lay inside
+   every training mask. Measured across all 149 folds: **0 of 82 550** appear in any training or
+   test mask (`outputs/mask_definitive.json`). The corrected run reproduces Phase 4A to **~1e-14**
+   and the A3 `ΔR` to full precision. **The `INVALIDATED FOR SCIENTIFIC VERDICT` status attached to
+   the Phase 4A / 4A2 results is withdrawn.**
+
+**One unexplained leftover, recorded and bounded:** read literally, Phase 4A's mask loop should
+include the defective rows; executed, it does not. Both candidate readings were evaluated and only
+one reproduces the published R, so the discrepancy is a question about the audit script and cannot
+change a number. `GAP_CONTAMINATION_AUDIT.md` §3b. **Do not spend a session on it before reading
+that section.**
+
+---
+
+## 3. THE VERIFIED RESULT
+
+Cohort N = 25, within-person, leave-one-BLOCK-out, target `mean |LN|` in metres, 149 folds.
+
+| statistic | standard (control) | adaptive (A3) | ΔR |
+|---|---|---|---|
+| mean R | **−0.0499** | **+0.0044** | **+0.0543** |
+| SD R | 0.2455 | 0.2666 | — |
+| median R | −0.0265 | −0.0089 | — |
+| participants R > 0 | 12/25 | see report | — |
+
+**These are Phase 4A's and Phase 4A2's published numbers, reproduced.** The gap correction changed
+nothing, because it removed nothing that was being read. Per-participant confirmation:
+`outputs/standard_contamination_delta.csv`, `outputs/adaptive_contamination_delta.csv`. These two
+files are the direct answer to the brief's headline question and should be read first.
+
+Exact population figures, the paired statistics and the channel-selection diagnostics are in
+`outputs/clean_standard_run.json` and `outputs/clean_adaptive_run.json`; the report's §0 answers the
+ten owner questions, every number read from an artifact.
+
+**No significance claim is made anywhere in this phase.** The corrected numbers are observed
+effects; there is no calibrated null for them (that is §6).
+
+---
+
+## 4. EVIDENCE MAP
+
+| claim | artifact |
+|---|---|
+| the defect is real and bounded | `outputs/gap_contamination_by_subject.csv`, `gap_contamination_summary.json` |
+| the mechanism | `GAP_CONTAMINATION_AUDIT.md` §2 |
+| the impact claim is refuted | `outputs/mask_definitive.json`, §3 of the same file |
+| the corrected arrays are the shipped arrays minus unused rows | `outputs/reconstruction_check.json` |
+| the mask is self-consistent | `outputs/DRIVING_MASK_SPEC.md`, `driving_mask_verification.json` |
+| smoothing never crosses a boundary | `outputs/BLOCK_LOCAL_SMOOTHING_AUDIT.md` |
+| the standard arm is correct | `outputs/standard_verification.json` (18/18) |
+| the optimised SFFS criterion equals the frozen one | `outputs/sffs_equivalence.json` (16/16) |
+| the whole phase | `outputs/phase4a3_verification.json` |
+| the controls can fail | `outputs/phase4a3_negative_controls.json` |
+| the null machinery and its cost | `outputs/null_pilot_results.csv`, `adaptive_null_runtime_profile.json`, `FULL_NULL_RESOURCE_PLAN.md` |
+
+---
+
+## 5. CONTROLS AND VERIFIERS
+
+* `tests/test_p4a3_sffs_equivalence.py` — **16/16**. Pins the optimised SFFS criterion against the
+  frozen `p4a2_common.FoldModel`: identical per-subset inner RMSE (**max diff 1.1e-16**),
+  identical selected subsets, on real data, on both the 6-block and the 5-block participant,
+  including the leak path.
+* `70_negative_controls.py` — **NC1–NC10**. NC1 (gap rows re-entering the training mask) bites by
+  making the least-squares fit **diverge**; NC6 (whole-data PCA) moves R by 0.0102; NC7 (removing a
+  candidate the frozen run selected) changes the subset from 4 channels to 2; NC5 (held-out block
+  entering SFFS) changes the subset; NC10 checks the pilot carries no significance vocabulary.
+* `11_verify_standard.py` — **18/18**, and it imports neither `p4a3_common` nor `p4a3_runner`: it
+  re-derives the mask, the smoothing, the PCA, the OLS and every R from the raw caches.
+* `90_verify_phase4a3.py` — the phase verifier, same independence policy, plus a **from-scratch
+  literal SFFS** on three folds. The literal search is far too slow for 149 folds, and its coverage
+  is **stated rather than implied** — that is deliberate, not an omission.
+
+---
+
+## 6. THE NULL — pilot done, formal run NOT run
+
+The pilot re-ran the **complete** pipeline on block-wise iAAFT surrogates over driving blocks only,
+`K` replicates across all 25 participants, both arms, **SFFS re-selected from scratch every time**
+(the observed run's selections are never reused). It exists to price the formal run and to prove
+the machinery; **it computed no p-value and carries no significance claim**
+(`NOT_A_SIGNIFICANCE_TEST: true`).
+
+Measured cost and the full scaling table: `FULL_NULL_RESOURCE_PLAN.md` and
+`outputs/adaptive_null_runtime_profile.json`.
+
+The primary statistic was frozen **before** the pilot: `T_delta = mean_i (R_adaptive,i −
+R_standard,i)` on the surrogate, with `T_adaptive = mean_i R_adaptive,i` secondary. Neither may be
+swapped after a full null is seen.
+
+**A formal calibrated null is now the only remaining inference for the historical family, and it is
+NOT permitted on this machine.** It needs a remote CPU server; the brief's hard stop ends this
+session before it. `AGENTS.md` §2b lists it as TEST NEXT item 2.
+
+---
+
+## 7. RESEARCH TREE — where the phase leaves it
+
+**KEEP**
+* the BCIT behavioural endpoint `mean |LN|`, the apparatus, and the frozen N = 25 cohort;
+* the calibrated block-wise iAAFT **full-pipeline** null as *the* significance procedure;
+* the corrected driving mask and the gap-contamination audit — the defect is now bounded and proved
+  inert, which makes this a reusable asset rather than a standing scare.
+
+**REINSTATED (was wrongly marked INVALIDATED)**
+* the Phase 4A standard baseline and the Phase 4A2 adaptive baseline. Both stand as published.
+
+**TEST NEXT — PI decisions**
+1. **Fund the formal calibrated null** for the corrected effect → requires a server.
+2. **A mature-baseline literature reassessment** — does an independent, modern, mature trunk exist
+   that is worth testing against the frozen endpoint?
+
+**PARK**
+* Phase 4B cross-subject — **NOT licensed**; no within-person signal is established at the brief's
+  standard. Subject-LOSO, cross-site, cross-person, zero-shot, few-shot and personal calibration
+  were **not run**.
+* deep-learning baselines, personalisation, domain adaptation, HumanEngine;
+* cohort-scale payload re-download for a raw `|LN|`-in-gap check (a PI acquisition decision).
+
+**WITHDRAWN**
+* the "Phase 4A / 4A2 INVALIDATED by gap contamination" status.
+
+---
+
+## 8. EXTERNAL RUNTIME STATE — nothing survives
+
+| process | state at retirement |
+|---|---|
+| `10_clean_standard.py --all` | **finished** (exit 0) — 25/25 |
+| `20_clean_adaptive.py --all` | **finished** (exit 0) — 25/25, 149/149 folds |
+| `tests/test_p4a3_sffs_equivalence.py --broad` | **finished** (exit 0) — 16/16 |
+| `70_negative_controls.py` | **finished** |
+| `60_null_pilot.py`, `96_resource_plan.py`, `95_write_report.py` | **finished** |
+| any `python` process | **none** — verified at handover |
+
+**A successor must verify this independently. Do not assume any process is running.**
+
+Storage: `E:/srtp_phase4a/cache` (25 caches, ~4.0 GB, unchanged) and `E:/srtp_phase4a3/folds`
+(149 fold Grams, ~36 GB). The Phase 4A2 fold cache at `E:/srtp_phase4a2/folds` was **not** reused
+and must not be: it holds Grams built from the contaminated predictors under the same
+`(participant, block)` keys. `p4a3_runner.build_models` asserts the cache directory is lane-local
+for exactly that reason.
+
+---
+
+## 9. FIRST ACTIONS FOR THE SUCCESSOR SESSION
+
+1. Read `AGENTS.md` §2 (the corrected gap-defect entry), then
+   `audit/phase4a3/PHASE4A3_GAP_CORRECTED_REPORT.md` §0, then
+   `audit/phase4a3/outputs/GAP_CONTAMINATION_AUDIT.md` §3b.
+2. Re-run the gates; they must still pass:
+   ```powershell
+   cd project/vigilance_generalization_v1/audit/phase4a3
+   & python -X utf8 tests/test_p4a3_sffs_equivalence.py   # 3/3
+   & python -X utf8 11_verify_standard.py                 # 18/18
+   & python -X utf8 70_negative_controls.py               # 10/10
+   & python -X utf8 90_verify_phase4a3.py
+   ```
+3. Decide the PI question in §7 TEST NEXT 1: fund the server, or close the historical family on
+   observed effects.
+4. Do **not** start Phase 4B. Do not re-open the gap contamination as a live defect. Do not tune
+   toward the published `R ≈ 0.374`, which remains a reference read by no code path.
+
+---
+
+## 10. IMPLEMENTATION TRAPS (each cost real time this session — carry them)
+
+* **A 6-block mask is not the same object as the valid span minus one block.** Building a training
+  mask as *the valid span minus the held-out block* admits the inter-block stretches; building it
+  as *the union of the other blocks* does not. On `3101` they give **R = 0.14161 vs R = 0.34453**,
+  and Phase 4A's published value is the second. **Both readings must be run before claiming which
+  one a pipeline used** — that comparison is what settled this phase.
+* **Smoothing bounds and masking bounds are different objects.** Clipping the *smoothing* bounds to
+  the valid span moves the window's clamp for the first/last block and perturbs in-block values (it
+  cost a full debugging cycle here). Smooth over the frozen blocks; mask against the valid
+  intersection.
+* **`psd_centers_s` is in SECONDS and `grid4_s` is in SECONDS.** `np.interp(grid4_s,
+  psd_centers_s, series)` reproduces the shipped `logpsd_smoothed4` to 1.19e-07; the sample-unit
+  form with an `int64` cast of the centres is off by 10.7. **Test an interpolation against the
+  bytes before trusting the source's apparent units.**
+* **`blocks64` holds only that block's own rows.** In `cv_rmse_batch`, `mtr & (ftr == f_b)` is a
+  mask over the *training* rows and cannot index a per-block array. That error raises
+  `IndexError: boolean index did not match` with sizes like 2374 vs 11470.
+* **Projecting all 2 560 candidate columns when `k*F` are needed cost 61 % of an adaptive fold.**
+  Restricting to the subset's columns first is the same arithmetic; it must be pinned against the
+  frozen parent on real data before use (`tests/test_p4a3_sffs_equivalence.py`).
+* **`_retain` is module-level in `p4a2_common`, not a method.** `FoldModel._retain` raises
+  `AttributeError`.
+* **Dataclasses loaded via `importlib` need `sys.modules[name] = m` before `exec_module`.**
+  Without it, `@dataclass` raises `AttributeError: 'NoneType' object has no attribute '__dict__'`.
+* **Do not run two heavy jobs concurrently.** A profiling probe launched while the equivalence test
+  was still running timed out with no output; the measurement was lost and the wall time doubled.
+* **`Select-Object -Last N` swallows output when the tool timeout kills the command.** Write long
+  runs to a file, or leave them unbuffered in the background.
+* **Windows `spawn` re-imports the module as `__mp_main__`**, so anything a worker needs must be set
+  in the Pool initializer, never in `main()`. (Carried from Phase 4A2; still true.)
+* `curl -C -` resume corrupts these payloads; a correct file **size** is not integrity. (Carried.)
+
+---
+
+## 11. ENVIRONMENT
+
+* interpreter `python` (Python 3.11, numpy 2.3.2, scipy 1.16.1,
+  scikit-learn 1.7.2). Always pass `-X utf8` (non-ASCII path component).
+* **`pytest` is NOT installed** — run test files directly.
+* Bulk storage: `E:/srtp_phase4a/cache`, `E:/srtp_phase4a3/folds`. `E:` had ~110 GB free at
+  handover.
+* The workspace is **not** a git repository. Provenance rests on file-content SHA-256;
+  `git_commit: COMMIT PENDING`.
+* Local GPU (RTX 4060 Laptop) was **idle throughout** — this phase is classical CPU work.
+
+---
+
+## 12. A NOTE ON THE OTHER LANE
+
+`AGENTS.md` §2c (EEG Test-Time Adaptation, `audit/eeg_tta_phase1/`) is an **independent lane** with
+its own handover. It shares no dataset, endpoint, representation or conclusion with the BCIT
+mainline. **Nothing in this phase reads or depends on it, and it must not inherit anything from
+this phase.**

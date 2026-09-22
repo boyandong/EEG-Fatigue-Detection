@@ -1,0 +1,521 @@
+{
+  "phase": "SRTP-PHASE4A2-20260918-ADAPTIVE-SFFS",
+  "generated_utc": "2026-09-18T19:48:25Z",
+  "n_checks": 80,
+  "n_pass": 80,
+  "all_pass": true,
+  "failures": [],
+  "adaptive_population": {
+    "n": 25,
+    "mean_adaptive_R": 0.004401556785416379,
+    "mean_standard_R": -0.04993651757569635,
+    "mean_delta_R": 0.05433807436111275,
+    "median_delta_R": 0.061401985727441426,
+    "n_delta_positive": 15,
+    "sd_delta_R": 0.17811819486158204
+  },
+  "calibrated_null": {
+    "K": 8,
+    "n_significant": 0,
+    "pooled_mean": -0.04388440072007003
+  },
+  "checks": [
+    {
+      "id": "A:doc:P2_GATE_CORRECTION.md",
+      "desc": "P2_GATE_CORRECTION.md exists and is non-trivial",
+      "ok": true,
+      "detail": "4744 bytes"
+    },
+    {
+      "id": "A:doc:A3_METHOD_SPEC.md",
+      "desc": "A3_METHOD_SPEC.md exists and is non-trivial",
+      "ok": true,
+      "detail": "9327 bytes"
+    },
+    {
+      "id": "A:doc:A3_CANDIDATE_CHANNEL_SPEC.md",
+      "desc": "A3_CANDIDATE_CHANNEL_SPEC.md exists and is non-trivial",
+      "ok": true,
+      "detail": "5927 bytes"
+    },
+    {
+      "id": "A:doc:GAP_CONTAMINATION_FINDING.md",
+      "desc": "GAP_CONTAMINATION_FINDING.md exists and is non-trivial",
+      "ok": true,
+      "detail": "5342 bytes"
+    },
+    {
+      "id": "A:art:adaptive_subject_results_FORMAL.csv",
+      "desc": "adaptive_subject_results_FORMAL.csv exists and is non-empty",
+      "ok": true,
+      "detail": "6700 bytes"
+    },
+    {
+      "id": "A:art:adaptive_fold_results_FORMAL.csv",
+      "desc": "adaptive_fold_results_FORMAL.csv exists and is non-empty",
+      "ok": true,
+      "detail": "17210 bytes"
+    },
+    {
+      "id": "A:art:adaptive_runtime_profile_FORMAL.json",
+      "desc": "adaptive_runtime_profile_FORMAL.json exists and is non-empty",
+      "ok": true,
+      "detail": "481 bytes"
+    },
+    {
+      "id": "A:art:adaptive_calibrated_null_FORMAL.csv",
+      "desc": "adaptive_calibrated_null_FORMAL.csv exists and is non-empty",
+      "ok": true,
+      "detail": "6931 bytes"
+    },
+    {
+      "id": "A:art:adaptive_null_replicates_FORMAL.csv",
+      "desc": "adaptive_null_replicates_FORMAL.csv exists and is non-empty",
+      "ok": true,
+      "detail": "14301 bytes"
+    },
+    {
+      "id": "A:art:adaptive_null_summary_FORMAL.json",
+      "desc": "adaptive_null_summary_FORMAL.json exists and is non-empty",
+      "ok": true,
+      "detail": "1509 bytes"
+    },
+    {
+      "id": "A:art:phase4a2_negative_controls.json",
+      "desc": "phase4a2_negative_controls.json exists and is non-empty",
+      "ok": true,
+      "detail": "2863 bytes"
+    },
+    {
+      "id": "A:art:p2_gate_negative_controls.json",
+      "desc": "p2_gate_negative_controls.json exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "B:gate-pass",
+      "desc": "the standard pipeline passes P1-P5 after the correction",
+      "ok": true,
+      "detail": "failures=[]"
+    },
+    {
+      "id": "B:p2-folds",
+      "desc": "P2_folds asserts the per-participant invariant",
+      "ok": true,
+      "detail": "every participant contributes one OK fold per reconstructed block (participants 25/25; blocks per participant [5, 6])"
+    },
+    {
+      "id": "B:p2-total",
+      "desc": "P2_folds_total equals sum_i n_blocks(i)",
+      "ok": true,
+      "detail": "149 OK folds == sum_i n_blocks(i) = 149"
+    },
+    {
+      "id": "B:p2-blocks",
+      "desc": "P2_blocks checks each participant's own block range",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "B:negative-controls",
+      "desc": "the corrected invariant was proven able to fail",
+      "ok": true,
+      "detail": "5/5"
+    },
+    {
+      "id": "B:doc-old-invariant",
+      "desc": "the OLD invariant is recorded in the correction note",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "B:doc-no-result-change",
+      "desc": "the note states no scientific result changed",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "C:scalp-only",
+      "desc": "no EOG / mastoid / vehicle channel is a candidate",
+      "ok": true,
+      "detail": "n=64"
+    },
+    {
+      "id": "C:count",
+      "desc": "the candidate count is the frozen 64",
+      "ok": true,
+      "detail": "got 64"
+    },
+    {
+      "id": "C:signal-blind",
+      "desc": "the construction is declared signal-blind",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "C:midline",
+      "desc": "all four midline targets are inside at distance 0",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "C:collisions",
+      "desc": "no standard site is claimed by two candidates",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "C:no-performance-input",
+      "desc": "the construction is declared signal-blind",
+      "ok": true,
+      "detail": "artifact declares a signal-blind construction from head geometry alone"
+    },
+    {
+      "id": "C:cache-axis",
+      "desc": "all 25 caches carry exactly the frozen candidate axis",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "D:coverage",
+      "desc": "every A3-OK participant has a Phase 4A standard result",
+      "ok": true,
+      "detail": "25/25"
+    },
+    {
+      "id": "D:standard-arm-equals-phase4a",
+      "desc": "the A3 lane's standard column equals the Phase 4A published standard R",
+      "ok": true,
+      "detail": "max |diff| = 5.540e-14 (worst 3201)"
+    },
+    {
+      "id": "D:independent-rederivation",
+      "desc": "standard R re-derived for 3101 from the cache + 40_standard_pipeline",
+      "ok": true,
+      "detail": "re-derived 0.344534862048 vs reported 0.344534862048"
+    },
+    {
+      "id": "E:total",
+      "desc": "fold count equals sum_i n_blocks(i) = 149",
+      "ok": true,
+      "detail": "got 149"
+    },
+    {
+      "id": "E:per-participant",
+      "desc": "every participant contributes one fold per reconstructed block",
+      "ok": true,
+      "detail": "25 participants"
+    },
+    {
+      "id": "E:no-extra-participants",
+      "desc": "no fold belongs to a participant outside the frozen cohort",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "E:no-dropped-participant",
+      "desc": "no frozen participant is missing",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F:n",
+      "desc": "the result table covers the frozen N = 25",
+      "ok": true,
+      "detail": "got 25"
+    },
+    {
+      "id": "F:cohort",
+      "desc": "no participant replacement or substitution",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F:R-range",
+      "desc": "every R lies in [-1, 1]",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F:delta-consistent",
+      "desc": "delta_R equals adaptive_R - standard_R",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F:k-range",
+      "desc": "every selected subset size is within the paper's 1..12",
+      "ok": true,
+      "detail": "observed k in [1,10]"
+    },
+    {
+      "id": "F:candidate-membership",
+      "desc": "every selected channel is in the frozen candidate set",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F:k-matches-selection",
+      "desc": "adaptive_k equals the number of selected channels",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F:params-frozen",
+      "desc": "the runtime profile declares no tuning parameter",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "F:stability-diagnostic",
+      "desc": "fold-to-fold channel stability is reported per participant",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "G:invariance",
+      "desc": "selection is invariant to the held-out block's CONTENT",
+      "ok": true,
+      "detail": "['D24', 'B23', 'D32', 'B30'] vs ['D24', 'B23', 'D32', 'B30']"
+    },
+    {
+      "id": "G:detector-bites",
+      "desc": "the injected leak DOES change the selection (the check can fail)",
+      "ok": true,
+      "detail": "leaky ['D24'] vs clean ['D24', 'B23', 'D32', 'B30']"
+    },
+    {
+      "id": "G:no-residue",
+      "desc": "the model is intact after the leak self-test",
+      "ok": true,
+      "detail": "['D24', 'B23', 'D32', 'B30'] vs ['D24', 'B23', 'D32', 'B30']"
+    },
+    {
+      "id": "G:pca-is-train-fold",
+      "desc": "the PCA used is the training-fold basis, not the whole-participant one",
+      "ok": true,
+      "detail": "overlap with train-fold 1.0000, with whole-participant 0.9850 (components 3 vs 1)"
+    },
+    {
+      "id": "H:type",
+      "desc": "the null is declared a CALIBRATED full-pipeline null",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H:pipeline-rerun",
+      "desc": "the null re-runs the pipeline (not a y-permutation)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H:surrogate",
+      "desc": "the surrogate is block-wise and preserves block order",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H:both-nulls",
+      "desc": "both nulls are declared reported and neither chosen post hoc",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H:K-recorded",
+      "desc": "K is recorded explicitly",
+      "ok": true,
+      "detail": "K = 8"
+    },
+    {
+      "id": "H:K-flag",
+      "desc": "any shortfall against the brief's K >= 1000 is declared, not absorbed",
+      "ok": true,
+      "detail": "K = 8; note = every participant has the full K"
+    },
+    {
+      "id": "H:K-achieved",
+      "desc": "every participant has the full K = 8 surrogates",
+      "ok": true,
+      "detail": "25/25 participants at K"
+    },
+    {
+      "id": "H:efficiency",
+      "desc": "the surrogate table contains no wasted runs",
+      "ok": true,
+      "detail": "200 OK runs for 25 x 8"
+    },
+    {
+      "id": "H:distinct",
+      "desc": "no replicate produced a duplicate R* (surrogates were re-drawn)",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H:p-range",
+      "desc": "every calibrated p is in (0, 1]",
+      "ok": true,
+      "detail": "n=25"
+    },
+    {
+      "id": "H:p-floor",
+      "desc": "no p is below the resolution floor 1/(K+1) \u2014 no over-claiming",
+      "ok": true,
+      "detail": "floor = 0.1111"
+    },
+    {
+      "id": "H:significance-gated",
+      "desc": "no participant is marked significant unless K can resolve 5 %",
+      "ok": true,
+      "detail": "K = 8; marked significant = 0"
+    },
+    {
+      "id": "H:p-definition",
+      "desc": "p uses the (1 + #{R* >= R}) / (K + 1) convention",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "H:population-null",
+      "desc": "a null for the POPULATION MEAN of R is computed across replicates",
+      "ok": true,
+      "detail": "8 replicate means for K = 8"
+    },
+    {
+      "id": "H:population-p",
+      "desc": "observed population mean vs the null of the population mean is recorded consistently",
+      "ok": true,
+      "detail": "observed +0.0044, 0/8 null means >= it, p = 0.1111111111111111"
+    },
+    {
+      "id": "I:computed",
+      "desc": "the historical null was computed for the whole cohort",
+      "ok": true,
+      "detail": "25/25"
+    },
+    {
+      "id": "I:distinguishable",
+      "desc": "the two nulls are NOT the same object",
+      "ok": true,
+      "detail": "min |difference| = 0.0021"
+    },
+    {
+      "id": "I:calibrated-vs-historical",
+      "desc": "the calibrated null is the wider/less-collapsed of the two",
+      "ok": true,
+      "detail": "mean calibrated -0.0439 vs historical -0.0511"
+    },
+    {
+      "id": "I:not-preferred",
+      "desc": "no artifact selects the historical null as the verdict",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "J:all",
+      "desc": "every negative control behaved as required",
+      "ok": true,
+      "detail": "12/12"
+    },
+    {
+      "id": "J:NC1",
+      "desc": "a control exists for participant identity",
+      "ok": true,
+      "detail": "['NC1 participant identity substituted', 'NC1b participant silently dropped']"
+    },
+    {
+      "id": "J:NC2",
+      "desc": "a control exists for leakage",
+      "ok": true,
+      "detail": "['NC2 held-out block read during selection', 'NC2b detector fires on the injected leak']"
+    },
+    {
+      "id": "J:NC3",
+      "desc": "a control exists for full-data PCA",
+      "ok": true,
+      "detail": "['NC3 whole-participant PCA instead of train-fold PCA', 'NC3b detector rejects the inflated basis']"
+    },
+    {
+      "id": "J:NC4",
+      "desc": "a control exists for surrogate reuse",
+      "ok": true,
+      "detail": "['NC4 fixed surrogate reused without re-running SFFS']"
+    },
+    {
+      "id": "J:NC5",
+      "desc": "a control exists for non-scalp candidate",
+      "ok": true,
+      "detail": "['NC5 vehicle channel in the candidate pool']"
+    },
+    {
+      "id": "J:NC6",
+      "desc": "a control exists for fold count",
+      "ok": true,
+      "detail": "['NC6 fold count asserted as N x 6']"
+    },
+    {
+      "id": "J:NC7",
+      "desc": "a control exists for cohort mismatch",
+      "ok": true,
+      "detail": "['NC7 standard/adaptive cohort mismatch']"
+    },
+    {
+      "id": "J:NC8",
+      "desc": "a control exists for null-label swap",
+      "ok": true,
+      "detail": "['NC8 null labels presented as interchangeable']"
+    },
+    {
+      "id": "K:adaptive-mean",
+      "desc": "the report's adaptive mean R matches the artifact",
+      "ok": true,
+      "detail": "artifact 0.004401556785416379"
+    },
+    {
+      "id": "K:delta-mean",
+      "desc": "the report's mean delta R matches the artifact",
+      "ok": true,
+      "detail": "artifact 0.05433807436111275"
+    },
+    {
+      "id": "K:no-target",
+      "desc": "the published 0.374 appears only with an explicit not-a-target disclaimer",
+      "ok": true,
+      "detail": "'never a target' present = True"
+    },
+    {
+      "id": "K:no-tuning-path",
+      "desc": "the report states no code path reads the published value",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "K:deployment",
+      "desc": "the report states the smoothing is not deployment-compatible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "id": "K:gap-finding",
+      "desc": "the report references the gap-contamination finding",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "source_hashes": {
+    "01_prove_p2_gate_bites.py": "76336beb7e4219aabd36ff1e6ac2b4ba5173c4b4c8e653ea5ff5d49cff2eb185",
+    "45_adaptive_sffs.py": "88942da12ad6f61544910fc899c6418555d64d98731eb73700a8172407d0992a",
+    "60_null_full_pipeline.py": "556aac3f2492dcadc13501ad8d7db8fd0f6f8bc8d9c5bd65d2f5cfcc676d3029",
+    "62_null_stages.py": "7afb392ebfb2a8a89b7cd8683e27507d28ba76df6d9d8e8420594181b49176d8",
+    "70_negative_controls.py": "26bd85df001852d8f3fc9a4f40cd714f8c55d694e463599b319d523ab1b822a9",
+    "90_verify_phase4a2.py": "1ff7be7dca95ba4b075289d8ff66a669c880cf159bebc56ce9bfd3fc63bfbd64",
+    "95_write_report.py": "67479b28137ab1db01f59bda9c7f63d4ab7834a6a7c4e1d4f5fdfb0147852f33",
+    "_bench_hotpath.py": "f80542000e9a8dfdeb01a5a379ee935547e338a849f08ac15e80637f7f6b75f2",
+    "_debug_criterion.py": "155f903fd8b7de3e794baed43ee9ea48899e33c81e6a912a5a06213a6607dc6a",
+    "src\\p4a2_common.py": "378bc9212c99bfa9f0d177256aea1ee486893461552841fc766ab3bdb7631da9",
+    "A3_CANDIDATE_CHANNEL_SPEC.md": "95021c41f8b3ebe2355d9a9bd35937cc3b6cf591fc1fd609d9b650a9e4047dd3",
+    "A3_METHOD_SPEC.md": "c46d7233d29698cd7f5cb500753e222b807affc7fb2be27df59b43134d2abec1",
+    "GAP_CONTAMINATION_FINDING.md": "2afd2adba1981440f2ac7e4a5ef1341697ddb4e3cdf554f71b8ed4714c89fbb1",
+    "P2_GATE_CORRECTION.md": "3fb95f9c2e3e459735d59a8b696918a7a0117471de95637170ee4551490e5621",
+    "PHASE4A2_ADAPTIVE_SFFS_REPORT.md": "83805d348011925ce4bc758c5e080462e09a4c4bd307acd594d7b572b392c579"
+  }
+}
